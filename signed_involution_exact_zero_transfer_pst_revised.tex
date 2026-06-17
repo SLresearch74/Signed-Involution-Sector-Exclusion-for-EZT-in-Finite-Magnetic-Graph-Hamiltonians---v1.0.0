@@ -1,0 +1,1498 @@
+
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{xurl}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{caption}
+\usepackage[round,authoryear]{natbib}
+\usepackage{float}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+\hypersetup{colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue}
+\setlist[itemize]{leftmargin=2em}
+\setlist[enumerate]{leftmargin=2em}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\cH}{\mathcal H}
+\newcommand{\cK}{\mathcal K}
+\newcommand{\cV}{\mathbb C^V}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\rank}{\operatorname{rank}}
+
+\title{Signed-Involution Sector Exclusion for Exact Zero Transfer in Finite Magnetic Graph Hamiltonians}
+\author{Zach Medford}
+\date{June 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We study exact zero-transfer pairs in finite-dimensional Hermitian graph dynamics. Given a finite vertex set $V$, a Hermitian graph Hamiltonian $H=H^\dagger$ on $\mathbb C^V$, and vertices $s,\ell\in V$, we say that $(s,\ell)$ is an exact zero-transfer pair when
+\[
+\langle \ell|e^{-itH}|s\rangle=0\qquad \forall t\in\R .
+\]
+The first part of the paper gives a finite algebraic characterisation: exact zero transfer is equivalent to moment cancellation
+\[
+\langle \ell|H^k|s\rangle=0,\qquad k=0,1,\ldots,n-1,
+\]
+equivalently to exclusion of $|\ell\rangle$ from the source-generated Krylov subspace, and equivalently to spectral-projector channel closure, $\langle \ell|E_\lambda|s\rangle=0$ for every spectral projector $E_\lambda$. We then formulate invariant-sector and symmetry-sector sufficient conditions, including the scalar $\pi$-flux even cycle as a canonical magnetic example. A compact Layer-2 spectral audit is included to record the solid conclusion that projector-channel closure, rather than degeneracy, gap rigidity, recurrence or localisation alone, is the decisive diagnostic of exact zero transfer in the tested atlas.
+
+The main certificate formalism is a signed-involution certificate. A certificate is a tuple $(G,H,R,s,\ell)$ satisfying
+\[
+R^2=I,\qquad [H,R]=0,\qquad R|s\rangle=|s\rangle,\qquad R|\ell\rangle=-|\ell\rangle.
+\]
+Such a certificate proves exact zero transfer by sector exclusion. We derive an edge-compatibility condition
+\[
+H_{r(u),r(v)}=\sigma_u\sigma_v H_{uv}
+\]
+for signed magnetic graph symmetries $R|v\rangle=\sigma_v|r(v)\rangle$, and use it as the basis of a symmetry-first certificate-generation procedure. The computational run reported here used a symmetry-first certificate search to produce thirty-four signed-involution certificates on selected non-cycle supports, including reflected chord cycles, rectangular grids, a diagonal grid, and the octahedral graph.
+
+We also introduce a perturbative diagnostic layer for certified examples. This layer distinguishes breaking a chosen protecting sector from opening the specified target channel. It uses projector-dependent sector-breaking scales and target-resolved first-order leakage coefficients to audit how a certificate fails under perturbation. When physical units are specified, the associated energy scale may be converted into an Einstein mass-equivalent; this is only a dimensional conversion of a chosen sector-breaking energy scale, not a claim of intrinsic mass for information or for target occupation.
+
+Finally, we record finite-time perturbation bounds and a Lindblad block-preservation theorem. For open systems, exact target exclusion is preserved when the Lindblad generator leaves the supported operator block $\mathcal B_P=\{X:X=PXP\}$ invariant. The paper is a finite-dimensional formalism for exact source-target transition zeros and machine-checkable certificates; it is not a claim of intrinsic topological protection, generic robustness, physical implementation, or a new physical theory.
+\end{abstract}
+
+\paragraph{Transparency statement.}
+The mathematical organisation, manuscript drafting, and numerical diagnostic scripting in this document were developed with assistance from ChatGPT and Gemini. These tools are not authors and cannot take responsibility for correctness. The named human author is responsible for checking the mathematics, validating computations, verifying citations, auditing generated code and data, and deciding whether the manuscript is suitable for dissemination or submission.
+
+\tableofcontents
+\newpage
+
+\section{Introduction}
+Continuous-time quantum walks provide a finite-dimensional model of coherent transport on graphs, where a state evolves under a Hermitian Hamiltonian associated with a graph or weighted graph \citep{FarhiGutmann1998,Childs2009,Godsil2012}. Interference between graph paths can produce transport behaviour with no classical random-walk analogue. Perfect state transfer is the opposite extremal transport phenomenon, in which a walk carries one vertex state exactly to another at a specified time \citep{Godsil2012,Coutinho2015}. Complex or magnetic edge weights further enrich this picture by introducing phase-sensitive transport, chirality, and time-reversal symmetry breaking \citep{Zimboras2013,Lu2016}.
+
+A phenomenon of particular interest is zero transfer: complete suppression of transition amplitude at a target vertex for all times. Sett et al. \citeyearpar{Sett2019} studied zero transfer in continuous-time quantum walks with complex-valued edge weights, showing that suitable graph topology, edge phases, and initial states can suppress probability amplitude at selected vertices. They also considered quantum stochastic walks and found that zero-transfer effects may be destroyed by the decoherence models they examined, suggesting a possible diagnostic role for zero transfer in open quantum dynamics.
+
+The present paper develops a compact finite-dimensional formalism for this phenomenon. For a finite vertex set $V$, a Hermitian graph Hamiltonian $H=H^\dagger$ on $\cH_V=\mathbb C^V$, and vertices $s,\ell\in V$, we call $(s,\ell)$ an exact zero-transfer pair when
+\[
+\langle \ell|e^{-itH}|s\rangle=0\qquad \forall t\in\R .
+\]
+The object of study is not a vertex alone, but the ordered data $(H,s,\ell)$.
+
+The first purpose of the paper is algebraic. We show that exact zero transfer is equivalent to finite moment cancellation, equivalently to exclusion from the source-generated Krylov subspace, and equivalently to spectral-projector channel closure. Thus an all-time dynamical identity is reduced to finite linear algebra.
+
+This spectral form also motivates a compact audit layer. In the Layer-2 computation series, spectral data were used not as a replacement for the exact zero-transfer theorem, but as a diagnostic of whether the source-target channel is closed in every spectral projector. The robust conclusion retained in this paper is deliberately narrow: exact darkness tracks projector-channel closure, while degeneracy, level-spacing rigidity, recurrence and localisation are secondary geometry or symmetry signals rather than causes of exact darkness by themselves.
+
+The second purpose is structural. Exact zero transfer is explained by invariant-sector exclusion: if a projector $P$ commutes with $H$, contains $|s\rangle$, and excludes $|\ell\rangle$, then the source evolution remains in a sector orthogonal to the target. Visible graph symmetry is therefore a sufficient mechanism, although not a necessary one.
+
+The main certificate mechanism is a signed-involution formalism. For a signed magnetic graph symmetry
+\[
+R|v\rangle=\sigma_v|r(v)\rangle,\qquad \sigma_v\in\{\pm1\},
+\]
+we prove that the finite certificate equations
+\[
+R^2=I,\qquad [H,R]=0,\qquad R|s\rangle=|s\rangle,\qquad R|\ell\rangle=-|\ell\rangle
+\]
+imply exact zero transfer. This turns zero transfer from an observed numerical cancellation into a machine-checkable proof object.
+
+The third purpose is computational. We describe a symmetry-first certificate generator. We call this procedure M3A, for Magnetic signed-involution Automorphism certificate search. It searches graph involutions $r$, assigns signs $\sigma_v$, constructs signed magnetic Hamiltonians, and verifies the certificate equations. In the computational run reported here, this procedure produced thirty-four verified signed-involution certificates on selected non-cycle finite graph supports: reflected chord cycles, rectangular grids, a diagonal grid, and the octahedral graph.
+
+The fourth purpose is diagnostic. The updated M3A pipeline no longer stops at certificate generation. It also audits how the certificate behaves under perturbations. The pipeline computes sector-breaking blocks, checks exact preservation under sector-preserving perturbations, verifies finite-time leakage bounds, compares certificate and Krylov projectors, and computes target-resolved first-order leakage coefficients. The central diagnostic distinction is this: a non-zero sector-breaking block means that a chosen proof has failed, not that the target channel has necessarily opened.
+
+The fifth purpose is stability and open-system preservation. We derive a finite-time perturbative bound showing that leakage under a Hermitian perturbation is controlled by the sector-breaking block. For Lindblad evolution \citep{Gorini1976,Lindblad1976}, we show that exact target exclusion is preserved whenever the generator leaves the supported operator block $\mathcal B_P=\{X:X=PXP\}$ invariant. This condition is naturally related to decoherence-free subspaces and noiseless sectors \citep{LidarWhaley2003}, but is stated here as a finite block-preservation criterion.
+
+The contribution is therefore not the claim that destructive interference, graph symmetry, or magnetic walks are new. Rather, the contribution is the organisation of exact zero transfer into a finite certificate framework: moment/Krylov/spectral equivalence, spectral-projector channel diagnostics, invariant-sector exclusion, signed magnetic involution certificates, a symmetry-first certificate generator, perturbative sector-breaking diagnostics, and Lindblad block-preservation criteria.
+
+A parallel line of work studies finite planar-duality and local-to-global sign-consistency phenomena for related signed graph systems. Those results are not used in the present paper. Here we restrict attention to finite Hermitian graph Hamiltonians, exact source-target transition exclusion, signed-involution certificates, spectral-projector channel diagnostics and finite perturbative tests. Duality correspondences between blocking face-flux supports and blockable vertex pairs, as well as FCC local-to-global sign obstructions, will be treated separately.
+
+\section{Definitions and standing assumptions}
+Throughout, all Hilbert spaces are finite-dimensional and all graphs are finite unless explicitly stated otherwise.
+
+\begin{definition}[Vertex Hilbert space]
+Let $V$ be a finite vertex set with $|V|=n$. The associated vertex Hilbert space is
+\[
+\cH_V=\mathbb C^V,
+\]
+with distinguished orthonormal basis $\{|v\rangle:v\in V\}$. For an operator $H:\cH_V\to\cH_V$, write $H_{uv}=\langle u|H|v\rangle$.
+\end{definition}
+
+\begin{definition}[Finite graph Hamiltonian]
+A finite graph Hamiltonian on $V$ is a Hermitian operator
+\[
+H=H^\dagger
+\]
+on $\cH_V$. Its off-diagonal support defines an undirected support graph $G_H=(V,E_H)$, where
+\[
+\{u,v\}\in E_H \Longleftrightarrow H_{uv}\ne0,\qquad u\ne v.
+\]
+Diagonal entries $H_{vv}$ are allowed and may be interpreted as on-site potentials. They do not contribute edges to $G_H$.
+\end{definition}
+
+\begin{remark}[Ordinary, signed, weighted, and magnetic cases]
+If $H_{uv}\in\{0,1\}$ for $u\ne v$, then $H$ is the ordinary adjacency matrix of a simple graph. If $H_{uv}\in\R$, the graph is real weighted or signed. If
+\[
+H_{uv}=g_{uv}e^{i\theta_{uv}},\qquad g_{uv}=g_{vu}\ge0,\qquad \theta_{vu}=-\theta_{uv}\pmod{2\pi},
+\]
+then $H$ is a magnetic graph Hamiltonian. Complex edge weights of this type are standard in chiral or magnetic continuous-time quantum walks \citep{Zimboras2013,Lu2016,Sett2019}.
+\end{remark}
+
+\begin{definition}[Closed-system graph evolution]
+Given $H=H^\dagger$, the closed-system continuous-time evolution is
+\[
+U_H(t)=e^{-itH},\qquad t\in\R.
+\]
+For an initial vertex state $|s\rangle$, the evolved state is $|\psi_s(t)\rangle=e^{-itH}|s\rangle$.
+\end{definition}
+
+\begin{definition}[Transition amplitude and probability]
+For $s,\ell\in V$, the source-target transition amplitude is
+\[
+K^H_{\ell s}(t)=\langle \ell|e^{-itH}|s\rangle .
+\]
+The corresponding transition probability is
+\[
+p^H_{\ell s}(t)=|K^H_{\ell s}(t)|^2.
+\]
+When $H$ is clear from context, we write $K_{\ell s}(t)$ and $p_{\ell s}(t)$.
+\end{definition}
+
+\begin{definition}[Exact zero-transfer pair]
+Let $H=H^\dagger$ be a finite graph Hamiltonian. An ordered pair $(s,\ell)\in V\times V$ is an exact zero-transfer pair for $H$ if
+\[
+\langle \ell|e^{-itH}|s\rangle=0\qquad \forall t\in\R .
+\]
+Equivalently, $K^H_{\ell s}(t)\equiv0$.
+\end{definition}
+
+\begin{remark}[Terminology]
+The phrase ``dark vertex'' may be useful informally, but it is not a property of a vertex alone. Exact zero transfer depends on the Hamiltonian, the source, and the target. The formal object is the ordered triple $(H,s,\ell)$, or the statement that $(s,\ell)$ is an exact zero-transfer pair for $H$.
+\end{remark}
+
+\begin{definition}[Moment sequence]
+For $H=H^\dagger$, define the source-target moment sequence
+\[
+M^H_k(\ell,s)=\langle \ell|H^k|s\rangle,\qquad k\in\mathbb N_0.
+\]
+When $H$ is an ordinary adjacency matrix, this counts walks of length $k$ from $s$ to $\ell$. For signed, weighted, or magnetic Hamiltonians it is the corresponding weighted walk sum.
+\end{definition}
+
+\begin{definition}[Source-generated Krylov subspace]
+For a source $s\in V$, define the source-generated Krylov subspace
+\[
+\cK_s(H)=\operatorname{span}\{|s\rangle,H|s\rangle,H^2|s\rangle,\ldots,H^{n-1}|s\rangle\}.
+\]
+By Cayley-Hamilton,
+\[
+\operatorname{span}\{H^k|s\rangle:k\ge0\}=\cK_s(H).
+\]
+Let $P^H_s$ denote the orthogonal projector onto $\cK_s(H)$.
+\end{definition}
+
+\begin{definition}[Invariant sector]
+An orthogonal projector $P=P^\dagger=P^2$ defines an $H$-invariant sector if
+\[
+[H,P]=0.
+\]
+Equivalently, both $P\cH_V$ and $(I-P)\cH_V$ are invariant under $H$.
+\end{definition}
+
+\begin{definition}[Source-containing and target-excluding sector]
+A projector $P$ contains the source $s$ if $P|s\rangle=|s\rangle$, and excludes the target $\ell$ if $P|\ell\rangle=0$. If $P$ is $H$-invariant, contains $s$, and excludes $\ell$, then the source and target lie in orthogonal invariant sectors.
+\end{definition}
+
+\begin{definition}[Magnetic flux on a cycle]
+Let $H$ be a magnetic graph Hamiltonian with $H_{uv}=g_{uv}e^{i\theta_{uv}}$ and $\theta_{vu}=-\theta_{uv}\pmod{2\pi}$. For an oriented cycle
+\[
+C=(v_0,v_1,\ldots,v_{m-1},v_0),
+\]
+define the magnetic flux through $C$ by
+\[
+\Phi_C=\sum_{j=0}^{m-1}\theta_{v_{j+1}v_j}\pmod{2\pi},\qquad v_m=v_0.
+\]
+A cycle with $\Phi_C=\pi\pmod{2\pi}$ is called a scalar $\pi$-flux cycle.
+\end{definition}
+
+\begin{definition}[Open-system evolution]
+For the open-system part of the paper, a density matrix $\rho_t\in\mathcal B(\cH_V)$ evolves according to the finite-dimensional Lindblad equation
+\[
+\frac{d\rho_t}{dt}=\mathcal L(\rho_t),
+\]
+where
+\[
+\mathcal L(\rho)=-i[H,\rho]+\sum_a\left(D_a\rho D_a^\dagger-\frac12\{D_a^\dagger D_a,\rho\}\right).
+\]
+\end{definition}
+
+\begin{definition}[Supported operator block]
+Let $P=P^\dagger=P^2$. The $P$-supported operator block is
+\[
+\mathcal B_P=\{X\in\mathcal B(\cH_V):X=PXP\}.
+\]
+Equivalently, $X\in\mathcal B_P$ if and only if $(I-P)X=0$ and $X(I-P)=0$.
+\end{definition}
+
+\section{Moment, Krylov, and spectral characterisations}
+The aim of this section is to replace the all-time dynamical condition $K^H_{\ell s}(t)\equiv0$ by finite linear-algebraic criteria.
+
+\begin{theorem}[Moment, Krylov, and spectral equivalence]
+Let $H=H^\dagger\in M_n(\C)$, and let $s,\ell\in V$. Let
+\[
+H=\sum_{\lambda\in\sigma(H)}\lambda E_\lambda
+\]
+be the spectral decomposition of $H$. The following are equivalent:
+\begin{enumerate}[label=(\roman*)]
+\item $(s,\ell)$ is an exact zero-transfer pair: $\langle \ell|e^{-itH}|s\rangle=0$ for all $t\in\R$.
+\item All moments vanish: $\langle \ell|H^k|s\rangle=0$ for all $k\ge0$.
+\item The first $n$ moments vanish: $\langle \ell|H^k|s\rangle=0$ for $k=0,1,\ldots,n-1$.
+\item The target vector is orthogonal to the source-generated Krylov subspace: $|\ell\rangle\perp \cK_s(H)$.
+\item Every spectral component from $s$ to $\ell$ vanishes: $\langle \ell|E_\lambda|s\rangle=0$ for all $\lambda\in\sigma(H)$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+The exponential series gives
+\[
+e^{-itH}=\sum_{k=0}^\infty \frac{(-it)^k}{k!}H^k.
+\]
+Taking the $(\ell,s)$-matrix element,
+\[
+K^H_{\ell s}(t)=\sum_{k=0}^\infty \frac{(-it)^k}{k!}\langle \ell|H^k|s\rangle.
+\]
+If all moments vanish, then $K^H_{\ell s}(t)=0$ for all $t$. Conversely, if $K^H_{\ell s}(t)\equiv0$, then every derivative at $t=0$ vanishes. Since
+\[
+\left.\frac{d^k}{dt^k}K^H_{\ell s}(t)\right|_{t=0}=(-i)^k\langle \ell|H^k|s\rangle,
+\]
+all moments vanish. This proves (i)$\Leftrightarrow$(ii).
+
+Clearly (ii) implies (iii). Conversely, Cayley-Hamilton expresses $H^n$ as a linear combination of $I,H,\ldots,H^{n-1}$. Multiplying by powers of $H$ shows that every $H^k$, $k\ge n$, is also a linear combination of $I,H,\ldots,H^{n-1}$. Thus (iii) implies (ii).
+
+Condition (iii) is exactly the statement that $|\ell\rangle$ is orthogonal to every generator of $\cK_s(H)$, so (iii)$\Leftrightarrow$(iv).
+
+Finally,
+\[
+e^{-itH}=\sum_{\lambda\in\sigma(H)}e^{-it\lambda}E_\lambda,
+\]
+so
+\[
+K^H_{\ell s}(t)=\sum_{\lambda\in\sigma(H)}e^{-it\lambda}\langle \ell|E_\lambda|s\rangle.
+\]
+If every spectral component vanishes, then $K^H_{\ell s}(t)\equiv0$. Conversely, if $K^H_{\ell s}(t)\equiv0$, differentiating at $t=0$ up to the number of distinct eigenvalues gives a Vandermonde system in the coefficients $\langle \ell|E_\lambda|s\rangle$. Since the eigenvalues are distinct, the Vandermonde matrix is invertible. Hence all coefficients vanish.
+\end{proof}
+
+\begin{corollary}[Finite algebraic check]
+To prove exact zero transfer for an $n$-vertex finite graph Hamiltonian, it is enough to verify
+\[
+\langle \ell|H^k|s\rangle=0,
+\qquad k=0,1,\ldots,n-1.
+\]
+Numerical time sampling may suggest zero transfer, but it is not by itself a proof.
+\end{corollary}
+
+\begin{lemma}[Krylov subspace invariance]
+The source-generated Krylov subspace $\cK_s(H)$ is invariant under $H$:
+\[
+H\cK_s(H)\subseteq \cK_s(H).
+\]
+\end{lemma}
+
+\begin{proof}
+For $k=0,\ldots,n-2$, $H(H^k|s\rangle)=H^{k+1}|s\rangle$, which is one of the listed generators. For $H(H^{n-1}|s\rangle)=H^n|s\rangle$, Cayley-Hamilton expresses $H^n$ as a linear combination of $I,H,\ldots,H^{n-1}$. Hence $H^n|s\rangle\in\cK_s(H)$.
+\end{proof}
+
+\begin{corollary}[Canonical invariant sector]
+Let $P^H_s$ be the orthogonal projector onto $\cK_s(H)$. Then
+\[
+[H,P^H_s]=0.
+\]
+Moreover,
+\[
+(s,\ell)\text{ exact zero-transfer for }H \Longleftrightarrow P^H_s|\ell\rangle=0.
+\]
+\end{corollary}
+
+\begin{proof}
+Since $H=H^\dagger$, invariance of $\cK_s(H)$ implies invariance of its orthogonal complement. Thus $H$ is block diagonal relative to $\cH_V=\cK_s(H)\oplus\cK_s(H)^\perp$, which is equivalent to $[H,P^H_s]=0$. The equivalence follows from the Krylov characterisation above.
+\end{proof}
+
+
+\subsection{Spectral-projector channel diagnostic}
+The spectral characterisation is also the cleanest diagnostic for numerical and computational audits.  Write
+\[
+H=\sum_{\lambda\in\sigma(H)}\lambda E_\lambda,
+\]
+where $E_\lambda$ is the full spectral projector onto the $\lambda$-eigenspace.  Define the source-target spectral channel component
+\[
+C_\lambda(\ell,s;H)=\langle \ell|E_\lambda|s\rangle
+\]
+and the corresponding projector-channel diagnostic
+\[
+\Gamma_{\ell s}(H)=\max_{\lambda\in\sigma(H)} |C_\lambda(\ell,s;H)|.
+\]
+By the theorem above,
+\[
+\Gamma_{\ell s}(H)=0
+\]
+if and only if $(s,\ell)$ is an exact zero-transfer pair for $H$.
+
+\begin{remark}[Degeneracies]
+When eigenvalues are degenerate, the diagnostic must use the spectral projector $E_\lambda$, not an arbitrary eigenvector basis inside the degenerate eigenspace.  Exact zero transfer requires the whole source-target channel through each eigenspace to vanish:
+\[
+\langle \ell|E_\lambda|s\rangle=0\qquad \forall\lambda.
+\]
+Thus degeneracy by itself neither proves nor disproves exact zero transfer.
+\end{remark}
+
+\begin{remark}[Why this diagnostic is useful]
+Raw high-order moments can become numerically large or poorly conditioned for weighted random controls.  The spectral-projector channel directly tests the finite theorem-level condition and separates exact channel closure from secondary spectral features such as eigenvalue degeneracy, level-spacing rigidity, recurrence and localisation.
+\end{remark}
+
+\begin{corollary}[No exact zero transfer in connected non-negative adjacency graphs]
+Let $A$ be the ordinary adjacency matrix of a connected finite simple graph. Then no ordered pair $(s,\ell)$ is an exact zero-transfer pair for $A$.
+\end{corollary}
+
+\begin{proof}
+If $s=\ell$, then $\langle s|A^0|s\rangle=1$. If $s\ne\ell$, let $d$ be the graph distance from $s$ to $\ell$. Since the graph is connected, a shortest path exists, and $\langle \ell|A^d|s\rangle\ge1$. The moment criterion cannot hold.
+\end{proof}
+
+\begin{remark}
+This is an anti-bias result. In a connected ordinary non-negative adjacency graph, exact zero transfer requires some cancellation mechanism, such as signs, magnetic phases, internal degrees of freedom, symmetry-sector exclusion, or another algebraic structure.
+\end{remark}
+
+\section{Invariant-sector and symmetry-sector exclusion}
+\begin{proposition}[Invariant-sector exclusion]
+Let $H=H^\dagger$, and let $P=P^\dagger=P^2$ satisfy $[H,P]=0$. If
+\[
+P|s\rangle=|s\rangle,\qquad P|\ell\rangle=0,
+\]
+then $(s,\ell)$ is an exact zero-transfer pair for $H$.
+\end{proposition}
+
+\begin{proof}
+Since $[H,P]=0$, functional calculus gives $[e^{-itH},P]=0$ for all $t$. Therefore
+\[
+e^{-itH}|s\rangle=e^{-itH}P|s\rangle=P e^{-itH}|s\rangle.
+\]
+The evolved state remains in $P\cH_V$. Since $P|\ell\rangle=0$ and $P=P^\dagger$, $\langle \ell|P=0$. Hence
+\[
+\langle \ell|e^{-itH}|s\rangle=\langle \ell|P e^{-itH}|s\rangle=0.
+\]
+\end{proof}
+
+\begin{definition}[Unitary symmetry]
+A unitary operator $U$ on $\cH_V$ is a symmetry of $H$ if $U^\dagger U=I$ and $[U,H]=0$. If
+\[
+U=\sum_{\alpha\in\sigma(U)}\alpha P_\alpha
+\]
+is its spectral decomposition, then each $P_\alpha$ is an orthogonal spectral projector.
+\end{definition}
+
+\begin{proposition}[Symmetry-sector exclusion]
+Let $U$ be a unitary symmetry of $H$, and let $P_\alpha$ be a spectral projector of $U$. If
+\[
+P_\alpha|s\rangle=|s\rangle,\qquad P_\alpha|\ell\rangle=0,
+\]
+then $(s,\ell)$ is an exact zero-transfer pair for $H$.
+\end{proposition}
+
+\begin{proof}
+Since $[U,H]=0$, the spectral projectors of $U$ commute with $H$. The invariant-sector proposition applies.
+\end{proof}
+
+\begin{corollary}[Involutive-sector exclusion]
+Let $R$ be an involutive unitary symmetry of $H$:
+\[
+R^2=I,
+\qquad [R,H]=0.
+\]
+Then $R=R^\dagger$, and the corresponding projectors are
+\[
+P_+=\frac12(I+R),\qquad P_-=\frac12(I-R).
+\]
+If
+\[
+R|s\rangle=+|s\rangle,
+\qquad R|\ell\rangle=-|\ell\rangle,
+\]
+then $(s,\ell)$ is an exact zero-transfer pair for $H$.
+\end{corollary}
+
+\begin{proof}
+The conditions imply $P_+|s\rangle=|s\rangle$ and $P_+|\ell\rangle=0$. Since $[H,P_+]=0$, invariant-sector exclusion applies.
+\end{proof}
+
+\begin{remark}
+The symmetry-sector mechanism is a precise algebraic form of destructive interference. The source evolves entirely inside one invariant sector while the target lies in an orthogonal sector. The amplitude is exactly zero, not merely perturbatively suppressed, provided the sector decomposition is exact.
+\end{remark}
+
+\section{Signed-involution magnetic certificates}
+This section is the constructive update to the framework. We specialise the involutive-sector mechanism to signed magnetic graph symmetries.
+
+The certificates considered in this section use signed magnetic phases, that is, edge phases in $\{0,\pi\}$. They are therefore a structured subclass of general $U(1)$-magnetic Hamiltonians. The results below do not claim to solve the full continuous $U(1)$-phase search problem.
+
+Let $G=(V,E)$ be a finite graph support.
+
+\begin{definition}[Involutive graph automorphism]
+An involutive graph automorphism is a graph automorphism $r:V\to V$ such that $r^2=\id_V$. Equivalently,
+\[
+\{u,v\}\in E\Longleftrightarrow \{r(u),r(v)\}\in E,
+\]
+and $r(r(v))=v$ for all $v\in V$.
+\end{definition}
+
+\begin{definition}[Signed permutation associated with an involution]
+Let $\sigma:V\to\{\pm1\}$ be a vertex sign function. Define the signed permutation operator $R=R_{r,\sigma}$ by
+\[
+R|v\rangle=\sigma_v|r(v)\rangle.
+\]
+\end{definition}
+
+\begin{lemma}[Involution condition for signed permutations]
+If $r^2=\id_V$, then $R^2=I$ if and only if
+\[
+\sigma_v\sigma_{r(v)}=1\qquad \forall v\in V.
+\]
+In particular, this holds when $\sigma$ is constant on each $r$-orbit.
+\end{lemma}
+
+\begin{proof}
+We compute
+\[
+R^2|v\rangle=R(\sigma_v|r(v)\rangle)=\sigma_v\sigma_{r(v)}|r(r(v))\rangle=\sigma_v\sigma_{r(v)}|v\rangle.
+\]
+Thus $R^2=I$ precisely when $\sigma_v\sigma_{r(v)}=1$ for every $v$.
+\end{proof}
+
+\begin{definition}[Signed-involution magnetic certificate]
+A tuple $(G,H,R,s,\ell)$ is a signed-involution exact zero-transfer certificate if $H=H^\dagger$ is supported on $G$, $R$ is a signed involution on $\mathbb C^V$, and
+\[
+R^2=I,
+\qquad [H,R]=0,
+\qquad R|s\rangle=|s\rangle,
+\qquad R|\ell\rangle=-|\ell\rangle.
+\]
+\end{definition}
+
+\begin{proposition}[Certificate theorem]
+If $(G,H,R,s,\ell)$ is a signed-involution exact zero-transfer certificate, then
+\[
+\langle \ell|e^{-itH}|s\rangle=0\qquad \forall t\in\R.
+\]
+\end{proposition}
+
+\begin{proof}
+Define $P_+=(I+R)/2$. Since $R^2=I$ and $R=R^\dagger$, $P_+$ is an orthogonal projector. The commutation $[H,R]=0$ implies $[H,P_+]=0$. The source condition gives $P_+|s\rangle=|s\rangle$, and the target condition gives $P_+|\ell\rangle=0$. Invariant-sector exclusion applies.
+\end{proof}
+
+\subsection{Edge compatibility}
+The following condition is the key bridge from graph automorphisms to magnetic certificates.
+
+\begin{proposition}[Signed edge-compatibility condition]
+Let $r$ be an involutive graph automorphism and let $R|v\rangle=\sigma_v|r(v)\rangle$, with $\sigma_v\in\{\pm1\}$ constant on $r$-orbits. Let $H=H^\dagger$ be supported on $G$. If
+\[
+H_{r(u),r(v)}=\sigma_u\sigma_vH_{uv}\qquad \forall u,v\in V,
+\]
+then $[H,R]=0$. Conversely, if $[H,R]=0$, then the same matrix-entry compatibility holds.
+\end{proposition}
+
+\begin{proof}
+For basis vectors,
+\[
+HR|v\rangle=\sigma_v\sum_u H_{u,r(v)}|u\rangle,
+\]
+while
+\[
+RH|v\rangle=\sum_w H_{w,v}\sigma_w|r(w)\rangle.
+\]
+Taking the coefficient of $|r(u)\rangle$ in both expressions gives
+\[
+\sigma_vH_{r(u),r(v)}=\sigma_uH_{u,v}.
+\]
+Since $\sigma_v^{-1}=\sigma_v$, this is equivalent to $H_{r(u),r(v)}=\sigma_u\sigma_vH_{uv}$. Thus the entry condition is equivalent to $[H,R]=0$.
+\end{proof}
+
+\begin{corollary}[Fixed source-target certificate]
+Suppose $r(s)=s$, $r(\ell)=\ell$, $\sigma_s=+1$, $\sigma_\ell=-1$, and $H$ satisfies the signed edge-compatibility condition. Then $(s,\ell)$ is an exact zero-transfer pair for $H$.
+\end{corollary}
+
+\begin{remark}[Fixed-edge obstruction]
+For signed unit-weight Hamiltonians $H_{uv}\in\{0,\pm1\}$, an unordered edge fixed by $r$ with $\sigma_u\sigma_v=-1$ would require $H_{uv}=-H_{uv}$, forcing $H_{uv}=0$. If the edge is required to remain in the support, this is an obstruction. The M3A search records such cases as fixed-edge obstructions.
+\end{remark}
+
+\begin{remark}
+The signs are not decorative. They are the magnetic phase data that make the Hamiltonian commute with the signed symmetry. In the $\{0,\pi\}$-phase case, a negative edge is a $\pi$-phase edge.
+\end{remark}
+
+\section{Scalar pi-flux cycle as canonical example}
+We now recover the canonical scalar $\pi$-flux cycle as a signed-involution certificate.
+
+Let $N\ge4$ be even and write
+\[
+V=\mathbb Z_N=\{0,1,\ldots,N-1\}.
+\]
+Let $g>0$. Define
+\[
+H_\pi=g\sum_{n=0}^{N-2}(|n+1\rangle\langle n|+|n\rangle\langle n+1|)-g(|0\rangle\langle N-1|+|N-1\rangle\langle0|).
+\]
+This is the cycle $C_N$ with one negative boundary edge, equivalently total scalar flux $\Phi=\pi\pmod{2\pi}$.
+
+Define the signed reflection
+\[
+R_\pi|0\rangle=|0\rangle,
+\]
+and, for $n\ne0$,
+\[
+R_\pi|n\rangle=-|-n\bmod N\rangle.
+\]
+Then $R_\pi^2=I$ and $R_\pi=R_\pi^\dagger$.
+
+\begin{lemma}[Signed reflection symmetry]
+For the scalar $\pi$-flux cycle,
+\[
+[H_\pi,R_\pi]=0.
+\]
+\end{lemma}
+
+\begin{proof}
+This is the signed edge-compatibility condition for the reflection $r(n)=-n\bmod N$, with one boundary edge carrying the negative sign. Equivalently, direct evaluation on the vertex basis shows that $H_\pi R_\pi|n\rangle=R_\pi H_\pi|n\rangle$ for every $n\in\mathbb Z_N$.
+\end{proof}
+
+\begin{theorem}[Opposite-vertex zero transfer on the $\pi$-flux even cycle]
+Let $N\ge4$ be even and set $s=0$, $\ell=N/2$. Then
+\[
+\langle N/2|e^{-itH_\pi}|0\rangle=0\qquad \forall t\in\R.
+\]
+\end{theorem}
+
+\begin{proof}
+We have $[H_\pi,R_\pi]=0$. Also $R_\pi|0\rangle=|0\rangle$. Since $N$ is even, $-N/2\equiv N/2\pmod N$, and hence $R_\pi|N/2\rangle=-|N/2\rangle$. The signed-involution certificate theorem applies.
+\end{proof}
+
+\begin{remark}[Gauge representative]
+The representative above places the entire $\pi$-flux on one negative edge. A different gauge may distribute the phase across several edges. The zero-transfer statement is invariant under diagonal gauge transformations.
+\end{remark}
+
+\begin{corollary}[Mirror-symmetric bond disorder]
+Let the edge weights in the $\pi$-flux cycle be real and satisfy the mirror condition $g_n=g_{N-1-n}$. Then the weighted $\pi$-flux Hamiltonian still commutes with $R_\pi$, and the opposite-vertex zero transfer persists exactly.
+\end{corollary}
+
+
+\subsection{A minimal contrast with perfect state transfer on $C_4$}
+The scalar $\pi$-flux cycle gives a useful minimal contrast with perfect state transfer.  Perfect state transfer from a vertex $u$ to a vertex $v$ at time $\tau$ means that
+\[
+e^{-i\tau A}|u\rangle=\lambda |v\rangle,
+\qquad |\lambda|=1,
+\]
+up to the sign convention used for the continuous-time walk.  In association-scheme settings, perfect state transfer is closely tied to an involutory permutation matrix $T$ with $U(\tau)=\lambda T$ \citep{Coutinho2015}.  The four-cycle is the smallest support where this language can be compared directly with signed-sector exclusion.
+
+Let $V=\{0,1,2,3\}$ and let $s=0$, $\ell=2$ be opposite vertices of $C_4$.  The ordinary zero-flux adjacency matrix is
+\[
+A_0=
+\begin{pmatrix}
+0&1&0&1\\
+1&0&1&0\\
+0&1&0&1\\
+1&0&1&0
+\end{pmatrix}.
+\]
+Identifying $C_4$ with the two-dimensional hypercube $Q_2$, using the vertex ordering $00,01,11,10$, gives
+\[
+A_0=X\otimes I+I\otimes X,
+\qquad
+X=\begin{pmatrix}0&1\\1&0\end{pmatrix}.
+\]
+The two summands commute.  Hence
+\[
+e^{-itA_0}=e^{-itX}\otimes e^{-itX}.
+\]
+At $t=\pi/2$, $e^{-i\pi X/2}=-iX$, so
+\[
+e^{-i\pi A_0/2}=(-iX)\otimes(-iX)=-X\otimes X.
+\]
+The operator $X\otimes X$ is the antipodal map $T$, with $T|0\rangle=|2\rangle$ and $T|2\rangle=|0\rangle$.  Therefore
+\[
+e^{-i\pi A_0/2}|0\rangle=-|2\rangle,
+\]
+so ordinary $C_4$ has perfect state transfer from $0$ to $2$ at time $\pi/2$.
+
+The sector interpretation is different from exact exclusion.  The antipodal involution $T$ has even and odd projectors
+\[
+P_+^T=\frac{I+T}{2},
+\qquad
+P_-^T=\frac{I-T}{2}.
+\]
+The source $|0\rangle$ is not contained in a single $T$-sector.  Instead,
+\[
+|0\rangle=\frac{1}{\sqrt2}\left(\frac{|0\rangle+|2\rangle}{\sqrt2}\right)+
+\frac{1}{\sqrt2}\left(\frac{|0\rangle-|2\rangle}{\sqrt2}\right),
+\]
+whereas $|2\rangle$ is obtained by reversing the relative sign between these two sector components.  Thus perfect state transfer on ordinary $C_4$ is sector preservation followed by timed sector recombination.
+
+Now keep the same support and source-target pair, but change the magnetic flux class by placing one negative edge on $3\sim0$:
+\[
+H_\pi=
+\begin{pmatrix}
+0&1&0&-1\\
+1&0&1&0\\
+0&1&0&1\\
+-1&0&1&0
+\end{pmatrix}.
+\]
+This Hamiltonian has total scalar flux $\Phi=\pi\pmod{2\pi}$.  Define the signed reflection
+\[
+R_\pi|0\rangle=|0\rangle,
+\qquad
+R_\pi|1\rangle=-|3\rangle,
+\qquad
+R_\pi|2\rangle=-|2\rangle,
+\qquad
+R_\pi|3\rangle=-|1\rangle.
+\]
+Equivalently, the underlying involution fixes $0$ and $2$ and swaps $1$ with $3$, with signs $\sigma_0=+1$ and $\sigma_1=\sigma_2=\sigma_3=-1$.  The signed edge-compatibility condition gives
+\[
+[H_\pi,R_\pi]=0.
+\]
+Moreover,
+\[
+R_\pi|0\rangle=+|0\rangle,
+\qquad
+R_\pi|2\rangle=-|2\rangle.
+\]
+Thus the source lies in the $+1$ sector of $R_\pi$, while the target lies in the $-1$ sector.  The signed-involution certificate theorem gives
+\[
+\langle 2|e^{-itH_\pi}|0\rangle=0
+\qquad \forall t\in\R .
+\]
+
+Consequently, the same support graph $C_4$ and the same source-target pair $(0,2)$ realise two opposite extremal transport regimes.  At zero flux, ordinary $C_4$ has perfect state transfer by timed recombination of involution sectors.  At $\pi$-flux, the same pair has exact zero transfer by signed-sector exclusion.  This is a minimal magnetic analogue of perfect state transfer in the limited sense that changing the flux class on a fixed support changes perfect arrival into exact all-time exclusion; it is not a claim that perfect transfer and exact exclusion are the same phenomenon.
+
+\section{Symmetry-first certificate generation}
+The signed-involution theorem suggests an inverse-design strategy. Rather than minimising a high-dimensional magnetic phase objective directly, one may search for graph symmetries whose signed sectors already imply exact zero transfer.
+
+\begin{definition}[Moment objective]
+For a magnetic Hamiltonian $H_\theta$ supported on $G$, define
+\[
+M_{s,\ell}(\theta)=\sum_{k=0}^{n-1}|\langle \ell|H_\theta^k|s\rangle|^2.
+\]
+Then $M_{s,\ell}(\theta)=0$ if and only if $(s,\ell)$ is an exact zero-transfer pair for $H_\theta$.
+\end{definition}
+
+\begin{proof}
+The objective is a sum of non-negative terms. It vanishes precisely when each finite moment vanishes. The finite moment criterion applies.
+\end{proof}
+
+\subsection{Magnetic signed-involution Automorphism certificate search}
+We call the procedure used here M3A, for Magnetic signed-involution Automorphism certificate search. The name is only a label for the computational implementation; the mathematical content is the signed-involution certificate theorem above. M3A is a proof-shaped candidate generator. For each graph support $G$, it performs the following steps:
+
+\begin{description}[leftmargin=3.5em,style=nextline]
+\item[M3A.1] Enumerate graph automorphisms $r$ and retain involutions $r^2=\id_V$.
+\item[M3A.2] Retain source-target pairs $(s,\ell)$ fixed by $r$.
+\item[M3A.3] Assign signs $\sigma_v\in\{\pm1\}$, constant on $r$-orbits, with $\sigma_s=+1$ and $\sigma_\ell=-1$.
+\item[M3A.4] Construct a signed magnetic Hamiltonian $H$ with edge signs chosen to satisfy $H_{r(u),r(v)}=\sigma_u\sigma_vH_{uv}$.
+\item[M3A.5] Reject fixed-edge obstructions and support mismatches.
+\item[M3A.6] Verify $R^2=I$, $[H,R]=0$, $R|s\rangle=|s\rangle$, and $R|\ell\rangle=-|\ell\rangle$.
+\item[M3A.7] Audit the finite moments $\langle \ell|H^k|s\rangle$, $k=0,\ldots,n-1$.
+\end{description}
+
+The algorithm outputs candidates only when the certificate conditions and moment diagnostics pass the chosen tolerance. In the signed integer cases reported below, the entries of $H$ and $R$ are in $\{0,\pm1\}$, so the certificate equations are finite algebraic identities; the numerical checks are an audit of the constructed identities.
+
+\begin{remark}[Why this differs from continuous optimisation]
+A continuous phase optimiser asks whether a high-dimensional phase torus contains a small objective value. M3A asks whether a graph admits a signed involution that produces the invariant sector directly. Thus the output is not only a small numerical objective, but a proof route.
+\end{remark}
+
+\begin{remark}[Candidate status]
+The computational pipeline distinguishes failed candidates, approximate suppression, search candidates, verified numerical candidates, proof candidates, and proved exact cases. The M3A results in the next section are best read as proof-certificate candidates generated by an exact algebraic construction and audited numerically.
+\end{remark}
+
+\subsection{Updated M3A certificate-and-diagnostics pipeline}
+We strengthen M3A from a certificate generator into a certificate-and-diagnostics pipeline. Steps M3A.1--M3A.7 produce and verify the proof object. The following additional steps audit how the proof behaves under perturbation.
+
+\begin{description}[leftmargin=3.8em,style=nextline]
+\item[M3A.8] \textbf{Sector-preserving perturbation audit.} Given a certified projector $P$, test perturbations $B$ satisfying $[B,P]=0$. Verify that $B_\perp=0$ and exact zero transfer is preserved.
+\item[M3A.9] \textbf{Sector-breaking scaling audit.} For perturbations with $B_\perp\ne0$, verify that the sector-breaking scale $E_{\rm break}(P)=|\varepsilon|\|B_\perp\|$ is linear in $|\varepsilon|$, while transition probability is quadratic in the perturbative regime.
+\item[M3A.10] \textbf{Finite-time bound audit.} Verify
+\[
+|\langle \ell|e^{-itH_\varepsilon}|s\rangle|\le |\varepsilon|t\|B_\perp\|
+\]
+and the corresponding probability and time-averaged probability bounds.
+\item[M3A.11] \textbf{Non-sufficiency audit.} Test whether $B_\perp(P)\ne0$ necessarily implies target leakage. If another invariant sector still excludes the target, record the case as sector-broken but target-dark.
+\item[M3A.12] \textbf{Projector-dependence audit.} Compare the sector-breaking mass-equivalent $m_{\rm break}(P)$ for the certificate projector, the unperturbed Krylov projector $P_s^{H_0}$, the perturbed Krylov projector $P_s^{H_\varepsilon}$, and any larger valid protecting projector.
+\item[M3A.13] \textbf{Target-resolved first-order audit.} Compute
+\[
+\beta_0(B)=\|P_0B(I-P_0)+(I-P_0)BP_0\|,
+\]
+and
+\[
+\alpha_T(B)=\max_{0\le t\le T}|A_1(t)|,
+\]
+to distinguish total canonical sector breaking from target-effective first-order leakage.
+\end{description}
+
+\begin{remark}[Role of the diagnostic layer]
+The diagnostic layer does not replace the certificate theorem. It attaches to a certificate quantitative information about how the protected sector breaks, whether the target channel opens, and which projector is being used. In particular, $m_{\rm break}(P)$ is a projector-dependent diagnostic. A nonzero value means that the chosen protecting sector $P$ is broken, not that target occupation must appear.
+\end{remark}
+
+\section{Proof-certified non-cycle examples}
+This section reports the current M3A result. It should be interpreted conservatively: it is an example set of certificate-bearing supports, not a classification of all graphs and not evidence for generic topological protection.
+
+In the computational run reported here, M3A scanned twenty-three connected graph supports under the fast profile. Thirty-four signed-involution certificates were found on eight graph supports. All thirty-four candidates have proof route \texttt{signed\_involution\_sector}.
+
+In the machine-readable candidate table, the reported values $M_{s,\ell}=0$, $\max_k|\widetilde M_k|=0$, and $\|[H,R]\|_F=0$ are zero in the recorded double-precision output for every candidate. The counts reported here are counts under this search profile. They are not prevalence claims for all graphs, nor impossibility claims for supports on which the search returned no certificate.
+
+
+\begin{table}[H]
+\centering
+\caption{M3A family classification of signed-involution exact zero-transfer certificates. The table records proof-certificate examples, not prevalence in random graph ensembles.}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccll}
+\toprule
+Family & Supports & Candidates & $n$ range & Cycle-rank range & Interpretation\\
+\midrule
+reflected chord cycles & 4 & 4 & 12--16 & 5--7 & decorated-cycle extension\\
+rectangular grids & 2 & 18 & 9--16 & 4--9 & non-cycle structured family\\
+diagonal grid & 1 & 6 & 16 & 18 & decoration-sensitive support\\
+octahedral graph & 1 & 6 & 6 & 7 & high-symmetry non-grid support\\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Support-level summary of the current non-cycle M3A certificates.}
+\begin{tabular}{lccccc}
+\toprule
+Graph support & Class & $n$ & $m$ & Cycle rank & Candidates\\
+\midrule
+grid\_3x3 & grid & 9 & 12 & 4 & 6\\
+grid\_4x4 & grid & 16 & 24 & 9 & 12\\
+grid\_diag\_4x4 & grid with diagonals & 16 & 33 & 18 & 6\\
+octahedral & platonic & 6 & 12 & 7 & 6\\
+C12\_ref\_chords\_a & reflected chord cycle & 12 & 16 & 5 & 1\\
+C14\_ref\_chords\_a & reflected chord cycle & 14 & 18 & 5 & 1\\
+C16\_ref\_chords\_a & reflected chord cycle & 16 & 22 & 7 & 1\\
+C16\_ref\_chords\_b & reflected chord cycle & 16 & 22 & 7 & 1\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Representative certificates selected from the M3A families. Negative edges are edges carrying phase $\pi$ in the displayed gauge.}
+\begin{tabular}{llll}
+\toprule
+Representative & Graph support & $(s,\ell)$ & Negative edge list\\
+\midrule
+M3A\_000004 & C16\_ref\_chords\_b & $(0,8)$ & $(8,9)$\\
+M3A\_000006 & grid\_3x3 & $(0,8)$ & $(7,8)$\\
+M3A\_000013 & grid\_4x4 & $(0,15)$ & $(14,15)$\\
+M3A\_000025 & grid\_diag\_4x4 & $(3,12)$ & $(12,13)$\\
+M3A\_000029 & octahedral & $(0,5)$ & $(2,5),(4,5)$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=.70\textheight,keepaspectratio]{m3a_representative_certificates.png}
+\caption{Representative proof-certificate diagrams extracted from the original certificate run. The diagrams show source and target sectors, signed magnetic edges, and selected signed-involution pairings. They are schematic illustrations rather than verification data. The proof object is the algebraic certificate $(G,H,R,s,\ell)$, with exact graph, sign and phase records supplied in the machine-readable supplementary data.}
+\end{figure}
+
+\subsection{Reproducibility of certificates}
+For each reported certificate, the exact verification data consist of:
+\begin{enumerate}[label=(\roman*)]
+\item the vertex set $V$;
+\item the edge set $E$;
+\item the involution $r:V\to V$;
+\item the sign function $\sigma:V\to\{\pm1\}$;
+\item the signed magnetic Hamiltonian entries $H_{uv}$;
+\item the source-target pair $(s,\ell)$.
+\end{enumerate}
+From these data one forms $R|v\rangle=\sigma_v|r(v)\rangle$. The certificate is verified by checking
+\[
+R^2=I,
+\qquad H=H^\dagger,
+\qquad [H,R]=0,
+\]
+and
+\[
+R|s\rangle=|s\rangle,
+\qquad R|\ell\rangle=-|\ell\rangle.
+\]
+The finite moment audit additionally checks
+\[
+\langle \ell|H^k|s\rangle=0,
+\qquad k=0,1,\ldots,n-1.
+\]
+The summary tables in the main text are therefore not intended to contain the full proof data. They summarise a machine-readable certificate data set, which is supplied as supplementary material.
+
+The complete certificate records are provided in the supplementary data files listed in Table 4. Together these files determine the graph supports, signed Hamiltonians, involutions, sign assignments, source-target pairs and cycle-basis flux records for all certificates reported in the tables.
+
+\begin{table}[H]
+\centering
+\caption{Machine-readable certificate data used to verify the signed-involution examples. The tables in the main text summarise these records; independent verification requires the supplementary data.}
+\begin{tabular}{p{0.28\textwidth}p{0.62\textwidth}}
+\toprule
+File & Contents\\
+\midrule
+\path{m3a_graph_records.csv} & Graph identifier, class, vertex count, edge count, cycle rank and edge set\\
+\path{m3a_candidates.csv} & Candidate identifier, source, target, involution, sign function and audit norms\\
+\path{m3a_phase_records.csv} & Edge-level phases and signs determining the signed magnetic Hamiltonian $H$\\
+\path{m3a_flux_records.csv} & Cycle-basis flux records for each candidate\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Interpretation of the families}
+The reflected chord-cycle examples are best interpreted as decorated-cycle extensions of the scalar $\pi$-flux mechanism. They show that exact zero transfer can persist under selected reflection-compatible chord additions.
+
+The rectangular grid examples are the strongest non-cycle structured family in the current data. They show that signed-involution exact zero-transfer certificates are not confined to one-dimensional cycle supports.
+
+The diagonal-grid examples show decoration sensitivity. Some diagonal decorations preserve a signed-sector mechanism, while other diagonal grids in the scanned set produced no certificates under the fast M3A profile.
+
+The octahedral graph examples are important because the support is highly symmetric but not simply a cycle, chorded cycle, or rectangular grid. They demonstrate the same certificate mechanism on a compact highly symmetric non-grid support.
+
+\begin{remark}[Meaning of zero-candidate supports]
+The M3A run found no candidates on several ladders, circular ladders, the cube, and some rectangular or diagonal grids under the fast profile. These are not no-go theorems and should not be read as evidence that those supports cannot carry exact zero-transfer pairs. They only say that this particular signed-involution search profile did not find certificates there.
+\end{remark}
+
+\begin{remark}[Current strongest claim from M3A]
+The strongest safe conclusion is: M3A generated signed-involution exact zero-transfer certificates on selected non-cycle finite graph supports. This is not a claim of generic robustness, topological protection, or a complete graph classification.
+\end{remark}
+
+
+\section{Spectral-projector audit of the certificate atlas}
+The signed-involution certificates give a constructive sufficient mechanism for exact zero transfer.  A separate Layer-2 audit asked which spectral quantities actually diagnose exact darkness across the tested atlas.  The full computation series is intended as repository-level material.  The main text records only the theorem-aligned conclusions that are stable across the tests.
+
+The audit used the spectral-projector channel diagnostic
+\[
+\Gamma_{\ell s}(H)=\max_{\lambda\in\sigma(H)}|\langle\ell|E_\lambda|s\rangle|.
+\]
+The decisive result is that exact darkness tracks the closure of this channel, not raw eigenvalue motion or spectral shape alone.  Sector-compatible signed systems kept the projector channel closed; compatibility-breaking and unsigned controls generally opened it.  Spectral rigidity, degeneracy, recurrence and localisation remained useful geometry-sensitive summaries, but did not themselves cause exact zero transfer.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Compact Layer-2 spectral audit conclusions.  The table records the solid result retained in the manuscript; detailed scripts and data are repository material.}
+\begin{tabular}{p{0.24\textwidth}p{0.66\textwidth}}
+\toprule
+Audit layer & Conclusion retained in the paper\\
+\midrule
+Sector-resolved spectra & Certified Hamiltonians were block diagonal in the signed-involution sectors to numerical precision, with source weight confined to the $+$ sector and target weight confined to the $-$ sector.\\
+Matched controls & Sector-compatible controls kept the projector channel closed, whereas compatibility-breaking controls generally opened it. Compatibility predicted exact darkness more directly than graph family alone.\\
+Graph modifications & Raw eigenvalue shifts did not decide darkness.  The best diagnostic was whether the modified spectral-projector source-target channel opened.\\
+Signed versus unsigned support & Replacing signed Hamiltonians by unsigned support adjacencies opened every certified dark-pair channel in the tested atlas.  Exact darkness was therefore not a support-only property.\\
+Scaling and refinement & Sector-compatible signed systems kept the projector channel closed across the scanned refinements, while unsigned supports opened the channel at every scanned scale.\\
+Predictive audit & Channel-aware diagnostics predicted certificate structure better than raw spectral-shape summaries.  Non-channel spectral features were suggestive but not decisive.\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The audit also identified cases in which an original signed-involution certificate was broken while the target remained dark.  These cases are important because they show that the certificate mechanism is sufficient but not necessarily complete.  They suggest hidden sector exclusion, a larger signed symmetry algebra, or Krylov-level cancellation not captured by the original involution.  Accordingly, the next mathematical target is not a larger list of examples, but a completeness question: when can spectral-projector channel closure be explained by a signed involution, by a larger signed automorphism group, or only by a more general invariant subspace separation?
+
+\begin{remark}[Status of the Layer-2 audit]
+The Layer-2 results are used here only to strengthen the finite spectral interpretation of the framework.  They are not claims that degeneracy, gap rigidity, recurrence or localisation cause exact darkness.  They are also not continuum-limit or physical-implementation claims.
+\end{remark}
+
+\section{Perturbations and finite-time stability}
+Exact zero transfer is an exact algebraic property. Perturbations must therefore be divided into those that preserve the relevant invariant sector and those that couple it to its orthogonal complement.
+
+Let $H_0=H_0^\dagger$, and let $P=P^\dagger=P^2$ satisfy
+\[
+[H_0,P]=0,
+\qquad P|s\rangle=|s\rangle,
+\qquad P|\ell\rangle=0.
+\]
+Let $Q=I-P$ and consider a Hermitian perturbation
+\[
+H_\varepsilon=H_0+\varepsilon B,
+\qquad B=B^\dagger.
+\]
+
+\begin{definition}[Sector-preserving and sector-breaking parts]
+Relative to $\cH_V=P\cH_V\oplus Q\cH_V$, define
+\[
+B_\parallel=PBP+QBQ,
+\]
+and
+\[
+B_\perp=PBQ+QBP.
+\]
+The operator $B_\parallel$ is block diagonal, while $B_\perp$ contains the sector-coupling terms.
+\end{definition}
+
+\begin{definition}[Sector-breaking strength]
+The sector-breaking strength of $B$ relative to $P$ is
+\[
+\beta_P(B)=\|B_\perp\|,
+\]
+where $\|\cdot\|$ denotes the operator norm.
+\end{definition}
+
+\begin{lemma}[Sector preservation]
+\[
+B_\perp=0\Longleftrightarrow [B,P]=0.
+\]
+\end{lemma}
+
+\begin{proof}
+If $B_\perp=0$, then $B=PBP+QBQ$, so $B$ is block diagonal and commutes with $P$. Conversely, if $[B,P]=0$, then $PBQ=0$ and $QBP=0$, hence $B_\perp=0$.
+\end{proof}
+
+\begin{proposition}[Exact preservation under sector-preserving perturbations]
+If $[B,P]=0$, then
+\[
+\langle \ell|e^{-itH_\varepsilon}|s\rangle=0\qquad \forall t\in\R
+\]
+for every $\varepsilon\in\R$.
+\end{proposition}
+
+\begin{proof}
+Since $[H_0,P]=0$ and $[B,P]=0$, $[H_\varepsilon,P]=0$. The same projector still contains the source and excludes the target. Invariant-sector exclusion applies.
+\end{proof}
+
+\begin{theorem}[Finite-time sector-breaking bound]
+For every $t\ge0$,
+\[
+|\langle \ell|e^{-itH_\varepsilon}|s\rangle|\le |\varepsilon|t\|B_\perp\|.
+\]
+Consequently,
+\[
+p^{(\varepsilon)}_{\ell s}(t)\le \varepsilon^2t^2\|B_\perp\|^2.
+\]
+For every $T>0$,
+\[
+\frac1T\int_0^T p^{(\varepsilon)}_{\ell s}(t)\,dt\le \frac{\varepsilon^2T^2}{3}\|B_\perp\|^2.
+\]
+\end{theorem}
+
+\begin{proof}
+Define $H_\parallel=H_0+\varepsilon B_\parallel$. Since $[H_\parallel,P]=0$, we have $\langle \ell|e^{-itH_\parallel}|s\rangle=0$. Duhamel's formula gives
+\[
+e^{-itH_\varepsilon}-e^{-itH_\parallel}=-i\varepsilon\int_0^t e^{-i(t-\tau)H_\varepsilon}B_\perp e^{-i\tau H_\parallel}\,d\tau.
+\]
+Taking the $(\ell,s)$-matrix element and using unitarity of the exponentials,
+\[
+|\langle \ell|e^{-itH_\varepsilon}|s\rangle|\le |\varepsilon|\int_0^t\|B_\perp\|\,d\tau=|\varepsilon|t\|B_\perp\|.
+\]
+Squaring and integrating gives the probability bounds.
+\end{proof}
+
+\begin{proposition}[First-order amplitude]
+For fixed $t$,
+\[
+\langle \ell|e^{-it(H_0+\varepsilon B)}|s\rangle=\varepsilon A_1(t)+O(\varepsilon^2),
+\]
+where
+\[
+A_1(t)=-i\int_0^t \langle \ell|e^{-i(t-\tau)QH_0Q}QBP e^{-i\tau P H_0P}|s\rangle\,d\tau.
+\]
+Therefore
+\[
+p^{(\varepsilon)}_{\ell s}(t)=\varepsilon^2|A_1(t)|^2+O(\varepsilon^3).
+\]
+\end{proposition}
+
+\begin{remark}
+The finite-time bound is not a uniform long-time protection theorem. It shows that, on a fixed interval $[0,T]$, leakage probability is $O(\varepsilon^2)$ and controlled by the sector-breaking block. If $B_\perp\ne0$, the specific sector proof is broken, but another independent cancellation mechanism may still exist.
+\end{remark}
+
+\subsection{Sector-breaking energy scale and Einstein mass-equivalent}
+When the entries of $H_0$ and $B$ are physical energy quantities, the sector-breaking energy scale associated with the chosen protecting sector $P$ is
+\[
+E_{\rm break}(P;B,\varepsilon)=|\varepsilon|\beta_P(B)=|\varepsilon|\|PB(I-P)+(I-P)BP\|.
+\]
+The corresponding Einstein mass-equivalent of this energy scale is
+\[
+m_{\rm break}(P;B,\varepsilon)=\frac{E_{\rm break}(P;B,\varepsilon)}{c^2}.
+\]
+If instead the Hamiltonian is written in angular-frequency units, so physical evolution is
+\[
+U(t)=e^{-iH_{\rm phys}t/\hbar}
+\]
+and the numerical Hamiltonian has units of angular frequency, then
+\[
+E_{\rm break}^{\rm phys}(P;B,\varepsilon)=\hbar |\varepsilon|\beta_P(B),
+\]
+and
+\[
+m_{\rm break}(P;B,\varepsilon)=\frac{\hbar |\varepsilon|\|PB(I-P)+(I-P)BP\|}{c^2}.
+\]
+With physical units restored, the finite-time amplitude bound may be written as
+\[
+|\langle \ell|U_\varepsilon(t)|s\rangle|\le \frac{tE_{\rm break}^{\rm phys}(P;B,\varepsilon)}{\hbar}=\frac{t\,m_{\rm break}(P;B,\varepsilon)c^2}{\hbar}.
+\]
+This is only an Einstein mass-equivalent of a specified sector-breaking energy scale. It is not a claim that information has intrinsic rest mass, that a target occupation carries that mass, or that the quantity is universal.
+
+\subsection{Canonical Krylov choice and target-resolved leakage}
+Because $m_{\rm break}$ depends on the chosen projector, the projector must remain in the notation. For perturbation away from an exact zero-transfer Hamiltonian, the canonical choice is the unperturbed source-generated Krylov projector
+\[
+P_0=P_s^{H_0}.
+\]
+When exact zero transfer holds, $P_0|\ell\rangle=0$. The canonical sector-breaking strength is then
+\[
+\beta_0(B)=\|P_0B(I-P_0)+(I-P_0)BP_0\|.
+\]
+Thus
+\[
+E_{\rm break}^{\rm can}=|\varepsilon|\beta_0(B),
+\]
+and, in angular-frequency units,
+\[
+m_{\rm break}^{\rm can}=\frac{\hbar |\varepsilon|\beta_0(B)}{c^2}.
+\]
+
+The target-resolved first-order coefficient over a finite time window $[0,T]$ is
+\[
+\alpha_T(B)=\max_{0\le t\le T}|A_1(t)|.
+\]
+The finite-time bound implies
+\[
+\alpha_T(B)\le T\beta_0(B).
+\]
+For $\beta_0(B)>0$, define the target-efficiency ratio
+\[
+\eta_T(B)=\frac{\alpha_T(B)}{T\beta_0(B)}.
+\]
+Then $0\le\eta_T(B)\le1$.
+
+The distinction is essential. The condition $\beta_0(B)>0$ means that the canonical old source sector is broken. It does not necessarily imply target leakage. A perturbation may satisfy
+\[
+\beta_0(B)>0,
+\qquad \alpha_T(B)=0,
+\]
+in which case the old source sector is broken but the target remains dark. Thus the framework separates the mass-equivalent of canonical sector-breaking energy from the target-resolved first-order leakage strength.
+
+\section{Numerical diagnostics for the updated M3A pipeline}
+This section records the diagnostic tests added to the pipeline. The tests are not independent theorems; they are reproducibility audits of the perturbative definitions and bounds above. Unless otherwise stated, the diagnostic examples use the scalar $\pi$-flux cycle with $N=8$, source $s=0$, target $\ell=4$, and the signed-reflection sector $P_+=(I+R_\pi)/2$.
+
+The guiding point of the diagnostic suite is that sector breaking is not the same thing as target leakage. A non-zero $B_\perp(P)$ reports the failure of a chosen sector proof. Whether amplitude reaches the specified target is a further dynamical question, diagnosed here by finite moments, time evolution and the first-order target coefficient $\alpha_T(B)$.
+
+\begin{table}[H]
+\centering
+\caption{Summary of the six diagnostic tests added to M3A. The reported numerical magnitudes are representative values from the supplied scripts and CSV audit tables.}
+\begin{tabular}{p{0.16\textwidth}p{0.38\textwidth}p{0.34\textwidth}}
+\toprule
+Test & Question & Result\\
+\midrule
+Test 1: zero baseline & Do sector-preserving perturbations keep $B_\perp=0$ and preserve exact zero transfer? & Passed. Across sector-preserving perturbations, $\max\|B_\perp\|=0$ and the largest sampled target amplitude was numerical roundoff, about $2.3\times10^{-15}$.\\
+Test 2: scaling & Does $E_{\rm break}\propto |\varepsilon|$, amplitude $\propto|\varepsilon|$, and probability $\propto\varepsilon^2$? & Passed. For direct and reflection-breaking perturbations, the energy and mass-equivalent slopes were $1.0$, amplitude slopes were approximately $1.0$, and probability slopes were approximately $2.0$.\\
+Test 3: finite-time bound & Are the amplitude, probability, and average-probability bounds respected? & Passed. All tested perturbation families had bound ratios below $1$ up to floating-point tolerance; largest bound violations were at roundoff scale.\\
+Test 4: non-sufficiency & Can $B_\perp(P_{\rm old})\ne0$ while target leakage remains zero? & Passed. An auxiliary-channel construction gave $\|B_\perp(P_{\rm old})\|=1$, $\|B_\perp(P_{\rm new})\|=0$, and maximum target probability about $10^{-30}$.\\
+Test 5: projector dependence & Do certificate, Krylov, perturbed Krylov, and enlarged projectors give different diagnostics? & Passed. In the base $C_8$ example, $P_{\rm cert}=P_s^{H_0}$ numerically. In auxiliary and target-control cases, projector choice changed the sector-breaking interpretation.\\
+Test 6: target-resolved leakage & Can total sector breaking be separated from target-effective first-order leakage? & Passed. The auxiliary channel gave $\beta_0=1$ but $\alpha_T=0$, while target-effective cases gave $\beta_0=1$ and $\alpha_T>0$.\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Reproducibility of diagnostic outputs}
+The diagnostic claims in this section are supported by machine-readable audit files. Table~\ref{tab:diagnostic-data-schema} records the diagnostic files included with the source bundle for this manuscript. These files are supplementary to the theorem proofs: they support independent reruns and consistency checks of the perturbative diagnostics, but the exact zero-transfer statements themselves follow from the algebraic certificate equations.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Machine-readable diagnostic data included with the manuscript source bundle. The summary CSV files record the numerical outcomes used in the diagnostic discussion; the Test 5 and Test 6 scripts are included because they implement the projector-dependence and target-resolved leakage audits directly.}
+\label{tab:diagnostic-data-schema}
+\begin{tabular}{p{0.35\textwidth}p{0.55\textwidth}}
+\toprule
+File & Contents\\
+\midrule
+\path{test1_zero_baseline_summary.csv} & Sector-preserving perturbation audit; verifies $B_\perp=0$ and target amplitude at numerical roundoff.\\
+\path{test2_sector_breaking_scaling_summary.csv} & Scaling audit for sector-breaking perturbations; records linear energy/mass-equivalent scaling and quadratic probability scaling.\\
+\path{test3_bound_summary.csv} & Finite-time amplitude, probability and time-averaged probability bound ratios.\\
+\path{test4_summary.csv} & Non-sufficiency audit showing sector breaking without target leakage in an auxiliary-channel construction.\\
+\path{test5_projector_summary.csv} & Projector-dependence audit comparing certificate, unperturbed Krylov, perturbed Krylov and enlarged projectors.\\
+\path{test5_projector_dependence.py} & Reproducible script for the projector-dependence diagnostic.\\
+\path{test6_target_resolved_summary.csv} & Target-resolved leakage audit comparing $\beta_0(B)$, $\alpha_T(B)$ and the efficiency ratio $\eta_T(B)$.\\
+\path{test6_target_resolved_sector_breaking.py} & Reproducible script for the target-resolved first-order leakage diagnostic.\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Test 1: zero baseline}
+The baseline test uses perturbations satisfying $[B,P]=0$. The prediction is
+\[
+B_\perp=0,
+\qquad E_{\rm break}(P)=0,
+\qquad m_{\rm break}(P)=0,
+\]
+and exact zero transfer remains preserved. The audit included the identity, a rescaling of $H_0$, mirror-symmetric diagonal onsite potentials, and random Hermitian perturbations symmetrised into the $P\oplus Q$ blocks. All rows passed. The maximum computed sector-breaking norm was zero, and the residual amplitude was numerical roundoff.
+
+\subsection{Test 2: sector-breaking scaling}
+The second test uses perturbations with $B_\perp\ne0$. Two transparent cases were used: direct source-target coupling and reflection-antisymmetric diagonal onsite perturbation. In both cases $\|B_\perp\|=1$. The audit confirms
+\[
+E_{\rm break}=|\varepsilon|\|B_\perp\|\propto |\varepsilon|,
+\]
+while the first-order amplitude scales linearly and the probability scales quadratically:
+\[
+|\langle \ell|e^{-itH_\varepsilon}|s\rangle|\sim |\varepsilon|,
+\qquad p_{\ell s}^{(\varepsilon)}(t)\sim\varepsilon^2.
+\]
+The measured small-$\varepsilon$ slopes were approximately $1$ for amplitude and $2$ for probability.
+
+\subsection{Test 3: finite-time bound}
+The third test verifies the theorem-level ratios
+\[
+R_{\rm amp}(t)=\frac{|\langle \ell|e^{-itH_\varepsilon}|s\rangle|}{|\varepsilon|t\|B_\perp\|}\le1,
+\]
+\[
+R_{\rm prob}(t)=\frac{p_{\ell s}^{(\varepsilon)}(t)}{\varepsilon^2t^2\|B_\perp\|^2}\le1,
+\]
+and
+\[
+R_{\rm avg}(T)=\frac{T^{-1}\int_0^T p_{\ell s}^{(\varepsilon)}(t)\,dt}{\varepsilon^2T^2\|B_\perp\|^2/3}\le1.
+\]
+The tested perturbation families included direct coupling, reflection-breaking diagonal perturbation, random Hermitian perturbations, pure sector-breaking perturbations, and multiple same-$\|B_\perp\|$ cross-block perturbations. All passed.
+
+\subsection{Test 4: sector-breaking without target leakage}
+The fourth test deliberately breaks a chosen old certificate sector without opening the target. The Hilbert space is enlarged by an auxiliary vertex $a$. Let
+\[
+P_{\rm old}=P_+\oplus0_a,
+\qquad P_{\rm new}=P_+\oplus |a\rangle\langle a|.
+\]
+Use
+\[
+B_{\rm aux}=|s\rangle\langle a|+|a\rangle\langle s|.
+\]
+Then
+\[
+\|B_\perp(P_{\rm old})\|=1,
+\qquad \|B_\perp(P_{\rm new})\|=0.
+\]
+Thus $m_{\rm break}(P_{\rm old})>0$, but $P_{\rm new}$ still commutes with the perturbed Hamiltonian, contains the source, and excludes the target. The observed target probability remained at roundoff scale. This test proves that $B_\perp(P)\ne0$ means the chosen sector proof is broken; it does not by itself imply target leakage.
+
+\subsection{Test 5: projector dependence}
+The fifth test compares the certificate projector $P_{\rm cert}$, the unperturbed Krylov projector $P_s^{H_0}$, the perturbed Krylov projector $P_s^{H_\varepsilon}$, and a larger valid protecting projector where available. In the base scalar $\pi$-flux cycle,
+\[
+P_{\rm cert}=P_s^{H_0}
+\]
+up to numerical roundoff. For target-effective perturbations, the perturbed Krylov space expands to include the target. In the auxiliary-channel case, a larger valid projector protects the target even though the old sector and the unperturbed Krylov sector are broken. This test confirms that the notation must be $m_{\rm break}(P)$, with $P$ explicit.
+
+\subsection{Test 6: target-resolved sector breaking}
+The sixth test fixes the canonical unperturbed source projector
+\[
+P_0=P_s^{H_0}
+\]
+and compares the total canonical sector-breaking strength $\beta_0(B)$ with the target-resolved first-order coefficient $\alpha_T(B)$. The auxiliary-channel case gives
+\[
+\beta_0(B)=1,
+\qquad \alpha_T(B)=0,
+\]
+and remains target-dark. Reachable cases such as reflection-breaking diagonal perturbations, direct source-target coupling, and normalised random cross-block perturbations give $\beta_0(B)>0$ and $\alpha_T(B)>0$. Thus the final diagnostic split is
+\[
+\text{sector-breaking strength }\beta_0(B)
+\]
+versus
+\[
+\text{target-resolved leakage strength }\alpha_T(B).
+\]
+
+\begin{remark}[Interpretation of the numerical suite]
+The diagnostic suite supports the narrow statement that protected source-sector structure admits a sector-breaking energy scale and a corresponding mass-equivalent once physical units are specified. It does not support the stronger statement that sector breaking is identical with target leakage, nor any claim of universal mass associated with information. Target effectiveness is a separate dynamical diagnostic.
+\end{remark}
+
+\section{Lindblad block preservation}
+For open systems, the relevant invariant object is not only the state subspace $P\cH_V$, but the supported operator block $\mathcal B_P$.
+
+\begin{definition}[Lindblad block preservation]
+A Lindblad generator $\mathcal L$ preserves the $P$-supported block if
+\[
+\mathcal L(\mathcal B_P)\subseteq \mathcal B_P.
+\]
+Equivalently,
+\[
+X=PXP \Longrightarrow \mathcal L(X)=P\mathcal L(X)P.
+\]
+\end{definition}
+
+\begin{theorem}[Block preservation implies exact target exclusion]
+Let $P=P^\dagger=P^2$, and suppose $\mathcal L(\mathcal B_P)\subseteq\mathcal B_P$. If $\rho_0=P\rho_0P$, then
+\[
+\rho_t=P\rho_tP\qquad \forall t\ge0.
+\]
+If, in addition, $P|\ell\rangle=0$, then
+\[
+p_\ell(t)=\Tr(|\ell\rangle\langle\ell|\rho_t)=0\qquad \forall t\ge0.
+\]
+\end{theorem}
+
+\begin{proof}
+The condition $\mathcal L(\mathcal B_P)\subseteq\mathcal B_P$ says that $\mathcal B_P$ is invariant under the linear generator $\mathcal L$. Therefore the semigroup $e^{t\mathcal L}$ preserves $\mathcal B_P$. Since $\rho_0\in\mathcal B_P$, $\rho_t=e^{t\mathcal L}(\rho_0)\in\mathcal B_P$. Thus $\rho_t=P\rho_tP$. If $P|\ell\rangle=0$, then $|\ell\rangle\langle\ell|P=0$, and hence $p_\ell(t)=\Tr(|\ell\rangle\langle\ell|P\rho_tP)=0$.
+\end{proof}
+
+\begin{proposition}[Sufficient commutation condition]
+Suppose $[H,P]=0$ and, for every Lindblad operator in the chosen representation, $[D_a,P]=0$. Then $\mathcal L(\mathcal B_P)\subseteq\mathcal B_P$.
+\end{proposition}
+
+\begin{proof}
+Let $X=PXP$. Since $[H,P]=0$, the commutator $[H,X]$ is $P$-supported. Since each $D_a$ commutes with $P$, each $D_a$ and $D_a^\dagger D_a$ is block diagonal relative to $P\oplus(I-P)$. Therefore both the jump term $D_aXD_a^\dagger$ and the anticommutator term $\{D_a^\dagger D_a,X\}$ are $P$-supported. Hence $\mathcal L(X)\in\mathcal B_P$.
+\end{proof}
+
+\begin{remark}[Representation-independent condition]
+The commutation assumptions are sufficient in a chosen Lindblad representation. The representation-independent statement is the generator-level condition $\mathcal L(\mathcal B_P)\subseteq\mathcal B_P$. This is the condition relevant for exact target exclusion.
+\end{remark}
+
+\begin{definition}[Generator block-leakage diagnostic]
+Let $\mathcal P$ be the superoperator
+\[
+\mathcal P(X)=PXP.
+\]
+The generator block-leakage map is
+\[
+(I-\mathcal P)\mathcal L\mathcal P.
+\]
+Thus
+\[
+\mathcal L(\mathcal B_P)\subseteq\mathcal B_P \Longleftrightarrow (I-\mathcal P)\mathcal L\mathcal P=0.
+\]
+A finite-dimensional numerical diagnostic is
+\[
+\eta_P(\mathcal L)=\|(I-\mathcal P)\mathcal L\mathcal P\|.
+\]
+\end{definition}
+
+\subsection{Sink channels as diagnostics}
+Extend the Hilbert space by adding a sink state $|\mathrm{sink}\rangle$, and define
+\[
+L_\ell=\sqrt\gamma |\mathrm{sink}\rangle\langle \ell|,
+\qquad \gamma>0.
+\]
+Then
+\[
+L_\ell^\dagger L_\ell=\gamma |\ell\rangle\langle \ell|.
+\]
+The instantaneous jump rate into the sink is
+\[
+J_{\rm out}(t)=\Tr(L_\ell^\dagger L_\ell\rho_t)=\gamma p_\ell(t).
+\]
+Thus the sink measures target occupation. It does not create the protection mechanism.
+
+\begin{proposition}[Sink dissipator vanishes on protected states]
+If $P|\ell\rangle=0$ and $\rho=P\rho P$, then the sink dissipator
+\[
+\mathcal D_\ell(\rho)=L_\ell\rho L_\ell^\dagger-\frac12\{L_\ell^\dagger L_\ell,\rho\}
+\]
+satisfies $\mathcal D_\ell(\rho)=0$.
+\end{proposition}
+
+\begin{proof}
+Since $P|\ell\rangle=0$ and $\rho=P\rho P$,
+\[
+|\ell\rangle\langle\ell|\rho=0,
+\qquad \rho|\ell\rangle\langle\ell|=0,
+\qquad \langle \ell|\rho|\ell\rangle=0.
+\]
+Both the jump term and the anticommutator term therefore vanish.
+\end{proof}
+
+\subsection{Diagonal dephasing on the scalar $\pi$-flux cycle}
+Let
+\[
+P_+=\frac12(I+R_\pi)
+\]
+be the protected projector for the scalar $\pi$-flux even cycle. Consider a diagonal Lindblad operator
+\[
+D_f=\sum_{n\in\mathbb Z_N}f_n|n\rangle\langle n|.
+\]
+
+\begin{lemma}[Diagonal dephasing classification]
+For the scalar $\pi$-flux even cycle, $[D_f,P_+]=0$ if and only if
+\[
+f_n=f_{-n\bmod N}\qquad \forall n\in\mathbb Z_N.
+\]
+\end{lemma}
+
+\begin{proof}
+Since $P_+=(I+R_\pi)/2$, it is enough to test commutation with $R_\pi$. Write $R_\pi|n\rangle=\eta_n|-n\bmod N\rangle$. Then
+\[
+D_fR_\pi|n\rangle=\eta_nf_{-n\bmod N}|-n\bmod N\rangle,
+\]
+while
+\[
+R_\pi D_f|n\rangle=f_n\eta_n|-n\bmod N\rangle.
+\]
+These are equal for all $n$ precisely when $f_n=f_{-n\bmod N}$.
+\end{proof}
+
+\begin{corollary}
+Mirror-pair dephasing preserves the protected $P_+$-block, while site-resolving dephasing generally breaks it. Thus decoherence is not destructive merely by being decoherence; it is destructive for this zero-transfer proof when it resolves information that breaks the protected sector.
+\end{corollary}
+
+\subsection{Relation to quantum stochastic walk decoherence}
+The block-preservation theorem does not contradict results where zero transfer is destroyed under quantum stochastic walk decoherence \citep{Whitfield2010,Sett2019}. It refines the statement. If the generator is sector-breaking, the protected-block proof fails and target occupation may appear. If the generator preserves $\mathcal B_P$, exact target exclusion persists. Hence the relevant distinction is not ``closed'' versus ``open'' dynamics, but block-preserving versus block-breaking dynamics.
+
+\section{Discussion, limitations, and future work}
+The framework can be compressed as follows:
+\[
+(s,\ell)\text{ exact zero-transfer}
+\]
+if and only if
+\[
+\langle \ell|H^k|s\rangle=0,
+\qquad k=0,\ldots,n-1,
+\]
+if and only if
+\[
+|\ell\rangle\perp\cK_s(H),
+\]
+if and only if
+\[
+\langle \ell|E_\lambda|s\rangle=0\qquad \forall \lambda\in\sigma(H).
+\]
+A sufficient mechanism is invariant-sector exclusion:
+\[
+[H,P]=0,
+\qquad P|s\rangle=|s\rangle,
+\qquad P|\ell\rangle=0.
+\]
+A constructive special case is signed-involution exclusion:
+\[
+R^2=I,
+\qquad [H,R]=0,
+\qquad R|s\rangle=|s\rangle,
+\qquad R|\ell\rangle=-|\ell\rangle.
+\]
+Magnetic signs and phases make this construction possible on graph supports through
+\[
+H_{r(u),r(v)}=\sigma_u\sigma_vH_{uv}.
+\]
+The Layer-2 spectral audit refines the diagnostic form of this statement: exact zero transfer is detected by closure of the source-target channel through every spectral projector,
+\[
+\langle\ell|E_\lambda|s\rangle=0\qquad\forall\lambda.
+\]
+Signed-involution certificates provide one constructive way to enforce this closure.  The audit evidence retained here supports the narrower conclusion that projector-channel closure is decisive, while degeneracy, gap rigidity, recurrence and localisation are secondary spectral signatures of the graph family or symmetry structure.
+
+The main formal contribution is the signed-involution certificate framework and the M3A proof-certificate examples. The computation shows that the mechanism occurs on selected non-cycle supports, including rectangular grids and the octahedral graph. This moves the work beyond the single scalar $\pi$-flux cycle example.
+
+The minimal $C_4$ comparison places this exclusion mechanism next to the standard perfect-state-transfer picture. In ordinary zero-flux $C_4$, the antipodal involution swaps the source and target, and perfect transfer occurs by timed recombination of even and odd sector components. In the $\pi$-flux representative on the same support, the signed reflection fixes the source and target in opposite sectors, so the same pair is exactly excluded for all times. This example is included only as a contrast with perfect state transfer, not as a general PST classification.
+
+The diagnostic extension of M3A is the second main contribution of this version. The pipeline now finds exact protecting sectors and then quantifies how they break. Given a certificate sector $P$, a perturbation $B$, and a perturbation strength $\varepsilon$, the sector-breaking block is
+\[
+B_\perp(P)=PB(I-P)+(I-P)BP,
+\]
+the sector-breaking scale is
+\[
+E_{\rm break}(P;B,\varepsilon)=|\varepsilon|\|B_\perp(P)\|,
+\]
+and, for angular-frequency Hamiltonians,
+\[
+m_{\rm break}(P;B,\varepsilon)=\frac{\hbar|\varepsilon|\|B_\perp(P)\|}{c^2}.
+\]
+A nonzero value of $m_{\rm break}(P)$ means that the chosen protecting sector $P$ is broken. It does not by itself imply nonzero target leakage. Target effectiveness is diagnosed separately by
+\[
+\alpha_T(B)=\max_{0\le t\le T}|A_1(t)|.
+\]
+
+The limitations are equally important.
+
+First, the M3A results are not a classification theorem. They concern $\{0,\pi\}$-valued signed magnetic certificates, a structured subclass of the full $U(1)$-magnetic phase problem. A graph with no certificate under the fast M3A profile is not proved incapable of exact zero transfer.  The Layer-2 exception cases make this limitation explicit: an original certificate may fail while the spectral-projector channel remains closed by another mechanism.
+
+Second, the results do not establish topological protection. The certificates prove symmetry-sector exclusion. Robustness is only exact for perturbations that preserve the relevant sector, and only finite-time bounds are proved for sector-breaking perturbations.
+
+Third, the sector-breaking mass-equivalent is not universal. It depends on a choice of projector, perturbation, perturbation strength, and units. It is a mass-equivalent of a sector-breaking energy scale, not the mass of a state, a target vertex, information itself, or an observed leakage probability.
+
+Fourth, the results do not establish physical implementability. A physical platform would need its own model connecting signs, phases, graph couplings, noise channels, and control errors to experimentally available operations.
+
+Fifth, this paper deliberately leaves out the geometric or incidence-geometry side of the broader research programme. Such connections require separate examples, matched null ensembles, and independent verification.
+
+A separate companion direction concerns finite duality and local-to-global obstruction phenomena. Preliminary finite ledgers indicate that, for the cube/octahedron and cuboctahedron/rhombic-dodecahedron dual pairs, blocking two-face $\pi$-flux supports on one graph correspond to blockable vertex pairs on the planar dual. The same ledgers also suggest that FCC cuboctahedral coordination shells support nontrivial local-to-global edge-sign consistency constraints, including explicit GF(2) parity obstruction cores. These results are finite graph and discrete-geometry statements. They do not enter the proofs in this paper and will be developed separately.
+
+Natural next steps are:
+\begin{enumerate}
+\item explain the Layer-2 exception cases where the original certificate breaks but the spectral-projector channel remains closed;
+\item develop a completeness theory separating signed-involution darkness, larger signed-symmetry darkness and general Krylov or invariant-subspace darkness;
+\item classify graph supports admitting signed-involution certificates;
+\item prove infinite families behind the grid and reflected-chord examples;
+\item test robustness against symmetry-preserving and symmetry-breaking perturbations;
+\item compare certificate rates against matched null graph ensembles;
+\item develop symbolic or exact-arithmetic certificate verification for representative examples;
+\item connect certificate design to implementable coupled-mode, photonic, resonator, or synthetic gauge systems;
+\item classify perturbations with $\beta_0(B)>0$ but $\alpha_T(B)=0$ versus perturbations with $\beta_0(B)>0$ and $\alpha_T(B)>0$;
+\item determine when the certificate projector agrees with, contains, or differs from the canonical Krylov projector $P_s^{H_0}$.
+\end{enumerate}
+
+The strongest safe final statement is therefore:
+\begin{quote}
+Finite magnetic graph Hamiltonians can exhibit exact source-target transition zeros through spectral-projector channel closure. Signed-involution sector exclusion is a constructive sufficient mechanism for producing such closure. A symmetry-first search can generate proof certificates on selected non-cycle graph supports, and the updated diagnostic pipeline can audit how a chosen protecting sector breaks under perturbation, including the sector-breaking scale, its Einstein mass-equivalent when units are specified, and the target-resolved first-order leakage coefficient.
+\end{quote}
+
+\appendix
+\section{Supplementary data included with this source bundle}
+The certificate tables and diagnostic summaries are intended to make the computational claims independently auditable. The main text contains family-level summaries and representative examples; the source bundle contains the machine-readable records used to reconstruct the certificates and audit the diagnostic claims.
+
+\subsection{Certificate data}
+The signed-involution certificate data consist of the M3A candidate, graph, phase and flux records. Together these files determine the support graph, source-target pair, involution, sign function, signed Hamiltonian and cycle-basis flux information for each reported certificate.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Certificate data files included with the source bundle.}
+\begin{tabular}{p{0.35\textwidth}p{0.55\textwidth}}
+\toprule
+File & Contents\\
+\midrule
+\path{m3a_graph_records.csv} & Graph identifiers, graph classes, vertex counts, edge counts, cycle ranks and edge sets.\\
+\path{m3a_candidates.csv} & Candidate identifiers, source-target pairs, involutions, sign functions and audit norms.\\
+\path{m3a_phase_records.csv} & Edge-level phases and signs determining each signed magnetic Hamiltonian.\\
+\path{m3a_flux_records.csv} & Cycle-basis flux records for each candidate.\\
+\path{magnetic_phase_search_M3A_symmetry_first_fast.py} & Reproducible implementation of the symmetry-first certificate search.\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Diagnostic data}
+The diagnostic data files record the additional perturbative audits introduced in the updated pipeline. These data support the claims about sector-preserving baselines, sector-breaking scaling, finite-time bounds, projector dependence and target-resolved first-order leakage.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Diagnostic data files included with the source bundle.}
+\begin{tabular}{p{0.35\textwidth}p{0.55\textwidth}}
+\toprule
+File & Contents\\
+\midrule
+\path{test1_zero_baseline_summary.csv} & Sector-preserving perturbation summary.\\
+\path{test2_sector_breaking_scaling_summary.csv} & Sector-breaking scaling summary.\\
+\path{test3_bound_summary.csv} & Finite-time bound summary.\\
+\path{test4_summary.csv} & Non-sufficiency summary for sector breaking without target leakage.\\
+\path{test5_projector_summary.csv} & Projector-dependence summary.\\
+\path{test5_projector_dependence.py} & Projector-dependence diagnostic script.\\
+\path{test6_target_resolved_summary.csv} & Target-resolved first-order leakage summary.\\
+\path{test6_target_resolved_sector_breaking.py} & Target-resolved leakage diagnostic script.\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Layer-2 spectral audit material}
+The Layer-2 spectral audit is treated as repository-level computational material.  This manuscript includes only the compact theorem-level conclusion: exact darkness is decided by spectral-projector channel closure, while degeneracy, gap rigidity, recurrence and localisation are secondary diagnostics.  The companion repository should contain the detailed Layer-2 scripts, CSV tables and exception-case records.  The source bundle for this draft includes the compact report file
+\begin{center}
+\path{l2_spectral_projector_audit_summary.md}
+\end{center}
+which summarises the retained Layer-2 conclusions.
+
+The supplementary data do not replace the mathematical proofs. They document the particular computational runs reported here and make the finite certificate and diagnostic claims reproducible.
+
+\begin{thebibliography}{99}
+\bibitem[Childs(2009)]{Childs2009} Childs, A. M. (2009). Universal computation by quantum walk. \emph{Physical Review Letters}, 102, 180501. doi:10.1103/PhysRevLett.102.180501.
+\bibitem[Coutinho et~al.(2015)]{Coutinho2015} Coutinho, G., Godsil, C., Guo, K. and Vanhove, F. (2015). Perfect state transfer on distance-regular graphs and association schemes. \emph{Linear Algebra and its Applications}, 478, 108--130. doi:10.1016/j.laa.2015.03.024. arXiv:1401.1745 [math.CO].
+\bibitem[Farhi and Gutmann(1998)]{FarhiGutmann1998} Farhi, E. and Gutmann, S. (1998). Quantum computation and decision trees. \emph{Physical Review A}, 58(2), 915--928. doi:10.1103/PhysRevA.58.915.
+\bibitem[Godsil(2012)]{Godsil2012} Godsil, C. (2012). State transfer on graphs. \emph{Discrete Mathematics}, 312(1), 129--147. doi:10.1016/j.disc.2011.06.032.
+\bibitem[Gorini et~al.(1976)]{Gorini1976} Gorini, V., Kossakowski, A. and Sudarshan, E. C. G. (1976). Completely positive dynamical semigroups of N-level systems. \emph{Journal of Mathematical Physics}, 17(5), 821--825. doi:10.1063/1.522979.
+\bibitem[Lidar and Whaley(2003)]{LidarWhaley2003} Lidar, D. A. and Whaley, K. B. (2003). Decoherence-free subspaces and subsystems. In \emph{Irreversible Quantum Dynamics}, Lecture Notes in Physics, vol. 622, pp. 83--120. Berlin: Springer. doi:10.1007/3-540-44874-8\_5.
+\bibitem[Lindblad(1976)]{Lindblad1976} Lindblad, G. (1976). On the generators of quantum dynamical semigroups. \emph{Communications in Mathematical Physics}, 48(2), 119--130. doi:10.1007/BF01608499.
+\bibitem[Lu et~al.(2016)]{Lu2016} Lu, D., Biamonte, J. D., Li, J., Li, H., Johnson, T. H., Bergholm, V., Faccin, M., Zimboras, Z., Laflamme, R., Baugh, J. and Lloyd, S. (2016). Chiral quantum walks. \emph{Physical Review A}, 93, 042302. doi:10.1103/PhysRevA.93.042302.
+\bibitem[Sett et~al.(2019)]{Sett2019} Sett, A., Pan, H., Falloon, P. E. and Wang, J. B. (2019). Zero transfer in continuous-time quantum walks. \emph{Quantum Information Processing}, 18(5), Article 159. doi:10.1007/s11128-019-2267-9. arXiv:1902.11115 [quant-ph].
+\bibitem[Whitfield et~al.(2010)]{Whitfield2010} Whitfield, J. D., Rodriguez-Rosario, C. A. and Aspuru-Guzik, A. (2010). Quantum stochastic walks: a generalization of classical random walks and quantum walks. \emph{Physical Review A}, 81, 022323. doi:10.1103/PhysRevA.81.022323.
+\bibitem[Zimboras et~al.(2013)]{Zimboras2013} Zimboras, Z., Faccin, M., Kadar, Z., Whitfield, J. D., Lanyon, B. P. and Biamonte, J. (2013). Quantum transport enhancement by time-reversal symmetry breaking. \emph{Scientific Reports}, 3, 2361. doi:10.1038/srep02361.
+\end{thebibliography}
+
+\end{document}
