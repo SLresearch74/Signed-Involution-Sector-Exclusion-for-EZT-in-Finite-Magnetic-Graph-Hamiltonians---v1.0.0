@@ -1,0 +1,23 @@
+\begin{longtable}{l l l c l}
+\toprule
+Cone & Weight $(a,b,c,d)$ & Initial ideal & Radical & Adjacent\\
+\midrule
+\endhead
+C01 & $(4,3,2,1)$ & $(a,bc)$ & yes & C02, C03, C05\\
+C02 & $(4,3,1,2)$ & $(a,bd)$ & yes & C01, C04, C06, C13\\
+C03 & $(4,2,3,1)$ & $(a,c^2)$ & no & C01, C04, C09\\
+C04 & $(4,1,2,3)$ & $(a,cd)$ & yes & C02, C03, C14\\
+C05 & $(3,4,2,1)$ & $(b,ac)$ & yes & C01, C06, C07, C10\\
+C06 & $(3,4,1,2)$ & $(b,ad)$ & yes & C02, C05, C08\\
+C07 & $(1,4,3,2)$ & $(b,cd)$ & yes & C05, C08, C12\\
+C08 & $(2,4,1,3)$ & $(b,d^2)$ & no & C06, C07, C15\\
+C09 & $(3,2,4,1)$ & $(c,a^2)$ & no & C03, C10, C11\\
+C10 & $(2,3,4,1)$ & $(c,ab)$ & yes & C05, C09, C12\\
+C11 & $(2,1,4,3)$ & $(c,ad)$ & yes & C09, C12, C14\\
+C12 & $(1,3,4,2)$ & $(c,bd)$ & yes & C07, C10, C11, C16\\
+C13 & $(3,2,1,4)$ & $(d,ab)$ & yes & C02, C14, C15\\
+C14 & $(3,1,2,4)$ & $(d,ac)$ & yes & C04, C11, C13, C16\\
+C15 & $(2,3,1,4)$ & $(d,b^2)$ & no & C08, C13, C16\\
+C16 & $(1,2,3,4)$ & $(d,bc)$ & yes & C12, C14, C15\\
+\bottomrule
+\end{longtable}

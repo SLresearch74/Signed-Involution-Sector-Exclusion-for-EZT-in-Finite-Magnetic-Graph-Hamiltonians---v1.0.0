@@ -1,0 +1,16 @@
+warning_id,firewall,manuscript_location,status
+SW01,closure is not a symmetry certificate,Sections 1 and 12,RETAIN
+SW02,broken certificate is not an opening,Sections 1 4 and 12,RETAIN
+SW03,perturbation order p differs from time order q,Sections 2 6 and 12,RETAIN
+SW04,parent support differs from pullback support before aggregation,Sections 8 and 12,RETAIN
+SW05,candidate face differs from surviving coefficient,Sections 8 9 and 12,RETAIN
+SW06,fixed direction differs from moving analytic direction,Sections 2 6 and 9,RETAIN
+SW07,actual coordinates differ from a scalar ray,Sections 7 10 and 12,RETAIN
+SW08,numerator differs from moment series,Sections 2 3 and 11,RETAIN
+SW09,moment differs from amplitude because of phase/factorial,Sections 2 10 11 and 12,RETAIN
+SW10,ideal differs from tagged ideal and marked amplitude section,Section 11,RETAIN
+SW11,local term order is not an empirical performance claim,Sections 11 and 13,RETAIN
+SW12,fixed-weight finite generation is not a uniform global atlas,Sections 10 12 13 and 14,RETAIN
+SW13,real non-cancellation requires real Hermitian data and real constants,Sections 9 and 12,ADAPT
+SW14,analytic order theorem does not extend to smooth-flat germs,Sections 9 and 12,RETAIN
+

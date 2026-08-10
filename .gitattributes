@@ -1,0 +1,16 @@
+# Keep the manifest stable across Windows and Unix checkouts while preserving
+# terminal blank lines in author-supplied Paper II records.
+subsequent-work/paper-2-opening-theory/** text=auto eol=lf whitespace=-blank-at-eof
+subsequent-work/paper-2-opening-theory/**/*.pdf -text
+
+# Exact evidence payloads retain their supplied bytes, including line endings.
+subsequent-work/paper-2-opening-theory/DATA/** -text -whitespace
+subsequent-work/paper-2-opening-theory/EXPECTED/** -text -whitespace
+subsequent-work/paper-2-opening-theory/documentation/SUPPLIED_ARTIFACT_INVENTORY.csv -text -whitespace
+
+# This source-recovery CSV intentionally preserves whitespace captured from
+# scanned source lines as evidence.
+subsequent-work/paper-2-opening-theory/DATA/FULL_SOURCE_SCAN_HITS.csv -whitespace
+
+# Supplied Lean milestone reports use Markdown hard-break spaces.
+subsequent-work/paper-2-opening-theory/formalisation/reports/** -whitespace

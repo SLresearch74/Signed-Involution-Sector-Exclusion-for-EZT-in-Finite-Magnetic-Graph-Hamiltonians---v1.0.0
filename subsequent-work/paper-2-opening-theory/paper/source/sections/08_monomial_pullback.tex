@@ -1,0 +1,74 @@
+\section{Monomial pullback and face collision}\label{sec:pb1}
+
+This section begins the extension beyond the current M0--M8 formalisation.
+Its theorems are \evidence{PROVED} by the displayed finite-fibre arguments and
+checked on released exact examples, but are not yet Lean theorems.
+
+Let \(F(x)=\sum_{\alpha\in\N^n}A_\alpha x^\alpha\) be a formal series with
+coefficients in a finite-dimensional vector space.  Fix an exponent matrix
+\(\Lambda\in\N^{m\times n}\) with no zero column and non-zero leading constants
+\(c_i\).  Define
+\[
+x_i=c_i y^{\lambda_i},\qquad
+\lambda_i\in\N^m.
+\]
+
+\begin{theorem}[Fibre aggregation]\label{thm:aggregation}
+The pulled coefficient at child exponent \(\beta\) is
+\begin{equation}\label{eq:aggregation}
+B_\beta(c)=\sum_{\Lambda\alpha=\beta}A_\alpha c^\alpha.
+\end{equation}
+The sum is finite.  Hence the actual child support is contained in, but may be
+strictly smaller than, the naive image \(\Lambda(\supp F)\).
+\end{theorem}
+\begin{proof}
+Substitution gives
+\(A_\alpha c^\alpha y^{\Lambda\alpha}\).  Group equal child monomials to obtain
+\cref{eq:aggregation}.  If \(\Lambda\alpha=\beta\), then for every column choose
+a positive entry; this bounds each \(\alpha_i\) by a coordinate of \(\beta\),
+so the fibre is finite.  Its sum can cancel.
+\end{proof}
+
+For a positive child weight \(\mu\), set \(w=\Lambda^{\mathsf T}\mu\) and let
+\(\phi^{\rm gr}\) denote substitution by leading monomials.
+This valuation transport is adjacent to tropical elimination
+\parencite{SturmfelsTevelev2008}; the coefficient-fibre cancellation test is
+kept explicit because equations can retain information lost by set-theoretic
+support alone \parencite{Giansiracusa2016}.
+
+\begin{theorem}[Candidate face and equality criterion]\label{thm:pullbackface}
+If \(\nu_w(F)\) is the parent valuation, then
+\[
+\nu_\mu(\phi F)\ge\nu_w(F).
+\]
+The candidate component at that weight is
+\begin{equation}\label{eq:candidateface}
+\phi^{\rm gr}(\inw_w F).
+\end{equation}
+Equality holds if and only if \cref{eq:candidateface} is non-zero.  A literal
+identity \(\inw_\mu(\phi F)=\phi^{\rm gr}(\inw_wF)\) without the non-vanishing
+hypothesis is \evidence{FALSIFIED}.
+\end{theorem}
+\begin{proof}
+Every parent monomial has child weight
+\(\mu\cdot\Lambda\alpha=w\cdot\alpha\), so no pulled term can have smaller
+weight.  Aggregating all parent terms of minimal weight gives
+\cref{eq:candidateface}.  If it survives, it is the child initial form.  If it
+cancels, the actual valuation is larger and the displayed right-hand side is
+zero, whereas the child initial form, when the pullback is non-zero, occurs at a
+later weight.
+\end{proof}
+
+\begin{figure}[ht]
+\centering\input{../../FIGURES/SOURCE/fig05_pullback_collision.tikz}
+\caption{Two parent exponents can enter the same child fibre.  Their aggregate,
+not their separate presence, decides the child support.}
+\label{fig:pullback}
+\end{figure}
+
+Under successive monomial maps with exponent matrices \(\Lambda\) then
+\(\Omega\), exponents compose as \(\Omega\Lambda\); leading constants compose
+as \(c_i d^{\lambda_i}\).  After a cancellation, however, the next survivor can
+depend on the full germ and on unit jets, not merely on the first exponent
+matrix.  No universal ``next face'' rule from the cancelled face alone is
+claimed.

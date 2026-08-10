@@ -1,0 +1,75 @@
+\section{Exact numerator and coefficient ideal}\label{sec:numerator}
+
+Let \(\Delta(z;d)=\det(zI-H(d))\).  The selected adjugate cofactor is denoted
+by \(N(z;d)\), so \(G=N/\Delta\) as a rational function before any common-factor
+reduction.
+
+\begin{theorem}[Exact selected numerator]\label{thm:numerator}
+For the locked model,
+\begin{equation}\label{eq:numerator}
+\boxed{N(z;d)=L(z^2+2z)+2Q(z+1)+R.}
+\end{equation}
+This identity is \evidence{KERNEL-CHECKED} and independently
+\evidence{VERIFIED-EXACT}.
+\end{theorem}
+\begin{proof}
+Delete row \(0\) and column \(5\) from \(zI-H(d)\), take the determinant and
+multiply by the cofactor sign \((-1)^{0+5}\).  In the Leibniz expansion, collect
+terms by total diagonal degree.  The degree-one terms are
+\(Lz^2+2Lz\); the degree-two terms are \(2Qz+2Q\); the degree-three terms are
+\(R\); higher degrees cancel.  This gives \cref{eq:numerator}.  A second route
+expands \(H(d)^k\), forms the Laurent series
+\(G(z;d)=\sum_{k\ge0}M_k(d)z^{-k-1}\), and multiplies by the independently
+computed denominator.  The release script performs both integer routes and
+compares every monomial.
+\end{proof}
+
+\noindent\textbf{Formal status.}
+The direct cofactor construction, retained row and column embeddings, cofactor
+sign and universal identity over every commutative ring are checked by
+\path{M3A.selectedMinor_eq_explicit} and
+\path{M3A.selectedNumerator_formula}.  The determinant proof uses no sampled
+evaluation or external symbolic output as a premise.
+
+\begin{proposition}[Two-generator coefficient ideal]\label{prop:ideal}
+Let \(\mathbb K\) be a field of characteristic different from \(2\),
+equivalently a field in which \(2\) is invertible.  In
+\(A=\mathbb K[d_1,d_2,d_3,d_4]\), the ideal of the coefficients of \(N\) is
+\begin{equation}
+I_N=(L,Q,R)=(L,Q).
+\end{equation}
+\end{proposition}
+\begin{proof}
+The coefficient list of \cref{eq:numerator} contains \(L\), \(2Q\) and \(R\),
+so invertibility of \(2\) gives \(I_N=(L,Q,R)\).  The integral syzygy
+\begin{equation}\label{eq:Rsyzygy}
+R=-(d_2+d_4)Q-d_2d_4L.
+\end{equation}
+shows that \(R\in(L,Q)\), while \(L,Q\in I_N\) because \(L\) and \(2Q\) are
+coefficients and \(2\) is a unit.  Hence equality.
+\end{proof}
+
+\noindent\textbf{Formal status.}
+The coefficient syzygy and the implication $L=Q=0\Rightarrow R=0$ are
+\evidence{KERNEL-CHECKED} as
+\path{M3A.cubicNumeratorCoeff_syzygy} and
+\path{M3A.cubicNumeratorCoeff_eq_zero_of_linear_quadratic_zero}.  The displayed
+equality of ideals, as an equality in a multivariate polynomial ring, remains
+a conventional algebraic proof rather than a theorem in the present Lean
+package.
+
+The exact-zero locus of the selected rational entry is therefore the algebraic
+set \(V(L,Q)\), subject to no inference from a reduced numerator alone: the
+identity is proved at the unreduced cofactor level.  Potential numerator--
+denominator cancellation can lower a pole order, but cannot create a non-zero
+rational entry when the unreduced numerator is the zero polynomial.
+
+\begin{corollary}[Actual-coordinate transformed numerator]\label{cor:transformed}
+With \(x=z^{-1}\),
+\begin{equation}
+x^{-1}G(x^{-1};d)=
+\frac{Lx^3(1+2x)+2Qx^4(1+x)+Rx^5}{\Delta^\sharp(x;d)},
+\end{equation}
+where \(\Delta^\sharp(0;0)=1\).  Hence the denominator is a unit in the formal
+local ring at \((x,d)=(0,0)\).
+\end{corollary}

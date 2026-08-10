@@ -1,0 +1,13 @@
+\begin{tikzpicture}[>=Latex,scale=.9,
+  plane/.style={draw,thick,fill opacity=.24,text opacity=1},
+  lab/.style={font=\small,align=center}]
+\draw[->] (-4,0)--(4.4,0) node[right] {$\ell$ direction};
+\draw[->] (0,-2.5)--(0,2.8) node[above] {$Q$ direction inside $\ell=0$};
+\fill[blue!12] (-.75,-2.2) rectangle (.75,2.2);
+\draw[blue!60!black,thick] (-.75,-2.2) rectangle (.75,2.2);
+\draw[plane,fill=green!50] (-.6,-1.8)--(.55,-.9)--(.6,1.8)--(-.55,.9)--cycle;
+\draw[plane,fill=orange!60] (-.55,-.9)--(.6,-1.8)--(.55,.9)--(-.6,1.8)--cycle;
+\node[lab] at (2.4,1.4) {$\ell\ne0$\\linear opening};
+\node[lab] at (0,2.45) {$\ell=0,\ Q\ne0$:\\quadratic opening};
+\node[lab] at (0,-.05) {two dark planes\\$P_A\cup P_B$};
+\end{tikzpicture}

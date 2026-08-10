@@ -1,0 +1,16 @@
+claim_domain,manuscript_claim,reference_keys,relationship
+dark states,physical dark states arise through destructive interference,Aspect1988;Zhao2026,context not anticipation
+adiabatic transfer,STIRAP is a standard dark-state application,Gaubatz1990,context
+zero transfer,continuous-time quantum walks include exact suppression questions,Sett2019;Godsil2012,adjacent problem
+quantum transport,time-reversal symmetry affects transport,Zimboras2013,adjacent problem
+realisation,resolvents and Markov parameters are standard,HoKalman1966;Noferini2023,standard tool
+word series,labelled noncommutative expansions are standard,Fliess1981;Sakarovitch2009;BerstelReutenauer2010,standard framework
+Newton geometry,weights expose lower faces,Kouchnirenko1976;Varchenko1976;MaclaganSturmfels2015,standard framework
+tropical elimination,monomial maps transport valuations,SturmfelsTevelev2008;MaclaganSturmfels2015,standard framework
+scheme sensitivity,equations retain more than support sets,Giansiracusa2016,conceptual support
+Gröbner fan,initial ideals vary over a polyhedral fan,Fukuda2007;MillerSturmfels2005,standard framework
+arc contact,orders of ideals organise arc strata,Ein2004,standard framework
+Noetherianity,polynomial coefficient ideals are finitely generated,AtiyahMacdonald1969,proof ingredient
+Paper I bridge,exact zero equals all moment/Krylov/projector conditions,MedfordPaperI,companion theorem
+R1.2 history,fixed direction was the earlier manuscript scope,MedfordR12,self-citation and provenance
+

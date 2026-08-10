@@ -1,0 +1,108 @@
+\section{Formal verification, reproducibility and transparency}
+\label{sec:repro}
+
+The release separates kernel checking, conventional proof, exact computation,
+byte identity and measurement.  The formal project is the primary executable
+evidence for the M0--M8 spine.  Exact integer and rational scripts remain
+independent regression checks for the locked numerator, denominator, moment
+boundary, arc controls and atlas invariants.  No floating-point tolerance
+enters a theorem certificate.
+
+\subsection{Lean build and trust report}
+
+The formalisation pins both Lean and Mathlib to version 4.32.1.  Its root module
+imports \path{M3A.AnalyticBridge}, which transitively imports every earlier
+stage.  A clean \path{lake build} completed successfully after M8.  The
+principal axiom reports contain only \path{propext},
+\path{Classical.choice} and \path{Quot.sound}; there is no
+\path{sorry}, \path{admit}, user-declared axiom or unsafe theorem dependency.
+The theorem-level map is reproduced in \cref{app:reprochecks}.
+
+This trust statement follows the standard Lean architecture
+\parencite{deMouraUllrich2021}: tactics and automation may construct proof
+terms, but acceptance of those terms is checked by the kernel.  Mathlib
+provides the matrix, power-series, topology and convexity infrastructure used
+in the development \parencite{MathlibCommunity2020}.  Neither citation is used
+as evidence for the M3A theorems themselves; their evidence is the released
+source and checked proof terms.
+
+\subsection{Independent exact routes}
+
+\begin{enumerate}[label=\arabic*.]
+\item \textbf{Lean route.}  Finite matrix definitions, cofactor expansion,
+      word recurrence, support classification, convex hull and analytic
+      summation form one checked dependency chain.
+\item \textbf{Cofactor route.}  A direct Leibniz determinant gives (N) and the
+      52-term denominator.
+\item \textbf{Moment route.}  Polynomial matrix powers give $M_k$, endpoint
+      support and the signed minimal layer.
+\item \textbf{Pulled-amplitude route.}  Gaussian-rational series compute the
+      ARC1 and GF1 tie cancellations and next survivors.
+\item \textbf{Combinatorial route.}  Released JSON atlases are checked for all
+      15 MV1 cells and all 16 GF1 cones, including radicality flags and Hilbert
+      data.
+\end{enumerate}
+The cofactor and moment routes meet at the Laurent expansion of the resolvent;
+agreement is a cross-check, not circular evidence.  Although finite
+Hamiltonian entries generate highly structured series, no general D-finite
+closure claim is needed here \parencite{Stanley1980}.
+
+\subsection{Executable discrepancy fixture}
+
+The fixture changes the symmetric edge pair
+$H_{0,2}=H_{2,0}=-1$ to $+1$.  It then reruns the same cofactor and moment
+code.  Both routes detect disagreement with the locked numerator and moment
+layer.  The fixture result is computed at run time and written to
+\path{DATA/discrepancy_detection.json}; it is not a stored truth value.
+
+\subsection{Source recovery}
+
+The workstation scan hashed 3,636 scientific-source files and found 932 unique
+byte streams, including 631 duplicate-content groups.  It searched 780 unique
+text streams and extracted 20 unique PDFs without a read failure.  Those counts
+are \evidence{MEASURED} with the stated sample sizes.  Vendor TeX
+distributions, dependency caches, rendered scratch files and the output tree
+were excluded and recorded.  Byte-identical copies were searched once and
+linked by SHA-256; filename suffixes such as ``copy'' or parenthetical numbers
+were not treated as authority.
+
+\paperone{} has the verified Zenodo version DOI
+\href{https://doi.org/10.5281/zenodo.20556571}{10.5281/zenodo.20556571} and is
+cited accordingly \parencite{MedfordPaperI}.  Its source is available in the
+\href{https://github.com/SLresearch74/Signed-Involution-Sector-Exclusion-for-EZT-in-Finite-Magnetic-Graph-Hamiltonians---v1.0.0}{public GitHub repository}.
+The Zenodo record is version \path{v1.0.0}; as of 10 August 2026 the GitHub
+repository has no separate Release or tag.  Paper II reproducibility materials
+are located under
+\path{subsequent-work/paper-2-opening-theory/} in that repository.  The earlier
+R1.2 Paper II manuscript remains an author-supplied unpublished preprint with
+no invented identifier.
+
+\subsection{How to reproduce}
+
+From the formalisation root, run
+\begin{verbatim}
+lake build
+lake env lean M3AFormalisation.lean
+\end{verbatim}
+From \path{subsequent-work/paper-2-opening-theory}, run
+\begin{verbatim}
+python CODE/verify_paper.py
+python CODE/verify_paper.py --fixture
+cd paper/source
+latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+\end{verbatim}
+The paper build uses Biber for Harvard author--date citations.  Exact
+environment versions, milestone verification reports, expected JSON and the
+release manifest accompany the source.  The full denominator, atlases and
+claim maps are machine-readable rather than transcribed by hand.
+
+\subsection{Known reproducibility boundary}
+
+The current Lean package is complete through the fixed-fibre analytic theorem,
+but not through the paper's later pullback, arc, atlas, Gr\"obner/Rees or
+Noetherian sections.  Their exact verifiers check formulas, examples and finite
+atlases; they do not turn those conventional proofs into kernel-checked ones.
+Separately, the fixed-weight theorem proves finite generation rather than an
+effective uniform bound.  Its verifier checks hypotheses and examples but
+cannot turn a non-effective Noetherian argument into a global finite atlas.
+Both limitations are reported rather than hidden.

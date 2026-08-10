@@ -1,0 +1,15 @@
+theorem_id,paper_statement,primary_source,correction_or_extension,evidence
+T3.1,Exact selected numerator,TF1 EXACT_FAMILY_NUMERATOR_THEOREM.tex,MV1 actual-coordinate recomputation,VERIFIED-EXACT
+T4.1,Reduced union of two dark planes,TF1 EXACT_DARK_COMPONENT_DECOMPOSITION.md,GF1 adapted normal form,PROVED
+T5.1,Endpoint-access word bound,EA1 FINAL_EA1_REPORT.md,specialised M3A boundary identity,PROVED
+T6.1,Complete fixed-ray trichotomy,R1.2 manuscript and TF1,protected 1/12 exact route,PROVED
+T7.1,Fixed-fibre Newton polyhedra,NP1 NEWTON_FIBRE_TRICHOTOMY_THEOREM.tex,aligned x=z^-1 shift,PROVED
+T8.1,Fibre aggregation,PB1 FINAL_PB1_REPORT.md,finite-fibre hypothesis exposed,PROVED
+T8.2,Pullback valuation and equality criterion,PB1 FINAL_PB1_REPORT.md,unconditional identity rejected,PROVED
+T9.1,Analytic-arc lower hull,corrected ARC1 THREE_SCALE_SUPPORT_THEOREM.tex,colleague clarification applied,PROVED
+T9.2,Field-corrected tie rule,ARC1 clarification patch,broad real wording superseded,PROVED
+T10.1,Universal four-vertex Newton polyhedron,MV1 FINAL_MV1_REPORT.md,independent exact support route,PROVED
+T10.2,Fixed-weight finite coefficient decision,new first-principles Noetherian proof,MV1 uniform obstruction retained,PROVED
+T11.1,16-cone dark-ideal Gröbner fan,GF1 DARK_IDEAL_GROEBNER_FAN.json,independent invariant check,VERIFIED-EXACT
+T11.2,Rees presentation and contact profile,GF1 FINAL_GF1_REPORT.md,scope tightened,PROVED
+

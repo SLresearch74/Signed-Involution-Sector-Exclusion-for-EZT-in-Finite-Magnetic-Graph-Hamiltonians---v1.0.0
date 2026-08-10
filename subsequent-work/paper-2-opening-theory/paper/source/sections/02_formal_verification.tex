@@ -1,0 +1,90 @@
+\section{Formal verification architecture and trust boundary}
+\label{sec:formalisation}
+
+The fixed-ray and fixed-fibre core of this paper has been formalised in Lean~4,
+an interactive theorem prover with a small proof-checking kernel
+\parencite{deMouraUllrich2021}, using the Mathlib library of formalised
+mathematics \parencite{MathlibCommunity2020}.  The formalisation is not a
+translation of displayed formulas into numerical tests.  It defines the locked
+six-state matrix, selected ports, perturbation, cofactor, word coefficients,
+coefficient support and real convex hull, and then constructs proof terms for
+the corresponding universal statements.
+
+\subsection{End-to-end verified spine}
+
+The organising dependency chain is recorded in \cref{tab:leanmap}.  Module
+names and theorem identifiers are part of the release interface: they identify
+the exact machine-checked statement rather than a nearby prose summary.
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}p{0.10\textwidth}p{0.34\textwidth}X@{}}
+\toprule
+Stage & Paper-level claim & Lean module and principal theorem\\
+\midrule
+M0--M1 & Locked model, signed involutions and all-depth baseline darkness &
+\path{M3A.BaselineDarkness}; \path{baseline_moments_dark}\\
+M2 & Exact unreduced selected cofactor numerator &
+\path{M3A.SelectedNumerator}; \path{selectedNumerator_formula}\\
+M3 & Pointwise decomposition into the two dark planes and persistent certificates &
+\path{M3A.DarkPlanes}; \path{ell_quad_zero_iff_planes}\\
+M4 & Locked endpoint-access support and signed boundary power sum &
+\path{M3A.EndpointWords}; \path{sixState_support_bound},
+\path{sixState_boundary_ray}\\
+M5 & Exact first amplitude coefficients and complete first-order protection on $L=0$ &
+\path{M3A.RayCoefficients};
+\path{amplitudeCoeff_one_eq_zero_of_linear_zero}\\
+M6 & Exhaustive linear/quadratic/dark fixed-ray classification &
+\path{M3A.FixedRayTrichotomy}; \path{fixedRay_trichotomy},
+\path{classifyRay_spec}\\
+M7 & Actual-support Newton orthants and unique positive-weight vertices &
+\path{M3A.FixedFibreNewton}; \path{fixedFibre_newton}\\
+M8 & Identification with the selected matrix-exponential amplitude &
+\path{M3A.AnalyticBridge};
+\path{selectedRayAmplitude_eq_tsum_coefficients}\\
+\bottomrule
+\end{tabularx}
+\caption{The theorem-to-Lean dependency map.  Each row depends on the rows
+above it; M8 closes the gap between finite word algebra and the analytic
+amplitude used in the paper.}
+\label{tab:leanmap}
+\end{table}
+
+The resulting chain is genuinely end to end.  At each time depth $q$, M8
+proves the finite identity
+\[
+M_q(\e v)=\sum_{p=0}^{q}\e^p M_{p,q}(v),
+\]
+where $M_{p,q}$ is the word coefficient defined in M4.  It then proves global
+summability in $t$ and the equality
+\begin{equation}\label{eq:leanbridge}
+K(\e v,t)=
+\sum_{q=0}^{\infty}\sum_{p=0}^{q}
+A_{p,q}(v)\e^pt^q,
+\qquad
+A_{p,q}(v)=\frac{(-i)^q}{q!}M_{p,q}(v).
+\end{equation}
+Thus the support classified in M6 and convexified in M7 is the coefficient
+support of the actual matrix exponential, not an unconnected formal surrogate.
+
+\subsection{What the status does and does not mean}
+
+The release pins Lean and Mathlib at version 4.32.1.  A clean build checks the
+root import through \path{M3A.AnalyticBridge}.  Axiom inspection of every
+principal theorem reports only \path{propext}, \path{Classical.choice} and
+\path{Quot.sound}, the standard foundational axioms used by Lean and Mathlib.
+The project contains no \path{sorry}, \path{admit}, user-declared axiom or
+unsafe theorem dependency.  Exact Python and computer-algebra scripts remain
+valuable independent regression checks, but they are not premises of the Lean
+proofs.
+
+The formal boundary is equally important.  M0--M8 cover the locked scalar-ray
+specialisation through the fixed-fibre Newton theorem and its analytic bridge.
+They do not yet formalise the fully general rectangular endpoint theorem, the
+ideal equality in a multivariate polynomial ring, monomial pullback, moving
+analytic arcs, the universal four-coordinate atlas, the Gr\"obner/Rees
+structures or the fixed-weight Noetherian theorem.  Those later results retain
+their conventional proofs and exact-computation certificates.  The transition
+is marked explicitly after \cref{sec:fixednewton}, and the detailed claim map is
+given in \cref{app:reprochecks}.

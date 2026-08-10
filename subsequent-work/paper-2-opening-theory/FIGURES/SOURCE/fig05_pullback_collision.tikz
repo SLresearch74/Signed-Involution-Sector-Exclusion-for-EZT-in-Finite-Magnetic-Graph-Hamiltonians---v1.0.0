@@ -1,0 +1,11 @@
+\begin{tikzpicture}[>=Latex,node distance=10mm and 18mm,
+  box/.style={draw,rounded corners,minimum width=23mm,minimum height=10mm,align=center,font=\small},
+  arr/.style={->,thick}]
+\node[box,fill=blue!8] (a) {$A_\alpha x^\alpha$};
+\node[box,fill=blue!8,below=of a] (ap) {$A_{\alpha'}x^{\alpha'}$};
+\node[box,fill=orange!12,right=of $(a)!0.5!(ap)$] (b) {$B_\beta y^\beta$\\$=(A_\alpha c^\alpha+A_{\alpha'}c^{\alpha'})y^\beta$};
+\node[box,fill=green!10,right=of b] (decision) {survives\\or cancels};
+\draw[arr] (a)--node[above,font=\scriptsize] {$\Lambda\alpha=\beta$} (b);
+\draw[arr] (ap)--node[below,font=\scriptsize] {$\Lambda\alpha'=\beta$} (b);
+\draw[arr] (b)--node[above,font=\scriptsize] {test sum} (decision);
+\end{tikzpicture}

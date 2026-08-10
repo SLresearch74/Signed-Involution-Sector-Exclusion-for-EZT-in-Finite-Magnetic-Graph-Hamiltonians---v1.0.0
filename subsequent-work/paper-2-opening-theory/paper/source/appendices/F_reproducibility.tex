@@ -1,0 +1,79 @@
+\section{Lean traceability and release checks}\label{app:reprochecks}
+
+\subsection{Kernel-checked claim map}
+
+\begin{longtable}{p{0.28\textwidth}p{0.30\textwidth}p{0.32\textwidth}}
+\toprule
+Paper claim & Lean theorem & Dependency role\\
+\midrule
+\endhead
+Baseline moments vanish at every depth &
+\path{baseline_moments_dark} & Signed-certificate base case\\
+Exact selected numerator \cref{eq:numerator} &
+\path{selectedNumerator_formula} & Universal cofactor identity\\
+Pointwise dark-plane union \cref{eq:darkpoints} &
+\path{ell_quad_zero_iff_planes} & Selects a persistent certificate\\
+Locked support below $k=j+2$ &
+\path{sixState_support_bound} & Excludes premature time layers\\
+Signed boundary power sum \cref{eq:minlayer} &
+\path{sixState_boundary_ray} & Gives the first candidate coefficients\\
+Complete first-order vanishing on $L=0$ &
+\path{amplitudeCoeff_one_eq_zero_of_linear_zero} & Excludes all $p=1$ terms\\
+Fixed-ray classifier equivalences &
+\path{classifyRay_eq_linear_iff},
+\path{classifyRay_eq_quadratic_iff},
+\path{classifyRay_eq_dark_iff}, \path{classifyRay_spec} & Exactly one branch
+predicate matches the classifier\\
+Fixed-ray trichotomy \cref{thm:trichotomy} &
+\path{fixedRay_trichotomy} & Exhaustive support classification\\
+Fixed-fibre Newton theorem \cref{thm:fibrenewton} &
+\path{fixedFibre_newton} & Convexifies actual coefficient support\\
+Positive-weight exposed vertices &
+\path{fixedFibre_positiveWeight_faces} & Unique minimiser in each non-dark fibre\\
+Analytic coefficient bridge \cref{eq:leanbridge} &
+\path{selectedRayAmplitude_eq_tsum_coefficients} & Identifies support with the matrix exponential\\
+Exact-dark analytic rays &
+\path{selectedRayAmplitude_eq_zero_of_linear_quadratic_zero} & Closes the no-cubic conclusion\\
+\bottomrule
+\end{longtable}
+
+The final M8 build completed successfully with 8,669 build jobs reported by
+Lake.  For every principal theorem, \path{#print axioms} returned only
+\path{propext}, \path{Classical.choice} and \path{Quot.sound}.  The source
+contains no admitted proof or user-declared axiom.  The scheme-theoretic ideal
+equality, fully general endpoint theorem and all post-fixed-fibre results are
+deliberately absent from this table.
+
+\subsection{Independent exact-computation map}
+
+\begin{longtable}{p{0.31\textwidth}p{0.25\textwidth}p{0.31\textwidth}}
+\toprule
+Claim & Exact route & Released evidence\\
+\midrule
+\endhead
+Selected numerator and denominator & Leibniz determinant &
+\path{EXPECTED/paper_verification.json}\\
+Endpoint support and signed boundary & Polynomial matrix powers & same JSON\\
+ARC1 $4/5$ survivor & Gaussian-rational pulled amplitude & same JSON\\
+GF1 $-32/15$ survivor & Gaussian-rational pulled amplitude & same JSON\\
+15 positive normal cells & non-empty subset enumeration &
+\path{DATA/MV1_15_CELL_ATLAS.json}\\
+16 Gr\"obner cones & exact atlas invariant check &
+\path{DATA/GF1_16_CONE_ATLAS.json}\\
+Perturbed edge detected & recomputed cofactor and moments &
+\path{DATA/discrepancy_detection.json}\\
+Source recovery counts & recursive SHA-256/text/PDF scan &
+\path{DATA/FULL_SOURCE_SCAN_SUMMARY.json}\\
+\bottomrule
+\end{longtable}
+
+The release manifest records SHA-256 for every payload file except the manifest
+itself.  Fresh extraction is checked by copying the compact archive to a new
+directory, rerunning the exact modes and rebuilding the paper.  Visual quality
+is checked from rasterised pages after a successful PDF build; textual
+compilation alone is not treated as layout verification.
+
+The random small-system endpoint census has $n=256$.  It is retained only as
+a diagnostic methodology and labelled \evidence{MEASURED}; the general theorem
+rests on the labelled-word proof and the locked specialisation rests on its
+Lean proof.

@@ -1,0 +1,195 @@
+{
+  "all_nonempty_subsets_realised": true,
+  "amplitude_vertex_coefficients": [
+    "i/6",
+    "-i/6",
+    "i/6",
+    "-i/6"
+  ],
+  "domination_rule": "choose any r with gamma_r>0; then (e_r,3)<=(gamma,k)",
+  "evidence": "PROVED",
+  "positive_normal_fan_subsets": [
+    {
+      "I": [
+        1
+      ],
+      "complex_torus_cancellation_nonempty": false,
+      "face_linear_form": "c1",
+      "positive_real_cancellation_nonempty": false,
+      "real_torus_cancellation_nonempty": false
+    },
+    {
+      "I": [
+        2
+      ],
+      "complex_torus_cancellation_nonempty": false,
+      "face_linear_form": "-c2",
+      "positive_real_cancellation_nonempty": false,
+      "real_torus_cancellation_nonempty": false
+    },
+    {
+      "I": [
+        3
+      ],
+      "complex_torus_cancellation_nonempty": false,
+      "face_linear_form": "c3",
+      "positive_real_cancellation_nonempty": false,
+      "real_torus_cancellation_nonempty": false
+    },
+    {
+      "I": [
+        4
+      ],
+      "complex_torus_cancellation_nonempty": false,
+      "face_linear_form": "-c4",
+      "positive_real_cancellation_nonempty": false,
+      "real_torus_cancellation_nonempty": false
+    },
+    {
+      "I": [
+        1,
+        2
+      ],
+      "complex_torus_cancellation_nonempty": true,
+      "face_linear_form": "c1 - c2",
+      "positive_real_cancellation_nonempty": true,
+      "real_torus_cancellation_nonempty": true
+    },
+    {
+      "I": [
+        1,
+        3
+      ],
+      "complex_torus_cancellation_nonempty": true,
+      "face_linear_form": "c1 + c3",
+      "positive_real_cancellation_nonempty": false,
+      "real_torus_cancellation_nonempty": true
+    },
+    {
+      "I": [
+        1,
+        4
+      ],
+      "complex_torus_cancellation_nonempty": true,
+      "face_linear_form": "c1 - c4",
+      "positive_real_cancellation_nonempty": true,
+      "real_torus_cancellation_nonempty": true
+    },
+    {
+      "I": [
+        2,
+        3
+      ],
+      "complex_torus_cancellation_nonempty": true,
+      "face_linear_form": "-c2 + c3",
+      "positive_real_cancellation_nonempty": true,
+      "real_torus_cancellation_nonempty": true
+    },
+    {
+      "I": [
+        2,
+        4
+      ],
+      "complex_torus_cancellation_nonempty": true,
+      "face_linear_form": "-c2 - c4",
+      "positive_real_cancellation_nonempty": false,
+      "real_torus_cancellation_nonempty": true
+    },
+    {
+      "I": [
+        3,
+        4
+      ],
+      "complex_torus_cancellation_nonempty": true,
+      "face_linear_form": "c3 - c4",
+      "positive_real_cancellation_nonempty": true,
+      "real_torus_cancellation_nonempty": true
+    },
+    {
+      "I": [
+        1,
+        2,
+        3
+      ],
+      "complex_torus_cancellation_nonempty": true,
+      "face_linear_form": "c1 - c2 + c3",
+      "positive_real_cancellation_nonempty": true,
+      "real_torus_cancellation_nonempty": true
+    },
+    {
+      "I": [
+        1,
+        2,
+        4
+      ],
+      "complex_torus_cancellation_nonempty": true,
+      "face_linear_form": "c1 - c2 - c4",
+      "positive_real_cancellation_nonempty": true,
+      "real_torus_cancellation_nonempty": true
+    },
+    {
+      "I": [
+        1,
+        3,
+        4
+      ],
+      "complex_torus_cancellation_nonempty": true,
+      "face_linear_form": "c1 + c3 - c4",
+      "positive_real_cancellation_nonempty": true,
+      "real_torus_cancellation_nonempty": true
+    },
+    {
+      "I": [
+        2,
+        3,
+        4
+      ],
+      "complex_torus_cancellation_nonempty": true,
+      "face_linear_form": "-c2 + c3 - c4",
+      "positive_real_cancellation_nonempty": true,
+      "real_torus_cancellation_nonempty": true
+    },
+    {
+      "I": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "complex_torus_cancellation_nonempty": true,
+      "face_linear_form": "c1 - c2 + c3 - c4",
+      "positive_real_cancellation_nonempty": true,
+      "real_torus_cancellation_nonempty": true
+    }
+  ],
+  "vertices": [
+    [
+      1,
+      0,
+      0,
+      0,
+      3
+    ],
+    [
+      0,
+      1,
+      0,
+      0,
+      3
+    ],
+    [
+      0,
+      0,
+      1,
+      0,
+      3
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      3
+    ]
+  ]
+}

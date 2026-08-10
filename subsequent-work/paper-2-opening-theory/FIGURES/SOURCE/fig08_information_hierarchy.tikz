@@ -1,0 +1,13 @@
+\begin{tikzpicture}[node distance=7mm,>=Latex,
+  box/.style={draw,rounded corners,fill=blue!7,minimum width=43mm,minimum height=8mm,align=center,font=\small},
+  arr/.style={->,thick,red!65!black}]
+\node[box,fill=green!10] (amp) {full amplitude section\\phases and denominator};
+\node[box,below=of amp] (marked) {marked numerator module\\generator provenance};
+\node[box,below=of marked] (tag) {tagged ideal\\perturbation/time depths};
+\node[box,below=of tag] (rees) {Rees algebra\\approach direction};
+\node[box,below=of rees] (plain) {plain dark ideal\\zero locus};
+\draw[arr] (amp)--node[right,font=\scriptsize]{forget} (marked);
+\draw[arr] (marked)--node[right,font=\scriptsize]{forget} (tag);
+\draw[arr] (tag)--node[right,font=\scriptsize]{forget tags} (rees);
+\draw[arr] (rees)--node[right,font=\scriptsize]{project} (plain);
+\end{tikzpicture}

@@ -1,0 +1,103 @@
+\section{Introduction}\label{sec:introduction}
+
+Dark states and destructive interference are standard mechanisms in coherent
+population trapping and adiabatic transfer \parencite{Aspect1988,Gaubatz1990}.
+Recent work gives broad structural descriptions of dark states in multilevel
+systems \parencite{Zhao2026}; continuous-time quantum-walk research likewise
+studies exact or near suppression of transfer \parencite{Sett2019,Godsil2012},
+while time-reversal breaking is known to alter quantum transport
+\parencite{Zimboras2013}.  Those settings motivate, but do not answer, the
+local algebraic question studied here: once a channel is exactly dark, which
+coefficient is the first to survive under a declared diagonal perturbation,
+and how does that answer change under multi-scale substitution?
+
+The central contribution is not only an exact answer for one locked channel,
+but a machine-checked proof of its fixed-ray and fixed-fibre spine.  The model,
+signed-symmetry argument, determinant identity, word recurrence, coefficient
+support, branch classification, convex-geometric conclusion and
+matrix-exponential bridge have been formalised in Lean~4
+\parencite{deMouraUllrich2021} using Mathlib
+\parencite{MathlibCommunity2020}.  This changes the evidentiary architecture of
+the paper: exact scripts are retained as independent checks, while the main
+finite-algebra chain is anchored to named kernel-checked theorems.  The precise
+map and trust boundary appear in \cref{sec:formalisation}.
+
+The companion \paperone{} proves that, for a finite Hamiltonian $H$, exact
+zero transfer from $e_0$ to $e_5$ is equivalent to the vanishing of all
+moments $e_5^{\mathsf T}H^ke_0$, to orthogonality of $e_5$ to the source
+Krylov space, and to the corresponding spectral-projector conditions
+\parencite{MedfordPaperI}.  Signed involutions provide sufficient exclusion
+certificates there.  This paper starts from those equivalences and develops the
+coefficient-sensitive geometry of one six-state channel.  It does not repeat
+the graph atlas, magnetic-flux examples, norm bounds, mass estimates or
+open-system extensions of \paperone.
+
+The first fixed-direction version appeared in the author-supplied R1.2
+manuscript \parencite{MedfordR12}.  The present version retains its exact
+numerator and trichotomy, supplies the complete Lean formalisation through the
+analytic bridge, repairs the scope of moving-direction cancellation, and adds
+endpoint words, pullback aggregation, analytic arcs, universal coordinates,
+Gr\"obner/Rees data and the fixed-weight Noetherian termination theorem.
+
+\subsection{Contribution and evidence structure}
+
+Resolvents and Markov parameters are standard in realisation and transfer
+theory \parencite{HoKalman1966,Noferini2023}; noncommutative word series are
+standard in nonlinear systems and weighted automata
+\parencite{Fliess1981,Sakarovitch2009,BerstelReutenauer2010}.  Newton
+polyhedra, tropical initial forms, Gr\"obner fans, Rees algebras and arc
+contact orders also have mature theories
+\parencite{Kouchnirenko1976,Varchenko1976,MaclaganSturmfels2015,Fukuda2007,Ein2004}.
+The contribution is their exact synthesis for a channel in which moment and
+amplitude faces can genuinely disagree.
+
+The \evidence{KERNEL-CHECKED} contribution comprises:
+\begin{enumerate}[label=(\roman*)]
+\item two explicit signed involutions and all-depth baseline darkness;
+\item the exact unreduced three-coefficient numerator and its coefficient
+      syzygy;
+\item the pointwise union of two dark planes, each with a persistent signed
+      certificate;
+\item the locked endpoint-access support theorem and signed boundary power sum;
+\item the complete linear/quadratic/exact-zero fixed-ray trichotomy;
+\item the two fixed-fibre Newton orthants, empty dark fibre and unique
+      positive-weight vertices; and
+\item the globally convergent identification of the formal coefficient array
+      with the selected matrix-exponential amplitude.
+\end{enumerate}
+
+The subsequent, conventionally proved extension comprises monomial-fibre
+aggregation, the analytic-arc lower hull and field-corrected tie rule, a
+universal four-vertex Newton polyhedron with 15 positive normal cells, a
+16-cone Gr\"obner fan and the hierarchy from the dark ideal to a marked
+amplitude section, and a non-effective finite decision theorem for every fixed
+positive rational weight.  These results are supported by exact symbolic and
+combinatorial certificates, but are not labelled \evidence{KERNEL-CHECKED}.
+
+\begin{figure}[ht]
+\centering\input{../../FIGURES/SOURCE/fig01_evidence_chain.tikz}
+\caption{The logical chain.  The signed-certificate-to-fixed-fibre route and
+its amplitude bridge are kernel-checked; later pullback and atlas constructions
+extend this core by conventional exact proofs.  Every arrow is one-way unless
+an adjacent theorem states an equivalence.}
+\label{fig:chain}
+\end{figure}
+
+\subsection{Evidence and field conventions}
+
+All algebraic varieties are over a declared field.  The locked physical family
+has real diagonal coordinates, while coefficient-torus cancellation is also
+studied over \(\C\).  Real non-cancellation conclusions are therefore never
+exported to complex leading constants.  Named Lean theorems supply
+\evidence{KERNEL-CHECKED} claims; exact computation supplies
+\evidence{VERIFIED-EXACT} identities; conventional proofs supply
+\evidence{PROVED} claims.  The source census mentioned later is
+\evidence{MEASURED} with its sample size.  No numerical sampling establishes a
+universal statement.
+
+\paragraph{Scope firewall.}
+Closure is not a symmetry certificate; a broken certificate is not an opening;
+Newton support is not a surviving coefficient; and the first exponent $p$ of
+the perturbation parameter is not the first time power $q$.  Equally, a Lean
+proof of the fixed-fibre theorem is not a Lean proof of the later moving-arc or
+global-atlas theorems.  These distinctions are maintained throughout.

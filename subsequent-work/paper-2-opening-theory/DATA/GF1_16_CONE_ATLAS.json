@@ -1,0 +1,798 @@
+{
+  "cone_count": 16,
+  "cones": [
+    {
+      "adjacent_cones": [
+        "C02",
+        "C03",
+        "C05"
+      ],
+      "associated_primes": [
+        "<a,b>",
+        "<a,c>"
+      ],
+      "component_initial_alt": "<a,b>",
+      "component_initial_orig": "<a,c>",
+      "cone_id": "C01",
+      "degree": 2,
+      "dimension": 2,
+      "evidence": "VERIFIED-EXACT",
+      "facets": [
+        "wa=wb",
+        "wb=wc",
+        "wc=wd"
+      ],
+      "hilbert_polynomial": "2n+1",
+      "hilbert_series": "(1+t)/(1-t)^2",
+      "initial_ideal": "<a,bc>",
+      "initialisation_commutes_with_intersection": true,
+      "intersection_of_component_initials": "<a,bc>",
+      "orders_in_cone": [
+        "a>b>c>d"
+      ],
+      "primary": false,
+      "primary_decomposition": [
+        "<a,b>",
+        "<a,c>"
+      ],
+      "quadratic_leader": "bc",
+      "radical": true,
+      "reduced_basis": [
+        "a-b+c-d",
+        "bd - bc + c^2 - cd"
+      ],
+      "representative_order": "a>b>c>d",
+      "representative_weight": {
+        "a": 4,
+        "b": 3,
+        "c": 2,
+        "d": 1
+      },
+      "top_variable": "a"
+    },
+    {
+      "adjacent_cones": [
+        "C01",
+        "C04",
+        "C06",
+        "C13"
+      ],
+      "associated_primes": [
+        "<a,b>",
+        "<a,d>"
+      ],
+      "component_initial_alt": "<a,b>",
+      "component_initial_orig": "<a,d>",
+      "cone_id": "C02",
+      "degree": 2,
+      "dimension": 2,
+      "evidence": "VERIFIED-EXACT",
+      "facets": [
+        "wa=wb",
+        "wa=wd",
+        "wb=wc",
+        "wd=wc"
+      ],
+      "hilbert_polynomial": "2n+1",
+      "hilbert_series": "(1+t)/(1-t)^2",
+      "initial_ideal": "<a,bd>",
+      "initialisation_commutes_with_intersection": true,
+      "intersection_of_component_initials": "<a,bd>",
+      "orders_in_cone": [
+        "a>b>d>c",
+        "a>d>b>c"
+      ],
+      "primary": false,
+      "primary_decomposition": [
+        "<a,b>",
+        "<a,d>"
+      ],
+      "quadratic_leader": "bd",
+      "radical": true,
+      "reduced_basis": [
+        "a-b+c-d",
+        "bd - bc + c^2 - cd"
+      ],
+      "representative_order": "a>b>d>c",
+      "representative_weight": {
+        "a": 4,
+        "b": 3,
+        "c": 1,
+        "d": 2
+      },
+      "top_variable": "a"
+    },
+    {
+      "adjacent_cones": [
+        "C01",
+        "C04",
+        "C09"
+      ],
+      "associated_primes": [
+        "<a,c>"
+      ],
+      "component_initial_alt": "<a,c>",
+      "component_initial_orig": "<a,c>",
+      "cone_id": "C03",
+      "degree": 2,
+      "dimension": 2,
+      "evidence": "VERIFIED-EXACT",
+      "facets": [
+        "wa=wc",
+        "wc=wb",
+        "wc=wd"
+      ],
+      "hilbert_polynomial": "2n+1",
+      "hilbert_series": "(1+t)/(1-t)^2",
+      "initial_ideal": "<a,c2>",
+      "initialisation_commutes_with_intersection": false,
+      "intersection_of_component_initials": "<a,c>",
+      "orders_in_cone": [
+        "a>c>b>d",
+        "a>c>d>b"
+      ],
+      "primary": true,
+      "primary_decomposition": [
+        "<a,c2>"
+      ],
+      "quadratic_leader": "c2",
+      "radical": false,
+      "reduced_basis": [
+        "a-b+c-d",
+        "bd - bc + c^2 - cd"
+      ],
+      "representative_order": "a>c>b>d",
+      "representative_weight": {
+        "a": 4,
+        "b": 2,
+        "c": 3,
+        "d": 1
+      },
+      "top_variable": "a"
+    },
+    {
+      "adjacent_cones": [
+        "C02",
+        "C03",
+        "C14"
+      ],
+      "associated_primes": [
+        "<a,c>",
+        "<a,d>"
+      ],
+      "component_initial_alt": "<a,c>",
+      "component_initial_orig": "<a,d>",
+      "cone_id": "C04",
+      "degree": 2,
+      "dimension": 2,
+      "evidence": "VERIFIED-EXACT",
+      "facets": [
+        "wa=wd",
+        "wc=wb",
+        "wd=wc"
+      ],
+      "hilbert_polynomial": "2n+1",
+      "hilbert_series": "(1+t)/(1-t)^2",
+      "initial_ideal": "<a,cd>",
+      "initialisation_commutes_with_intersection": true,
+      "intersection_of_component_initials": "<a,cd>",
+      "orders_in_cone": [
+        "a>d>c>b"
+      ],
+      "primary": false,
+      "primary_decomposition": [
+        "<a,c>",
+        "<a,d>"
+      ],
+      "quadratic_leader": "cd",
+      "radical": true,
+      "reduced_basis": [
+        "a-b+c-d",
+        "bd - bc + c^2 - cd"
+      ],
+      "representative_order": "a>d>c>b",
+      "representative_weight": {
+        "a": 4,
+        "b": 1,
+        "c": 2,
+        "d": 3
+      },
+      "top_variable": "a"
+    },
+    {
+      "adjacent_cones": [
+        "C01",
+        "C06",
+        "C07",
+        "C10"
+      ],
+      "associated_primes": [
+        "<b,a>",
+        "<b,c>"
+      ],
+      "component_initial_alt": "<a,b>",
+      "component_initial_orig": "<b,c>",
+      "cone_id": "C05",
+      "degree": 2,
+      "dimension": 2,
+      "evidence": "VERIFIED-EXACT",
+      "facets": [
+        "wa=wd",
+        "wb=wa",
+        "wb=wc",
+        "wc=wd"
+      ],
+      "hilbert_polynomial": "2n+1",
+      "hilbert_series": "(1+t)/(1-t)^2",
+      "initial_ideal": "<b,ac>",
+      "initialisation_commutes_with_intersection": true,
+      "intersection_of_component_initials": "<b,ac>",
+      "orders_in_cone": [
+        "b>a>c>d",
+        "b>c>a>d"
+      ],
+      "primary": false,
+      "primary_decomposition": [
+        "<b,a>",
+        "<b,c>"
+      ],
+      "quadratic_leader": "ac",
+      "radical": true,
+      "reduced_basis": [
+        "b-a-c+d",
+        "ad - ac + cd - d^2"
+      ],
+      "representative_order": "b>a>c>d",
+      "representative_weight": {
+        "a": 3,
+        "b": 4,
+        "c": 2,
+        "d": 1
+      },
+      "top_variable": "b"
+    },
+    {
+      "adjacent_cones": [
+        "C02",
+        "C05",
+        "C08"
+      ],
+      "associated_primes": [
+        "<b,a>",
+        "<b,d>"
+      ],
+      "component_initial_alt": "<a,b>",
+      "component_initial_orig": "<b,d>",
+      "cone_id": "C06",
+      "degree": 2,
+      "dimension": 2,
+      "evidence": "VERIFIED-EXACT",
+      "facets": [
+        "wa=wd",
+        "wb=wa",
+        "wd=wc"
+      ],
+      "hilbert_polynomial": "2n+1",
+      "hilbert_series": "(1+t)/(1-t)^2",
+      "initial_ideal": "<b,ad>",
+      "initialisation_commutes_with_intersection": true,
+      "intersection_of_component_initials": "<b,ad>",
+      "orders_in_cone": [
+        "b>a>d>c"
+      ],
+      "primary": false,
+      "primary_decomposition": [
+        "<b,a>",
+        "<b,d>"
+      ],
+      "quadratic_leader": "ad",
+      "radical": true,
+      "reduced_basis": [
+        "b-a-c+d",
+        "ad - ac + cd - d^2"
+      ],
+      "representative_order": "b>a>d>c",
+      "representative_weight": {
+        "a": 3,
+        "b": 4,
+        "c": 1,
+        "d": 2
+      },
+      "top_variable": "b"
+    },
+    {
+      "adjacent_cones": [
+        "C05",
+        "C08",
+        "C12"
+      ],
+      "associated_primes": [
+        "<b,c>",
+        "<b,d>"
+      ],
+      "component_initial_alt": "<d,b>",
+      "component_initial_orig": "<b,c>",
+      "cone_id": "C07",
+      "degree": 2,
+      "dimension": 2,
+      "evidence": "VERIFIED-EXACT",
+      "facets": [
+        "wb=wc",
+        "wc=wd",
+        "wd=wa"
+      ],
+      "hilbert_polynomial": "2n+1",
+      "hilbert_series": "(1+t)/(1-t)^2",
+      "initial_ideal": "<b,cd>",
+      "initialisation_commutes_with_intersection": true,
+      "intersection_of_component_initials": "<b,cd>",
+      "orders_in_cone": [
+        "b>c>d>a"
+      ],
+      "primary": false,
+      "primary_decomposition": [
+        "<b,c>",
+        "<b,d>"
+      ],
+      "quadratic_leader": "cd",
+      "radical": true,
+      "reduced_basis": [
+        "b-a-c+d",
+        "ad - ac + cd - d^2"
+      ],
+      "representative_order": "b>c>d>a",
+      "representative_weight": {
+        "a": 1,
+        "b": 4,
+        "c": 3,
+        "d": 2
+      },
+      "top_variable": "b"
+    },
+    {
+      "adjacent_cones": [
+        "C06",
+        "C07",
+        "C15"
+      ],
+      "associated_primes": [
+        "<b,d>"
+      ],
+      "component_initial_alt": "<d,b>",
+      "component_initial_orig": "<b,d>",
+      "cone_id": "C08",
+      "degree": 2,
+      "dimension": 2,
+      "evidence": "VERIFIED-EXACT",
+      "facets": [
+        "wb=wd",
+        "wd=wa",
+        "wd=wc"
+      ],
+      "hilbert_polynomial": "2n+1",
+      "hilbert_series": "(1+t)/(1-t)^2",
+      "initial_ideal": "<b,d2>",
+      "initialisation_commutes_with_intersection": false,
+      "intersection_of_component_initials": "<b,d>",
+      "orders_in_cone": [
+        "b>d>a>c",
+        "b>d>c>a"
+      ],
+      "primary": true,
+      "primary_decomposition": [
+        "<b,d2>"
+      ],
+      "quadratic_leader": "d2",
+      "radical": false,
+      "reduced_basis": [
+        "b-a-c+d",
+        "ad - ac + cd - d^2"
+      ],
+      "representative_order": "b>d>a>c",
+      "representative_weight": {
+        "a": 2,
+        "b": 4,
+        "c": 1,
+        "d": 3
+      },
+      "top_variable": "b"
+    },
+    {
+      "adjacent_cones": [
+        "C03",
+        "C10",
+        "C11"
+      ],
+      "associated_primes": [
+        "<c,a>"
+      ],
+      "component_initial_alt": "<a,c>",
+      "component_initial_orig": "<a,c>",
+      "cone_id": "C09",
+      "degree": 2,
+      "dimension": 2,
+      "evidence": "VERIFIED-EXACT",
+      "facets": [
+        "wa=wb",
+        "wa=wd",
+        "wc=wa"
+      ],
+      "hilbert_polynomial": "2n+1",
+      "hilbert_series": "(1+t)/(1-t)^2",
+      "initial_ideal": "<c,a2>",
+      "initialisation_commutes_with_intersection": false,
+      "intersection_of_component_initials": "<a,c>",
+      "orders_in_cone": [
+        "c>a>b>d",
+        "c>a>d>b"
+      ],
+      "primary": true,
+      "primary_decomposition": [
+        "<c,a2>"
+      ],
+      "quadratic_leader": "a2",
+      "radical": false,
+      "reduced_basis": [
+        "c+a-b-d",
+        "a^2 - ab - ad + bd"
+      ],
+      "representative_order": "c>a>b>d",
+      "representative_weight": {
+        "a": 3,
+        "b": 2,
+        "c": 4,
+        "d": 1
+      },
+      "top_variable": "c"
+    },
+    {
+      "adjacent_cones": [
+        "C05",
+        "C09",
+        "C12"
+      ],
+      "associated_primes": [
+        "<c,a>",
+        "<c,b>"
+      ],
+      "component_initial_alt": "<a,c>",
+      "component_initial_orig": "<b,c>",
+      "cone_id": "C10",
+      "degree": 2,
+      "dimension": 2,
+      "evidence": "VERIFIED-EXACT",
+      "facets": [
+        "wa=wd",
+        "wb=wa",
+        "wc=wb"
+      ],
+      "hilbert_polynomial": "2n+1",
+      "hilbert_series": "(1+t)/(1-t)^2",
+      "initial_ideal": "<c,ab>",
+      "initialisation_commutes_with_intersection": true,
+      "intersection_of_component_initials": "<c,ab>",
+      "orders_in_cone": [
+        "c>b>a>d"
+      ],
+      "primary": false,
+      "primary_decomposition": [
+        "<c,a>",
+        "<c,b>"
+      ],
+      "quadratic_leader": "ab",
+      "radical": true,
+      "reduced_basis": [
+        "c+a-b-d",
+        "a^2 - ab - ad + bd"
+      ],
+      "representative_order": "c>b>a>d",
+      "representative_weight": {
+        "a": 2,
+        "b": 3,
+        "c": 4,
+        "d": 1
+      },
+      "top_variable": "c"
+    },
+    {
+      "adjacent_cones": [
+        "C09",
+        "C12",
+        "C14"
+      ],
+      "associated_primes": [
+        "<c,a>",
+        "<c,d>"
+      ],
+      "component_initial_alt": "<d,c>",
+      "component_initial_orig": "<a,c>",
+      "cone_id": "C11",
+      "degree": 2,
+      "dimension": 2,
+      "evidence": "VERIFIED-EXACT",
+      "facets": [
+        "wa=wb",
+        "wc=wd",
+        "wd=wa"
+      ],
+      "hilbert_polynomial": "2n+1",
+      "hilbert_series": "(1+t)/(1-t)^2",
+      "initial_ideal": "<c,ad>",
+      "initialisation_commutes_with_intersection": true,
+      "intersection_of_component_initials": "<c,ad>",
+      "orders_in_cone": [
+        "c>d>a>b"
+      ],
+      "primary": false,
+      "primary_decomposition": [
+        "<c,a>",
+        "<c,d>"
+      ],
+      "quadratic_leader": "ad",
+      "radical": true,
+      "reduced_basis": [
+        "c+a-b-d",
+        "a^2 - ab - ad + bd"
+      ],
+      "representative_order": "c>d>a>b",
+      "representative_weight": {
+        "a": 2,
+        "b": 1,
+        "c": 4,
+        "d": 3
+      },
+      "top_variable": "c"
+    },
+    {
+      "adjacent_cones": [
+        "C07",
+        "C10",
+        "C11",
+        "C16"
+      ],
+      "associated_primes": [
+        "<c,b>",
+        "<c,d>"
+      ],
+      "component_initial_alt": "<d,c>",
+      "component_initial_orig": "<b,c>",
+      "cone_id": "C12",
+      "degree": 2,
+      "dimension": 2,
+      "evidence": "VERIFIED-EXACT",
+      "facets": [
+        "wb=wa",
+        "wc=wb",
+        "wc=wd",
+        "wd=wa"
+      ],
+      "hilbert_polynomial": "2n+1",
+      "hilbert_series": "(1+t)/(1-t)^2",
+      "initial_ideal": "<c,bd>",
+      "initialisation_commutes_with_intersection": true,
+      "intersection_of_component_initials": "<c,bd>",
+      "orders_in_cone": [
+        "c>b>d>a",
+        "c>d>b>a"
+      ],
+      "primary": false,
+      "primary_decomposition": [
+        "<c,b>",
+        "<c,d>"
+      ],
+      "quadratic_leader": "bd",
+      "radical": true,
+      "reduced_basis": [
+        "c+a-b-d",
+        "a^2 - ab - ad + bd"
+      ],
+      "representative_order": "c>b>d>a",
+      "representative_weight": {
+        "a": 1,
+        "b": 3,
+        "c": 4,
+        "d": 2
+      },
+      "top_variable": "c"
+    },
+    {
+      "adjacent_cones": [
+        "C02",
+        "C14",
+        "C15"
+      ],
+      "associated_primes": [
+        "<d,a>",
+        "<d,b>"
+      ],
+      "component_initial_alt": "<d,b>",
+      "component_initial_orig": "<a,d>",
+      "cone_id": "C13",
+      "degree": 2,
+      "dimension": 2,
+      "evidence": "VERIFIED-EXACT",
+      "facets": [
+        "wa=wb",
+        "wb=wc",
+        "wd=wa"
+      ],
+      "hilbert_polynomial": "2n+1",
+      "hilbert_series": "(1+t)/(1-t)^2",
+      "initial_ideal": "<d,ab>",
+      "initialisation_commutes_with_intersection": true,
+      "intersection_of_component_initials": "<d,ab>",
+      "orders_in_cone": [
+        "d>a>b>c"
+      ],
+      "primary": false,
+      "primary_decomposition": [
+        "<d,a>",
+        "<d,b>"
+      ],
+      "quadratic_leader": "ab",
+      "radical": true,
+      "reduced_basis": [
+        "d-a+b-c",
+        "ab - ac - b^2 + bc"
+      ],
+      "representative_order": "d>a>b>c",
+      "representative_weight": {
+        "a": 3,
+        "b": 2,
+        "c": 1,
+        "d": 4
+      },
+      "top_variable": "d"
+    },
+    {
+      "adjacent_cones": [
+        "C04",
+        "C11",
+        "C13",
+        "C16"
+      ],
+      "associated_primes": [
+        "<d,a>",
+        "<d,c>"
+      ],
+      "component_initial_alt": "<d,c>",
+      "component_initial_orig": "<a,d>",
+      "cone_id": "C14",
+      "degree": 2,
+      "dimension": 2,
+      "evidence": "VERIFIED-EXACT",
+      "facets": [
+        "wa=wb",
+        "wc=wb",
+        "wd=wa",
+        "wd=wc"
+      ],
+      "hilbert_polynomial": "2n+1",
+      "hilbert_series": "(1+t)/(1-t)^2",
+      "initial_ideal": "<d,ac>",
+      "initialisation_commutes_with_intersection": true,
+      "intersection_of_component_initials": "<d,ac>",
+      "orders_in_cone": [
+        "d>a>c>b",
+        "d>c>a>b"
+      ],
+      "primary": false,
+      "primary_decomposition": [
+        "<d,a>",
+        "<d,c>"
+      ],
+      "quadratic_leader": "ac",
+      "radical": true,
+      "reduced_basis": [
+        "d-a+b-c",
+        "ab - ac - b^2 + bc"
+      ],
+      "representative_order": "d>a>c>b",
+      "representative_weight": {
+        "a": 3,
+        "b": 1,
+        "c": 2,
+        "d": 4
+      },
+      "top_variable": "d"
+    },
+    {
+      "adjacent_cones": [
+        "C08",
+        "C13",
+        "C16"
+      ],
+      "associated_primes": [
+        "<d,b>"
+      ],
+      "component_initial_alt": "<d,b>",
+      "component_initial_orig": "<b,d>",
+      "cone_id": "C15",
+      "degree": 2,
+      "dimension": 2,
+      "evidence": "VERIFIED-EXACT",
+      "facets": [
+        "wb=wa",
+        "wb=wc",
+        "wd=wb"
+      ],
+      "hilbert_polynomial": "2n+1",
+      "hilbert_series": "(1+t)/(1-t)^2",
+      "initial_ideal": "<d,b2>",
+      "initialisation_commutes_with_intersection": false,
+      "intersection_of_component_initials": "<b,d>",
+      "orders_in_cone": [
+        "d>b>a>c",
+        "d>b>c>a"
+      ],
+      "primary": true,
+      "primary_decomposition": [
+        "<d,b2>"
+      ],
+      "quadratic_leader": "b2",
+      "radical": false,
+      "reduced_basis": [
+        "d-a+b-c",
+        "ab - ac - b^2 + bc"
+      ],
+      "representative_order": "d>b>a>c",
+      "representative_weight": {
+        "a": 2,
+        "b": 3,
+        "c": 1,
+        "d": 4
+      },
+      "top_variable": "d"
+    },
+    {
+      "adjacent_cones": [
+        "C12",
+        "C14",
+        "C15"
+      ],
+      "associated_primes": [
+        "<d,b>",
+        "<d,c>"
+      ],
+      "component_initial_alt": "<d,c>",
+      "component_initial_orig": "<b,d>",
+      "cone_id": "C16",
+      "degree": 2,
+      "dimension": 2,
+      "evidence": "VERIFIED-EXACT",
+      "facets": [
+        "wb=wa",
+        "wc=wb",
+        "wd=wc"
+      ],
+      "hilbert_polynomial": "2n+1",
+      "hilbert_series": "(1+t)/(1-t)^2",
+      "initial_ideal": "<d,bc>",
+      "initialisation_commutes_with_intersection": true,
+      "intersection_of_component_initials": "<d,bc>",
+      "orders_in_cone": [
+        "d>c>b>a"
+      ],
+      "primary": false,
+      "primary_decomposition": [
+        "<d,b>",
+        "<d,c>"
+      ],
+      "quadratic_leader": "bc",
+      "radical": true,
+      "reduced_basis": [
+        "d-a+b-c",
+        "ab - ac - b^2 + bc"
+      ],
+      "representative_order": "d>c>b>a",
+      "representative_weight": {
+        "a": 1,
+        "b": 2,
+        "c": 3,
+        "d": 4
+      },
+      "top_variable": "d"
+    }
+  ],
+  "evidence": "VERIFIED-EXACT"
+}

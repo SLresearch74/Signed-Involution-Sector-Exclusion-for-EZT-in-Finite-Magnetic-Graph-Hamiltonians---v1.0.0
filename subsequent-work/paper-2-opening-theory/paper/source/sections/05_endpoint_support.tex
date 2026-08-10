@@ -1,0 +1,86 @@
+\section{Endpoint-access word support}\label{sec:endpoint}
+
+The support restriction is clearest in a rectangular input--output setting.
+Let
+\[
+A(\delta)=A_0+\sum_{r=1}^m\delta_rV_r,\qquad
+M_k(\delta)=CA(\delta)^kB.
+\]
+For a multi-index \(\gamma\in\N^m\) with \(|\gamma|=j\), let
+\(M_{\gamma,k}\) be the coefficient of \(\delta^\gamma\) in \(M_k\).
+Define endpoint depths
+\[
+r_s(r)=\min\{q\ge0:V_rA_0^qB\ne0\},\qquad
+r_t(r)=\min\{q\ge0:CA_0^qV_r\ne0\},
+\]
+with value \(\infty\) if the set is empty.  If a word realising \(\gamma\)
+begins with label \(u\) at the source end and ends with label \(v\) at the
+target end, call \((u,v)\) compatible.  Let
+\[
+\rho(\gamma)=\min_{(u,v)\ \mathrm{compatible}}
+\bigl(r_s(u)+r_t(v)\bigr).
+\]
+
+\begin{theorem}[Endpoint-access bound]\label{thm:endpoint}
+For \(j=|\gamma|\ge1\),
+\begin{equation}\label{eq:endpointbound}
+M_{\gamma,k}=0\quad\text{whenever}\quad k<j+\rho(\gamma).
+\end{equation}
+At \(k=j+\rho(\gamma)\), the coefficient is the sum of all compatible
+endpoint-minimal words with zero internal gaps.  The bound is sharp if and only
+if that boundary sum is non-zero.
+\end{theorem}
+\begin{proof}
+Expand \(A(\delta)^k\) into labelled words.  A word contributing to
+\(\delta^\gamma\) has \(j\) perturbation letters and \(k-j\) copies of \(A_0\).
+If its first perturbation label at the source end is \(u\), at least
+\(r_s(u)\) copies of \(A_0\) must lie to its right; if its last label at the
+target end is \(v\), at least \(r_t(v)\) copies must lie to its left.  Internal
+gaps are non-negative.  Therefore \(k-j\ge r_s(u)+r_t(v)\), and minimising gives
+\cref{eq:endpointbound}.  Equality forces endpoint-minimal blocks and zero
+internal gaps.  Summing all such words proves the boundary formula.  Distinct
+words can cancel, so existence of words is not sharpness.
+\end{proof}
+
+The fully rectangular multi-index theorem above is \evidence{PROVED} by the
+labelled-word argument.  The present Lean package formalises the locked
+scalar-ray specialisation needed downstream, not this entire reusable
+generality.
+
+For the locked model \(B=e_0\), \(C=e_5^{\mathsf T}\), and
+\(V_r=E_{rr}\) for \(r=1,\ldots,4\).  Every endpoint depth equals \(1\).
+
+\begin{corollary}[Six-state support boundary]\label{cor:sixsupport}
+For every \(\gamma\ne0\),
+\[
+[d^\gamma]M_k(d)=0\qquad(k<|\gamma|+2).
+\]
+At the minimal layer \(k=j+2\),
+\begin{equation}\label{eq:minlayer}
+\sum_{|\gamma|=j}[d^\gamma]M_{j+2}(d)d^\gamma
+=d_1^j-d_2^j+d_3^j-d_4^j.
+\end{equation}
+Thus all mixed monomials vanish on the boundary.
+\end{corollary}
+\begin{proof}
+The depth statement follows from the theorem.  On the boundary, the only word
+is \(H_0D(d)^jH_0\), giving
+\(e_5^{\mathsf T}H_0D(d)^jH_0e_0\).  Reading the four source and target edge
+products in \cref{eq:H0} yields signs \(+,-,+,-\), proving
+\cref{eq:minlayer}.
+\end{proof}
+
+\noindent\textbf{Formal status.}
+For the locked channel, the complete finite word recurrence, the vanishing
+below $k=j+2$, the boundary word and the signed power sum are
+\evidence{KERNEL-CHECKED} as \path{M3A.rayCoeffMatrix},
+\path{M3A.sixState_support_bound},
+\path{M3A.rayMomentCoeff_boundary_matrix} and
+\path{M3A.sixState_boundary_ray}.  These theorems sum actual word
+coefficients, so boundary cancellation is already included.
+
+The baseline \(j=0\) is deliberately excluded from the theorem: endpoint
+depths are defined through a perturbation letter, and baseline darkness has its
+own proof.  A finite census of 256 small labelled systems was used only to
+stress-test common failure modes; it is \evidence{MEASURED} with \(n=256\), not
+a proof of \cref{thm:endpoint}.

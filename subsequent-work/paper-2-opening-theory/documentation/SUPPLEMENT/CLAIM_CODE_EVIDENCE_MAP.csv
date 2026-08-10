@@ -1,0 +1,13 @@
+claim_id,manuscript_location,code_route,output_field,evidence
+NUMERATOR,Theorem 3.1,verify_paper.py cofactor route,locked_cofactor_matches,VERIFIED-EXACT
+DENOMINATOR,Appendix A,verify_paper.py determinant route,denominator_term_count,VERIFIED-EXACT
+ENDPOINT,Theorem 5.1,verify_paper.py moment route,endpoint_support_zeros,VERIFIED-EXACT
+MINIMAL_LAYER,Corollary 5.2,verify_paper.py moment route,minimal_layer_d1_to_d4,VERIFIED-EXACT
+BASELINE,Proposition 2.1,verify_paper.py moment diagnostic,baseline_moments_zero_through_k8,VERIFIED-EXACT diagnostic only
+ARC_NEXT,Section 9,verify_paper.py pulled-amplitude route,arc_control_ct_minus_2i_s7,VERIFIED-EXACT
+GF1_NEXT,Section 11,verify_paper.py pulled-amplitude route,gf1_control_ct_2i_s7,VERIFIED-EXACT
+MV1_ATLAS,Theorem 10.1,verify_paper.py atlas route,mv1_atlas,VERIFIED-EXACT
+GF1_FAN,Theorem 11.1,verify_paper.py atlas route,gf1_atlas,VERIFIED-EXACT
+FALSIFIER,Section 13,verify_paper.py --fixture,DATA/discrepancy_detection.json,FALSIFIED
+FIXED_WEIGHT,Theorem 10.2,Noetherian proof,no finite computation substitutes for proof,PROVED
+

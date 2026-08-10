@@ -203,6 +203,20 @@ cython_debug/
 # Temporary file for partial code execution
 tempCodeRunnerFile.py
 
+# Lean and LaTeX build products
+**/.lake/
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+subsequent-work/paper-2-opening-theory/paper/source/main.pdf
+
 # Ruff stuff:
 .ruff_cache/
 
