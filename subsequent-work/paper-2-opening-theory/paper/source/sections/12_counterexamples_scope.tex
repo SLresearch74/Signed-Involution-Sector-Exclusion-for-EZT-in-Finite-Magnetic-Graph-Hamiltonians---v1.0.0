@@ -1,0 +1,76 @@
+\section{Counterexamples and scope firewalls}\label{sec:scope}
+
+The framework is defined as much by its negative results as by its exact
+theorems.  The following controls block tempting but false upgrades.
+
+\begin{longtable}{p{0.24\textwidth}p{0.30\textwidth}p{0.36\textwidth}}
+\toprule
+Tempting inference & Exact control & Correct conclusion\\
+\midrule
+\endhead
+Broken certificate \(\Rightarrow\) opening & A perturbation can destroy a
+chosen involution while remaining in \(V(L,Q)\). & Certificate failure is not a
+surviving transfer coefficient.\\
+Closure \(\Rightarrow\) certificate & Krylov closure is an invariant-subspace
+property. & It need not supply a signed involution.\\
+Candidate support \(\Rightarrow\) child support & Two parent exponents can
+share a monomial fibre and cancel. & Aggregate by \cref{eq:aggregation} first.\\
+Initial form always commutes with pullback & A cancelled candidate face has
+zero graded pullback but a later non-zero child initial form. & The equality
+needs the non-vanishing criterion of \cref{thm:pullbackface}.\\
+Moment face \(=\) amplitude face & The reachable forms
+\(2c_1-c_2\) and \(c_1/12-ic_2/6\) have different zeros. & Support agrees;
+cancellation can differ.\\
+Real tie cannot cancel & Equation \cref{eq:ctcancel} cancels over \(\C\). & Real
+non-cancellation needs real-analytic Hermitian data and real constants.\\
+The cubic numerator creates a third branch & \(R=-(d_2+d_4)Q-d_2d_4L\). & No
+cubic fixed-ray branch exists in this family.\\
+No cubic opening exists at all & A two-state family with off-diagonal coupling
+\(\e^3\) opens cubically. & The trichotomy is family-specific.\\
+Plain ideal retains depth & \((L,Q)\) is unchanged after tags are forgotten. &
+Use the tagged ideal or marked section.\\
+Blow-up separates the two components & The Rees charts retain a singular
+section over the intersection. & Blow-up records approach data but does not
+separate these components.\\
+Finite fixed-weight decision \(\Rightarrow\) uniform atlas & Noetherianity
+chooses generators after the weight is fixed. & No effective uniform depth or
+finite global recursive atlas is proved.\\
+Smooth-flat order \(\infty\) \(\Rightarrow\) zero germ &
+\(e^{-1/\eta^2}\) is flat but non-zero away from \(0\). & The analytic-arc
+theorem is not a smooth-germ theorem.\\
+One formalised theorem \(\Rightarrow\) the whole paper is formalised & M0--M8
+stop at the fixed-fibre analytic bridge. & Use the named theorem map and treat
+the later extensions as conventionally proved.\\
+\bottomrule
+\end{longtable}
+
+\begin{counterexample}[The symbol \(R\) is not the cubic moment]
+For \(v=(1,0,0,0)\), the cubic numerator coefficient \(R(v)\) is zero, while
+the relevant cubic moment coefficient is \(1\).  Algebraic numerator degree and
+time depth are distinct gradings.
+\end{counterexample}
+
+\begin{counterexample}[Scalar rays lose the universal fan]
+The substitution \(d=\e v\) collapses the four coordinate vertices to a single
+perturbation coordinate.  It therefore cannot retain the 15-cell normal atlas
+of \cref{thm:universalnewton}.  Fixed rays and actual coordinates answer
+different questions.
+\end{counterexample}
+
+\subsection{Publication scope}
+
+The exact claims concern the locked matrix \cref{eq:H0}, its four internal
+diagonal coordinates, formal or analytic local expansions, and declared real
+or complex coefficient domains.  They do not establish robustness under
+dissipation, experimental noise, arbitrary graph size, arbitrary perturbation
+support, or a canonical physical interpretation of a multi-Rees construction.
+Connections to quantum transport, dark states and tropical geometry are
+positioning links, not priority claims.  The priority of the full exact
+synthesis in the literature is \evidence{UNAVAILABLE}; the prior-art audit found
+no matching theorem but did not prove absence.
+
+The formal claim is narrower and auditable: only the statements listed in
+\cref{tab:leanmap,app:reprochecks} are \evidence{KERNEL-CHECKED}.  This boundary
+is about proof status, not mathematical importance; it does not weaken the
+conventional proofs in the extension sections, nor promote their exact scripts
+to formal proofs.

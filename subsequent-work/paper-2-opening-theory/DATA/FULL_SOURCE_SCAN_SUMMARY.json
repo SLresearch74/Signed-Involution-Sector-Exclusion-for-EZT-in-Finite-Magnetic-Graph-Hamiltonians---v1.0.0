@@ -1,0 +1,50 @@
+{
+  "root": "C:\\Users\\skilo\\Documents\\My Work (papers & maths)\\M3A work - Copy",
+  "files_hashed": 3636,
+  "unique_hashes": 932,
+  "duplicate_hash_groups": 631,
+  "text_files_or_unique_texts_scanned": 780,
+  "representative_scan_hits": 6645,
+  "category_match_counts": {
+    "citation": 226,
+    "correction": 258,
+    "doi": 145,
+    "evidence_label": 1587,
+    "fixed_moving": 141,
+    "moment_amplitude": 95,
+    "real_complex": 122,
+    "release_label": 2272,
+    "reproducibility": 3220,
+    "scope_warning": 672,
+    "symbol_R": 714,
+    "theorem_like": 182
+  },
+  "extension_counts": {
+    ".bib": 5,
+    ".csv": 46,
+    ".json": 819,
+    ".md": 1283,
+    ".pdf": 60,
+    ".ps1": 13,
+    ".py": 334,
+    ".sh": 79,
+    ".sha256": 322,
+    ".tex": 391,
+    ".txt": 78,
+    ".zip": 206
+  },
+  "read_errors": [],
+  "excluded_directory_names": [
+    ".git",
+    "M3A_PAPER_II_INTEGRATED_FLAGSHIP",
+    "TinyTeX_DIST",
+    "TinyTeX_FULL",
+    "_PAPERII_WORK",
+    "__pycache__",
+    "deps",
+    "node_modules",
+    "pdf_render",
+    "tmp"
+  ],
+  "method_note": "Every readable byte of each unique relevant text file was searched. Duplicate byte-identical texts were searched once and are linked by SHA-256. Vendor dependencies, caches, rendered-PDF scratch files and this new release tree were excluded."
+}

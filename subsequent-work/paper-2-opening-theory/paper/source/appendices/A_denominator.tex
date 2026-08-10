@@ -1,0 +1,24 @@
+\section{Full denominator audit}\label{app:denominator}
+
+The unreduced denominator is
+\(\Delta(z;d)=\det(zI-H(d))\).  The exact determinant contains 52 monomials.
+The ordering below is by total degree and exponent tuple
+\((z,d_1,d_2,d_3,d_4)\); together the rows are the complete polynomial, not a
+truncation.
+
+\input{../../DATA/denominator_terms.tex}
+
+At \(d=0\), the denominator is
+\[
+z^6-12z^4-8z^3+32z^2+32z.
+\]
+After \(z=x^{-1}\) and multiplication by \(x^6\), the constant term is \(1\).
+This proves the unit assertion used in \cref{cor:transformed}.  The numerator
+table has 16 monomials and is exactly the expansion of \cref{eq:numerator}; it
+is stored in \texttt{DATA/MV1\_PRIMARY\_EXACT.json} together with this
+denominator.
+
+The cofactor and determinant were recomputed from the locked matrix by a
+dependency-free Leibniz expansion.  The result is
+\evidence{VERIFIED-EXACT}.  No root cancellation assumption is used in the
+dark-locus proof.

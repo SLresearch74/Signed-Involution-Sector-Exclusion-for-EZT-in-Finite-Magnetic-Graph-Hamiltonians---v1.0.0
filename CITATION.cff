@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: >-
+  If you use this repository, please cite the Paper I preprint using the
+  preferred citation below.
+title: Signed-Involution Sector Exclusion for Exact Zero Transfer in Finite Magnetic Graph Hamiltonians
+type: software
+authors:
+  - family-names: Medford
+    given-names: Zach
+version: v1.0.0
+date-released: 2026-06-17
+doi: 10.5281/zenodo.20556571
+repository-code: https://github.com/SLresearch74/Signed-Involution-Sector-Exclusion-for-EZT-in-Finite-Magnetic-Graph-Hamiltonians---v1.0.0
+url: https://doi.org/10.5281/zenodo.20556571
+license: MIT
+preferred-citation:
+  type: unpublished
+  authors:
+    - family-names: Medford
+      given-names: Zach
+  title: Signed-Involution Sector Exclusion for Exact Zero Transfer in Finite Magnetic Graph Hamiltonians
+  date-published: 2026-06-17
+  status: preprint
+  version: v1.0.0
+  publisher:
+    name: Zenodo
+  doi: 10.5281/zenodo.20556571
+  url: https://doi.org/10.5281/zenodo.20556571

@@ -1,0 +1,12 @@
+\begin{tikzpicture}[scale=1.05,>=Latex]
+\coordinate (A) at (0,2.8); \coordinate (B) at (-2,-1.1); \coordinate (C) at (2,-1.1); \coordinate (D) at (0,.1);
+\fill[blue!7] (A)--(B)--(C)--cycle;
+\draw[thick] (A)--(B)--(C)--cycle; \draw[thick] (A)--(D)--(B); \draw[thick] (D)--(C);
+\draw[dashed] (B)--(C); \draw[thick] (D)--(A);
+\fill[blue!70!black] (A) circle (2.5pt); \node[above,font=\small] at (A) {$(e_1,3)$};
+\fill[blue!70!black] (B) circle (2.5pt); \node[below left,font=\small] at (B) {$(e_2,3)$};
+\fill[blue!70!black] (C) circle (2.5pt); \node[below right,font=\small] at (C) {$(e_3,3)$};
+\fill[blue!70!black] (D) circle (2.5pt); \node[right,font=\small] at (D) {$(e_4,3)$};
+\node[align=center,font=\small] at (4.3,.8) {$15$ non-empty subsets\\$4+6+4+1$};
+\draw[->,thick] (3.1,.8)--(2.1,.7);
+\end{tikzpicture}

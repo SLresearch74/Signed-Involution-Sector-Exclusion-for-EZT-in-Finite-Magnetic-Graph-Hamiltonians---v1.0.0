@@ -1,0 +1,14 @@
+M3A Paper II integrated flagship environment
+Date: 2026-08-03
+Operating system: Windows / PowerShell
+Python: 3.12.13 (Codex bundled runtime)
+pdfTeX: 3.141592653-2.6-1.40.29 (TeX Live 2026)
+kpathsea: 6.4.2
+latexmk: 4.88 (9 March 2026)
+biber: 2.21
+Exact verifier dependencies: Python standard library only
+PDF generation: pdfLaTeX + Biber through latexmk
+PDF inspection: pypdf/pdfplumber plus Poppler-compatible rendering
+Locale: British English manuscript; Europe/London task timezone
+Build-path note: TinyTeX was staged at C:\m3aii_tinytex because its Windows resolver failed when initialised beneath a path containing spaces.
+

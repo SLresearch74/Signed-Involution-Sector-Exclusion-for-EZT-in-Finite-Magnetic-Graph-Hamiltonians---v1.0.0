@@ -1,0 +1,7 @@
+{
+  "evidence": "FALSIFIED",
+  "fixture": "H0[2,5] and H0[5,2] sign changed from -1 to +1",
+  "cofactor_route_detected": true,
+  "moment_route_detected": true,
+  "discrepancy_detected": true
+}

@@ -1,0 +1,14 @@
+\begin{tikzpicture}[node distance=7mm and 12mm,>=Latex,
+  box/.style={draw,rounded corners,fill=blue!6,align=center,minimum height=8mm,text width=17.5mm,font=\small},
+  arr/.style={->,thick,blue!55!black}]
+\node[box] (cert) {signed\\certificate};
+\node[box,right=of cert] (dark) {exact zero\\transfer};
+\node[box,right=of dark] (num) {numerator\\coefficients};
+\node[box,right=of num] (newt) {Newton face\\candidates};
+\node[box,right=of newt] (surv) {first surviving\\amplitude};
+\draw[arr] (cert)--node[above,font=\tiny,fill=white,inner sep=.5pt]{sufficient} (dark);
+\draw[arr] (dark)--node[above,font=\tiny,fill=white,inner sep=.5pt]{perturb} (num);
+\draw[arr] (num)--node[above,font=\tiny,fill=white,inner sep=.5pt]{support} (newt);
+\draw[arr] (newt)--node[above,font=\tiny,fill=white,inner sep=.5pt]{aggregate/test} (surv);
+\draw[red!70!black,very thick,|-|] ($(cert.south)+(0,-5mm)$)--node[below,font=\scriptsize]{certificate failure does not cross this firewall} ($(dark.south)+(0,-5mm)$);
+\end{tikzpicture}

@@ -1,0 +1,16 @@
+\begin{tikzpicture}[scale=.95,>=Latex,
+  v/.style={circle,draw,thick,fill=white,minimum size=8mm,font=\small},
+  p/.style={v,fill=blue!10}, posedge/.style={thick}, neg/.style={thick,dashed,red!70!black}]
+\node[v] (s) at (-3,0) {$0$};
+\node[p] (a) at (-1.1,1.5) {$1\;[d_1]$};
+\node[p] (b) at (-1.1,-1.5) {$2\;[d_2]$};
+\node[p] (c) at (1.1,1.5) {$3\;[d_3]$};
+\node[p] (d) at (1.1,-1.5) {$4\;[d_4]$};
+\node[v] (t) at (3,0) {$5$};
+\foreach \x in {a,b,c,d}\draw[posedge] (s)--(\x);
+\draw[posedge] (a)--(b); \draw[posedge] (a)--(c); \draw[posedge] (a)--(t);
+\draw[posedge] (b)--(d); \draw[neg] (b)--(t);
+\draw[posedge] (c)--(d); \draw[posedge] (c)--(t);
+\draw[neg] (d)--(t);
+\node[font=\scriptsize,align=left] at (0,-2.25) {solid: $+1$\qquad dashed red: $-1$};
+\end{tikzpicture}

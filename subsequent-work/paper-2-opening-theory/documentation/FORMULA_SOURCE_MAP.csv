@@ -1,0 +1,15 @@
+formula_id,formula,source,independent_check
+F01,"H0 locked 6x6 matrix",R1.2 model lock,CODE/verify_paper.py
+F02,"N=L(z^2+2z)+2Q(z+1)+R",TF1 and MV1,Cofactor and Laurent routes
+F03,"R=-(d2+d4)Q-d2d4L",TF1 syzygy,Polynomial expansion
+F04,"(L,Q)=(d1-d2,d3-d4) intersect (d1-d4,d3-d2)",TF1 dark decomposition,Adapted-coordinate substitution
+F05,"M boundary=d1^j-d2^j+d3^j-d4^j",EA1 and MV1,Exact matrix words
+F06,"fixed leading i ell epsilon t^3/6",TF1,Exact moments
+F07,"fixed leading Q epsilon^2 t^4/12",TF1,Exact moments
+F08,"ARC tie coefficient",ARC1,Gaussian-rational matrix series
+F09,"ARC next survivor 4/5",ARC1,CODE/verify_paper.py
+F10,"universal NP conv{(er,3)}+orthant",MV1,Support domination proof
+F11,"contact profile (min(a,b+c),min(a,c),min(a,b),min(a,b,c))",GF1,Adapted-coordinate orders
+F12,"Rees kernel QYL-LYQ",GF1,Regular-sequence proof
+F13,"GF1 next survivor -32/15",GF1,CODE/verify_paper.py
+

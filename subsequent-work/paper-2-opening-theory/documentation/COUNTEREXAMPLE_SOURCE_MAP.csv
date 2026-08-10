@@ -1,0 +1,14 @@
+control_id,false_upgrade,source,paper_location,evidence
+C01,broken certificate implies opening,Paper I and TF1 scope,Sections 1 4 12,FALSIFIED
+C02,boundary words imply sharpness,EA1 cancellation controls,Sections 5 12,FALSIFIED
+C03,unconditional initial-form pullback identity,PB1-D,Section 8 Appendix B,FALSIFIED
+C04,next survivor determined by cancelled face alone,PB1 and ARC1 controls,Sections 8 9,FALSIFIED
+C05,real tie never cancels without field hypotheses,ARC1 clarification,Section 9,FALSIFIED
+C06,no cubic opening outside diagonal family,TF1 two-state control,Section 6,FALSIFIED
+C07,smooth-flat order infinity implies zero germ,ARC1 smooth-flat failure,Sections 9 12,FALSIFIED
+C08,moment face equals amplitude face,MV1 reachable mismatch,Sections 10 12 Appendix C,FALSIFIED
+C09,cubic numerator R equals cubic moment,GF1 control,Section 12,FALSIFIED
+C10,scalar ray retains actual-coordinate atlas,MV1,Sections 10 12,FALSIFIED
+C11,blow-up separates dark components,GF1 charts,Section 11 Appendix E,FALSIFIED
+C12,fixed-weight Noetherianity gives uniform global depth,MV1 plus new theorem,Sections 10 12,FALSIFIED
+

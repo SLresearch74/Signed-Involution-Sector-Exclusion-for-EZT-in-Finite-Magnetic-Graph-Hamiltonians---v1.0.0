@@ -1,0 +1,15 @@
+content_class,paths_seen,unique_hashes,recovery_status,authority_rule
+PDF scientific sources,60,20,VERIFIED-EXACT,deduplicated by SHA-256 then extracted
+Text scientific sources,780,780,VERIFIED-EXACT,every byte of each unique text searched
+Duplicate content groups,2704,631,MEASURED n=631,all paths retained in duplicate JSON
+Paper I,1,1,VERIFIED-BYTE,author-supplied PDF
+Paper II R1.2,2,2,VERIFIED-BYTE,PDF and TeX treated as separate artefacts
+EA1 theorem family,multiple,multiple,VERIFIED-EXACT,final report plus theorem source
+TF1 theorem family,multiple,multiple,VERIFIED-EXACT,R1.2 and corrected assessment supersede historical flags
+NP1 theorem family,multiple,multiple,VERIFIED-EXACT,final assessment and exact certificates
+PB1 theorem family,multiple,multiple,VERIFIED-EXACT,final report and counterexample controls
+ARC1 theorem family,multiple,multiple,VERIFIED-EXACT,fresh-verified final plus colleague clarification
+MV1 theorem family,multiple,multiple,VERIFIED-EXACT,primary exact JSON and final report
+GF1 theorem family,multiple,multiple,VERIFIED-EXACT,16-cone JSON and final report
+TFP label,0,0,UNAVAILABLE,no authoritative occurrence; no alias invented
+

@@ -1,0 +1,97 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[british]{babel}
+\usepackage{lmodern,microtype}
+\usepackage{csquotes}
+\usepackage[a4paper,margin=28mm]{geometry}
+\setlength{\emergencystretch}{2em}
+\usepackage{amsmath,amssymb,amsthm,mathtools,bm}
+\usepackage{booktabs,longtable,tabularx,array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,fit,positioning,shapes.geometric,backgrounds}
+\usepackage{graphicx}
+\graphicspath{{../../FIGURES/EXPORT/}}
+\usepackage[colorlinks=true,allcolors=blue!55!black]{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+\usepackage[backend=biber,style=authoryear,sorting=nyt,sortcites=true,
+  maxcitenames=3,giveninits=true,uniquename=init,dashed=false,
+  useprefix=true,doi=true,isbn=false,url=true]{biblatex}
+\addbibresource{references.bib}
+\DeclareDelimFormat{nameyeardelim}{\addcomma\space}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{counterexample}[theorem]{Counterexample}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\N}{\mathbb N}
+\newcommand{\e}{\varepsilon}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\inw}{\operatorname{in}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\conv}{\operatorname{conv}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\Proj}{\operatorname{Proj}}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\closure}{\overline}
+\newcommand{\evidence}[1]{\textsf{#1}}
+\newcommand{\paperone}{Paper~I}
+
+\title{Kernel-Checked Opening Theory and Coefficient-Sensitive Newton Geometry\\
+of a Six-State Dark Quantum Channel}
+\author{Zach Medford\\[-1mm]\small Independent research preprint}
+\date{Version R2.1 --- 10 August 2026\\
+\small\href{https://github.com/SLresearch74/Signed-Involution-Sector-Exclusion-for-EZT-in-Finite-Magnetic-Graph-Hamiltonians---v1.0.0}{Repository and reproducibility materials}}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+\input{abstract}
+\end{abstract}
+\noindent\textbf{Evidence convention.}
+Claims carrying an explicit status use only \evidence{PROVED},
+\evidence{KERNEL-CHECKED}, \evidence{VERIFIED-EXACT},
+\evidence{VERIFIED-BYTE}, \evidence{MEASURED} with a sample size,
+\evidence{FALSIFIED}, \evidence{CONJECTURE}, or \evidence{UNAVAILABLE}.
+\evidence{KERNEL-CHECKED} means that the stated Lean theorem and its
+dependencies were accepted by the pinned Lean kernel; it does not extend to
+nearby results not named in the traceability map.  A computed identity is never
+promoted to a theorem without a proof, and a failed certificate is never called
+an opening.
+
+\tableofcontents
+
+\input{sections/01_introduction}
+\input{sections/02_formal_verification}
+\input{sections/02_model_and_channel}
+\input{sections/03_exact_numerator_and_ideal}
+\input{sections/04_syzygy_dark_planes_certificates}
+\input{sections/05_endpoint_support}
+\input{sections/06_fixed_direction_trichotomy}
+\input{sections/07_fixed_fibre_newton}
+\input{sections/08_monomial_pullback}
+\input{sections/09_arc1_moving_directions}
+\input{sections/10_mv1_universal_atlas}
+\input{sections/11_gf1_marked_section}
+\input{sections/12_counterexamples_scope}
+\input{sections/13_reproducibility_transparency}
+\input{sections/14_conclusion}
+
+\appendix
+\input{appendices/A_denominator}
+\input{appendices/B_endpoint_pb1}
+\input{appendices/C_arc1_tables}
+\input{appendices/D_mv1_gf1_atlases}
+\input{appendices/E_rees_marked}
+\input{appendices/F_reproducibility}
+
+\printbibliography
+\end{document}

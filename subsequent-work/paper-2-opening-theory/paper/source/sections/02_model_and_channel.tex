@@ -1,0 +1,87 @@
+\section{Locked model and observables}\label{sec:model}
+
+Let \(e_0,\ldots,e_5\) be the standard basis of \(\C^6\), with source \(e_0\)
+and target \(e_5\).  The unperturbed real-symmetric Hamiltonian is
+\begin{equation}\label{eq:H0}
+H_0=\begin{pmatrix}
+0&1&1&1&1&0\\
+1&0&1&1&0&1\\
+1&1&0&0&1&-1\\
+1&1&0&0&1&1\\
+1&0&1&1&0&-1\\
+0&1&-1&1&-1&0
+\end{pmatrix}.
+\end{equation}
+For \(d=(d_1,d_2,d_3,d_4)\), set
+\begin{equation}
+D(d)=\diag(0,d_1,d_2,d_3,d_4,0),\qquad H(d)=H_0+D(d).
+\end{equation}
+The fixed-ray specialisation is \(d=\e v\), where \(v\in\R^4\) is selected
+independently of \(\e\).  A moving direction \(v=v(\eta)\) is a different,
+two-parameter object; it is not smuggled into a fixed-ray theorem.
+
+Three observables must be distinguished:
+\begin{align}
+G(z;d)&=e_5^{\mathsf T}(zI-H(d))^{-1}e_0,\label{eq:resolvent}\\
+M_k(d)&=e_5^{\mathsf T}H(d)^ke_0,\label{eq:moment}\\
+K(d,t)&=e_5^{\mathsf T}e^{-itH(d)}e_0
+       =\sum_{k\ge0}\frac{(-i)^k}{k!}M_k(d)t^k.\label{eq:amplitude}
+\end{align}
+The numerator of \(G\), the moment series and the amplitude are linked but not
+identical.  In particular, the factor \((-i)^k/k!\) can change a face
+cancellation equation when different time depths share a pulled-back weight.
+The passage from the finite moment coefficients to this actual matrix
+exponential is itself part of the formal development: M8 proves the convergent
+identity \cref{eq:leanbridge} for every fixed complex ray, perturbation
+parameter and time.
+
+Write
+\begin{equation}\label{eq:threeforms}
+L=d_1-d_2+d_3-d_4,\qquad Q=d_2d_4-d_1d_3,
+\end{equation}
+and
+\begin{equation}\label{eq:R}
+R=d_1d_2(d_3-d_4)+d_3d_4(d_1-d_2).
+\end{equation}
+On a ray \(d=\e(a,b,c,d)\) we write
+\(\ell=a-b+c-d\) and retain \(Q=bd-ac\); the letter \(R\) then denotes the
+cubic coefficient in \cref{eq:R}, not a remainder, a Rees algebra, a ray
+parameter, or the cubic moment.  This notation lock prevents the principal
+symbol collision in the source record.
+
+\begin{figure}[ht]
+\centering\input{../../FIGURES/SOURCE/fig02_model.tikz}
+\caption{The locked six-state channel.  Solid lines carry (+1), dashed red
+lines carry (-1), and the four internal vertices carry diagonal coordinates.}
+\label{fig:model}
+\end{figure}
+
+\begin{proposition}[Baseline darkness]\label{prop:baseline-dark}
+For \(d=0\), \(K(0,t)=0\) for every \(t\in\R\), equivalently
+\(M_k(0)=0\) for every \(k\ge0\).
+\end{proposition}
+\begin{proof}
+Let $S$ be either of the two signed involutions defined by the model.  It
+satisfies $S^2=I$, $SH_0=H_0S$, $Se_0=e_0$ and
+$e_5^{\mathsf T}S=-e_5^{\mathsf T}$.  Hence, for every $k$,
+\[
+M_k(0)=e_5^{\mathsf T}H_0^ke_0
+=e_5^{\mathsf T}S H_0^k S e_0=-M_k(0),
+\]
+so $M_k(0)=0$ over characteristic zero.  Termwise substitution in the
+globally convergent exponential series gives $K(0,t)=0$.
+\end{proof}
+
+\noindent\textbf{Formal status.}
+The matrix identities, abstract signed-certificate implication and all-depth
+conclusion are \evidence{KERNEL-CHECKED} as
+\path{M3A.rOrig_involutive}, \path{M3A.rOrig_commutes_H0},
+\path{M3A.selectedMoment_eq_zero_of_signedCertificate} and
+\path{M3A.baseline_moments_dark}.  M8 checks the matrix-exponential passage;
+no finite moment cutoff is used as a proof.
+
+\begin{remark}
+The proposition is about the channel, not about the persistence of any
+particular certificate.  A perturbation may destroy a signed involution while
+the transfer remains exactly zero for another reason.
+\end{remark}

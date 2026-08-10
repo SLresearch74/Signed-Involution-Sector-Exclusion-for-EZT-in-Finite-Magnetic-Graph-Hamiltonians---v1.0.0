@@ -1,0 +1,26 @@
+citation_key,verification_status,primary_or_authoritative_source,identifier_checked,scope_in_paper
+MedfordPaperI,VERIFIED-EXACT,Zenodo record and author-supplied PDF,10.5281/zenodo.20556571; PDF SHA-256 93f47bf862e44d7232c20aa1ad5c54b20d589c307218c80638ce68ed47c6b4f5,companion exact-zero equivalences
+MedfordR12,VERIFIED-BYTE,author-supplied PDF and TeX,SHA-256 recorded in source ledger,earlier fixed-direction manuscript
+deMouraUllrich2021,VERIFIED-EXACT,Springer Nature,10.1007/978-3-030-79876-5_37,Lean 4 system and proof-kernel architecture
+MathlibCommunity2020,VERIFIED-EXACT,Association for Computing Machinery and Mathlib community paper,10.1145/3372885.3373824,Mathlib formal-mathematics library
+Aspect1988,VERIFIED-EXACT,American Physical Society,10.1103/PhysRevLett.61.826,coherent population trapping context
+Gaubatz1990,VERIFIED-EXACT,AIP DOI metadata,10.1063/1.458514,STIRAP context
+Zhao2026,VERIFIED-EXACT,American Physical Society,10.1103/k7vj-b3jy,general multilevel dark-state context
+Sett2019,VERIFIED-EXACT,arXiv,1902.11115,zero-transfer quantum walks
+Godsil2012,VERIFIED-EXACT,journal DOI metadata,10.13001/1081-3810.1563,state-transfer context
+Zimboras2013,VERIFIED-EXACT,Nature/DOI metadata,10.1038/srep02361,quantum transport context
+HoKalman1966,VERIFIED-EXACT,publisher DOI metadata,10.1524/auto.1966.14.112.545,realisation context
+Noferini2023,VERIFIED-EXACT,SIAM,10.1137/22M1509825,transfer-function perturbation
+Fliess1981,VERIFIED-EXACT,Numdam,10.24033/bsmf.1931,noncommutative word series
+Sakarovitch2009,VERIFIED-EXACT,Springer,10.1007/978-3-642-01492-5_4,weighted series
+BerstelReutenauer2010,VERIFIED-EXACT,Cambridge University Press,10.1017/CBO9780511760860,rational series
+Stanley1980,VERIFIED-EXACT,publisher DOI metadata,10.1016/S0195-6698(80)80051-5,D-finite context only
+Kouchnirenko1976,VERIFIED-EXACT,Springer/EuDML metadata,10.1007/BF01389769,Newton polyhedra
+Varchenko1976,VERIFIED-EXACT,MathNet,10.1007/BF01075524,Newton polyhedra
+MaclaganSturmfels2015,VERIFIED-EXACT,American Mathematical Society,10.1090/gsm/161,tropical geometry
+SturmfelsTevelev2008,VERIFIED-EXACT,publisher DOI metadata,10.4310/MRL.2008.v15.n3.a14,tropical elimination
+Fukuda2007,VERIFIED-EXACT,American Mathematical Society,10.1090/S0025-5718-07-01986-2,Gröbner fans
+MillerSturmfels2005,VERIFIED-EXACT,Springer,10.1007/b138602,monomial ideals and Hilbert data
+Giansiracusa2016,VERIFIED-EXACT,Duke University Press/arXiv metadata,10.1215/00127094-3645544,scheme-sensitive tropicalisation
+Ein2004,VERIFIED-EXACT,Cambridge University Press,10.1112/S0010437X04000429,arc contact loci
+AtiyahMacdonald1969,VERIFIED-EXACT,standard book metadata,no DOI claimed,Noetherian finite generation

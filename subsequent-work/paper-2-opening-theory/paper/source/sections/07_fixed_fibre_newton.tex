@@ -1,0 +1,63 @@
+\section{Fixed-fibre Newton geometry}\label{sec:fixednewton}
+
+For a fixed direction \(v\), let
+\[
+K_v(\e,t)=\sum_{p,q\ge0}A_{p,q}(v)\e^pt^q.
+\]
+Its Newton polyhedron is the convex hull of
+\(\{(p,q):A_{p,q}(v)\ne0\}+\R_{\ge0}^2\).  Actual coefficients, rather than
+candidate support, define this set.
+
+\begin{theorem}[Fixed-fibre Newton polyhedra]\label{thm:fibrenewton}
+For the three branches of \cref{thm:trichotomy}, the Newton polyhedron is,
+respectively,
+\[
+(1,3)+\R_{\ge0}^2,\qquad
+(2,4)+\R_{\ge0}^2,\qquad
+\varnothing.
+\]
+Every positive weight exposes the unique displayed vertex in the non-dark
+branches.
+\end{theorem}
+\begin{proof}
+The trichotomy supplies the vertex and its non-zero coefficient.  The endpoint
+bound shows that every other surviving exponent lies in the corresponding
+upper orthant.  A strictly positive linear functional increases along every
+non-zero vector in that orthant, hence exposes the vertex uniquely.
+\end{proof}
+
+\noindent\textbf{Formal status.}
+The definition uses the actual non-zero coefficient support from M6 and the
+Mathlib real convex hull.  The empty-germ convention, the general one-vertex
+orthant lemma, the three fibre shapes and positive-weight uniqueness are
+\evidence{KERNEL-CHECKED} as \path{M3A.newtonPolyhedron_empty},
+\path{M3A.newton_eq_orthant_of_vertex},
+\path{M3A.fixedFibre_newton} and
+\path{M3A.fixedFibre_positiveWeight_faces}.
+
+\begin{figure}[ht]
+\centering\input{../../FIGURES/SOURCE/fig04_fixed_newton.tikz}
+\caption{Fixed-fibre Newton polyhedra.  The vertex moves from \((1,3)\) to
+\((2,4)\) on the quadratic stratum; the exact-dark fibre has empty support.}
+\label{fig:fixednewton}
+\end{figure}
+
+The change of variables \(x=z^{-1}\) in \cref{cor:transformed} is not cosmetic.
+The resolvent expansion is a Laurent series at \(z=\infty\); multiplying by
+\(x^{-1}\) aligns the coefficient of \(x^k\) with moment depth \(k\).  Omitting
+that shift displaces every Newton point by one and corrupts the comparison with
+the amplitude.
+
+Classical Newton-polyhedron methods organise dominant exponents and exposed
+faces \parencite{Kouchnirenko1976,Varchenko1976}.  Here the fibre theorem is
+especially simple because there is one lower vertex.  The subtlety begins when
+directions move or coordinates are pulled back, allowing several parent
+exponents to collide.
+
+\medskip
+\noindent\textbf{Formalisation boundary.}
+This completes the M0--M8 end-to-end Lean spine.  Beginning with
+\cref{sec:pb1}, the paper moves to conventionally proved extensions supported
+by exact symbolic or combinatorial checks.  No theorem in the remaining
+sections is represented as part of the current Lean package unless explicitly
+stated otherwise.

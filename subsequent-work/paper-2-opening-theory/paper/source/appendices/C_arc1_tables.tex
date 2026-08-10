@@ -1,0 +1,38 @@
+\section{Analytic-arc series and mismatch controls}\label{app:arcseries}
+
+For the ARC1 control
+\(d=(s+s^3,0,-s,0)\) and \(t=c_ts\), exact Gaussian-rational matrix expansion
+gives
+\begin{align*}
+[s^6]K&=\frac{c_t^4}{12}+\frac{ic_t^3}{6},\\
+[s^7]K&=\frac{c_t^4}{12}-\frac{ic_t^5}{60}.
+\end{align*}
+At \(c_t=-2i\), these are \(0\) and \(4/5\).  The calculation uses the full
+matrix exponential series through depth seven; it is not obtained by assuming
+the claimed survivor.
+
+For the GF1 mixed path \(d=(s,s^3,-s,s^4)\), \(t=c_ts\), the first two tied
+raw moment contributions produce
+\begin{align*}
+[s^6]K&=-\frac{ic_t^3}{6}+\frac{c_t^4}{12},\\
+[s^7]K\big|_{c_t=2i}&=-\frac{32}{15}.
+\end{align*}
+The first expression vanishes at (2i).  These two controls use opposite signs
+of the imaginary time scale and are not copies of one another.
+
+The reachable moment--amplitude mismatch can be summarised as follows.
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Parent points & Moment face & Amplitude face\\
+\midrule
+\((e_1,4),(e_2,3)\) & \(2c_1-c_2\) & \(c_1/12-ic_2/6\)\\
+ARC1 tie & \(2c_\e^2c_t^4+\cdots\) & \(c_\e^2c_t^4/12+ic_\e c_t^3/6\)\\
+GF1 mixed path & \(-c^3+2c^4\) & \(-ic^3/6+c^4/12\)\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The first row proves the logical point most cleanly: non-zero scalar conversion
+at each exponent preserves support, while unequal \(k\)-dependent conversions
+change the face equation.

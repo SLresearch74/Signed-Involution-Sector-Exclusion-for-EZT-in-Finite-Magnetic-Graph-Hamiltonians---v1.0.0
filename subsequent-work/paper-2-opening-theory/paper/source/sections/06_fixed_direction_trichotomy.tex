@@ -1,0 +1,70 @@
+\section{Fixed-direction trichotomy}\label{sec:fixed}
+
+Set \(v=(a,b,c,d)\in\R^4\) and \(H_v(\e)=H_0+\e D(v)\).  Define
+\[
+\ell=a-b+c-d,\qquad Q=bd-ac,\qquad
+R=ab(c-d)+cd(a-b).
+\]
+The ray numerator is
+\begin{equation}\label{eq:raynum}
+N_v(z;\e)=\e\ell(z^2+2z)+2\e^2Q(z+1)+\e^3R.
+\end{equation}
+
+\begin{theorem}[Complete fixed-ray trichotomy]\label{thm:trichotomy}
+Exactly one of the following holds.
+\begin{enumerate}[label=(\alph*)]
+\item If \(\ell\ne0\), the first perturbation/time pair is
+      \((p,q)=(1,3)\), and the coefficient of \(\e t^3\) in \(K_v\) is
+      \(i\ell/6\ne0\).
+      Every other surviving exponent lies in
+      \(((1,3)+\N^2)\setminus\{(1,3)\}\).
+\item If \(\ell=0\) and \(Q\ne0\), then \((p,q)=(2,4)\), and the coefficient
+      of \(\e^2t^4\) in \(K_v\) is \(Q/12\ne0\).
+      Every other surviving exponent lies in
+      \(((2,4)+\N^2)\setminus\{(2,4)\}\).
+\item If \(\ell=Q=0\), then \(K_v(\e,t)\equiv0\); there is no cubic
+      opening branch.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+The exact numerator \cref{eq:raynum} first separates the three cases.  If
+\(\ell=Q=0\), the syzygy forces \(R=0\), so the rational entry and hence the
+entire amplitude vanish.  For the first two cases, the endpoint support theorem
+identifies the earliest possible time depth.  Direct boundary evaluation gives
+\([\e]M_3=\ell\) and \([\e^2]M_4=2Q\).  Multiplication by
+\((-i)^3/3!=i/6\) and \((-i)^4/4!=1/24\) gives the stated amplitude
+coefficients.  Non-zero coefficients prove sharpness.
+\end{proof}
+
+\noindent\textbf{Formal status.}
+The literal coefficient support and all three mutually exclusive branches are
+\evidence{KERNEL-CHECKED} over complex directions by
+\path{M3A.linearRayData_of_linear_ne},
+\path{M3A.quadraticRayData_of_linear_zero_quadratic_ne},
+\path{M3A.darkRayData_of_linear_quadratic_zero} and
+\path{M3A.fixedRay_trichotomy}.  The claim that exactly one branch is selected
+is additionally traced to \path{M3A.classifyRay_eq_linear_iff},
+\path{M3A.classifyRay_eq_quadratic_iff},
+\path{M3A.classifyRay_eq_dark_iff} and \path{M3A.classifyRay_spec}.  The exact
+coefficient values are checked in M5, while M8 identifies the array with the
+convergent matrix-exponential amplitude.  The real statement here follows by
+scalar restriction.
+
+The ordered pair \((p,q)\) is essential.  The numerator valuation \(p\) alone
+does not encode time depth; \(q\) alone does not encode perturbative order.  For
+the protected direction \(v_*=(1,0,-1,0)\), \(\ell=0\), \(Q=1\), and
+the first amplitude coefficient is exactly (1/12).
+
+\begin{corollary}[Dark rays]\label{cor:darkrays}
+The fixed dark directions are precisely
+\[
+(a-b,c-d)=(0,0)\quad\text{or}\quad(a-d,c-b)=(0,0).
+\]
+\end{corollary}
+
+\begin{remark}[Family-specific completeness]
+The absence of a cubic branch is exact for this four-parameter diagonal family.
+It is not a universal theorem for all analytic Hamiltonian perturbations.  A
+two-state off-diagonal perturbation proportional to \(\e^3\) supplies an
+immediate cubic-opening control.
+\end{remark}

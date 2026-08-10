@@ -1,0 +1,42 @@
+\section{Endpoint words and pullback proof details}\label{app:endpointpb1}
+
+\subsection{Labelled word formula}
+
+For a word containing \(j\) perturbation letters with ordered labels
+\(i_1,\ldots,i_j\), write its \(A_0\)-gaps as
+\(q_0,\ldots,q_j\).  Its contribution is
+\[
+CA_0^{q_j}V_{i_j}A_0^{q_{j-1}}\cdots
+V_{i_2}A_0^{q_1}V_{i_1}A_0^{q_0}B,
+\qquad \sum_{r=0}^j q_r=k-j.
+\]
+Summing over label sequences with content \(\gamma\) and over all gap
+compositions gives \(M_{\gamma,k}\).  Endpoint depth imposes
+\(q_0\ge r_s(i_1)\) and \(q_j\ge r_t(i_j)\).  Equality in the support bound
+sets every internal \(q_r\) to zero and selects an endpoint-minimal pair.
+
+For the M3A channel, \(V_r=e_re_r^{\mathsf T}\),
+\(V_rH_0e_0=e_r\ne0\), and
+\(e_5^{\mathsf T}H_0V_r=\sigma_re_r^{\mathsf T}\ne0\).  Thus all endpoint
+depths are one.  At equality the word reduces to
+\(e_5^{\mathsf T}H_0D^jH_0e_0\), giving \cref{eq:minlayer}.
+
+\subsection{Finite pullback fibres}
+
+The no-zero-column hypothesis in \cref{thm:aggregation} cannot be omitted.  If
+column \(i\) of \(\Lambda\) is zero, then \(\Lambda(\alpha+ne_i)=\Lambda\alpha\)
+for all \(n\), so a formal child coefficient may receive infinitely many parent
+terms.  With every column non-zero, choose \(r(i)\) with
+\(\Lambda_{r(i),i}>0\).  If \(\Lambda\alpha=\beta\), then
+\[
+0\le\alpha_i\le \frac{\beta_{r(i)}}{\Lambda_{r(i),i}},
+\]
+which bounds the fibre coordinatewise.
+
+\subsection{Why the literal initial-form identity fails}
+
+Take \(F=x_1-x_2+x_1^2\) and pull back \(x_1=x_2=y\).  For the parent weight
+\(w=(1,1)\), \(\inw_wF=x_1-x_2\), whose graded pullback is zero.  The actual
+pullback is \(y^2\), so its child initial form is \(y^2\), not zero.  This is the
+minimal exact counterexample to an unconditional identity.  It also shows why
+the next survivor cannot be read from the cancelled face alone.

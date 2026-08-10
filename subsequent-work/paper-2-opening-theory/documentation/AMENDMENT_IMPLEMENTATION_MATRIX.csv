@@ -1,0 +1,17 @@
+amendment_id,source_stage,decision,paper_location,verification
+A01,R1.2 exact numerator,RETAIN,Section 3,CODE/verify_paper.py cofactor route
+A02,R1.2 trichotomy,RETAIN,Section 6,CODE/verify_paper.py moment route
+A03,EA1 endpoint theorem,ADAPT,Section 5,proof plus boundary coefficients
+A04,NP1 fixed fibre,RETAIN,Section 7,proof from trichotomy/support
+A05,PB1 aggregation,RETAIN,Section 8,formal proof and counterexample
+A06,PB1 unconditional initial identity,REJECT,Section 8,FALSIFIED exact example
+A07,ARC1 lower hull,RETAIN,Section 9,exact cost comparison
+A08,ARC1 broad real noncancellation,REJECT,Section 9,field-corrected proposition
+A09,MV1 four-vertex atlas,RETAIN,Section 10,15-cell JSON check
+A10,MV1 fixed-weight unavailability,SUPERSEDED,Section 10,Noetherian proof
+A11,MV1 global finite atlas,DEFER,Sections 10 and 14,UNAVAILABLE
+A12,GF1 fan,RETAIN,Section 11,16-cone JSON check
+A13,GF1 blow-up separates components,REJECT,Section 11 and Appendix E,chart equations
+A14,GF1 marked physical interpretation,DEFER,Section 11 and Appendix E,scope warning
+A15,Paper I duplication,REJECT,Section 1,dependency and reuse ledgers
+

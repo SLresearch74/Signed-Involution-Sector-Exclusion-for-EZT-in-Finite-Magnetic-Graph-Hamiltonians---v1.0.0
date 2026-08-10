@@ -1,0 +1,41 @@
+{
+  "evidence": "VERIFIED-EXACT",
+  "locked_cofactor_matches": true,
+  "denominator_term_count": 52,
+  "endpoint_support_zeros": true,
+  "baseline_moments_zero_through_k8": true,
+  "minimal_layer_d1_to_d4": [
+    1,
+    -1,
+    1,
+    -1
+  ],
+  "arc_control_ct_1_s6": {
+    "real": "1/12",
+    "imag": "1/6"
+  },
+  "arc_control_ct_minus_2i_s6": {
+    "real": "0",
+    "imag": "0"
+  },
+  "arc_control_ct_minus_2i_s7": {
+    "real": "4/5",
+    "imag": "0"
+  },
+  "gf1_control_ct_2i_s6": {
+    "real": "0",
+    "imag": "0"
+  },
+  "gf1_control_ct_2i_s7": {
+    "real": "-32/15",
+    "imag": "0"
+  },
+  "gf1_atlas": {
+    "verified": true,
+    "sha256": "ce151d159d504feb9f0043c579807eb47bb0030cb5a67a220504d98b5dff45e1"
+  },
+  "mv1_atlas": {
+    "verified": true,
+    "sha256": "6d61af8b30ff7f6235d9af87541eeea138196d7aefb250713793ef7480bab8b7"
+  }
+}

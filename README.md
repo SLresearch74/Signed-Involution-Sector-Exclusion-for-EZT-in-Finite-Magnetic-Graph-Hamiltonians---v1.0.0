@@ -1,219 +1,116 @@
 # Signed-Involution Sector Exclusion for Exact Zero Transfer
 
-Research repository for the manuscript:
+This repository is the research record for **Paper I**:
 
-**Signed-Involution Sector Exclusion for Exact Zero Transfer in Finite Magnetic Graph Hamiltonians**
-Zach Medford, 2026
+> Zach Medford (2026), *Signed-Involution Sector Exclusion for Exact Zero
+> Transfer in Finite Magnetic Graph Hamiltonians*, version 1.0.0. Zenodo.
+> [https://doi.org/10.5281/zenodo.20556571](https://doi.org/10.5281/zenodo.20556571)
 
-This repository contains the manuscript source, certificate data, diagnostic summaries, figures, and audit scripts supporting the finite graph computations reported in the paper.
+Paper I remains the repository's primary work. It contains the manuscript,
+finite graph certificate data, figures, diagnostic summaries, and audit scripts
+for exact zero transfer in finite Hermitian graph Hamiltonians.
 
----
+## Paper I
 
-## Overview
+For a finite graph Hamiltonian $H$, source vertex $s$, and target vertex
+$\ell$, exact zero transfer means
 
-This project studies **exact zero-transfer pairs** in finite-dimensional Hermitian graph dynamics.
+$$
+\langle \ell \vert e^{-itH} \vert s \rangle = 0
+\qquad\text{for every }t\in\mathbb R.
+$$
 
-Given a finite graph Hamiltonian (H), a source vertex (s), and a target vertex (\ell), the central condition is
+Paper I relates this condition to moment, Krylov-space, and
+spectral-projector channel closure. Its constructive sufficient certificate is
+a signed involution $R$ satisfying
 
-[
-\langle \ell|e^{-itH}|s\rangle = 0
-\qquad
-\forall t \in \mathbb{R}.
-]
+$$
+R^2=I,\qquad [H,R]=0,\qquad
+R\lvert s\rangle=\lvert s\rangle,\qquad
+R\lvert\ell\rangle=-\lvert\ell\rangle.
+$$
 
-The manuscript develops a finite algebraic framework for this condition using:
+The Paper I materials are:
 
-* moment, Krylov, and spectral-projector characterisations;
-* invariant-sector and symmetry-sector exclusion;
-* signed-involution certificates;
-* magnetic ({0,\pi})-phase graph Hamiltonians;
-* M3A certificate-generation data;
-* Layer-2 spectral-projector diagnostics;
-* perturbative sector-breaking diagnostics;
-* Lindblad block-preservation criteria.
+- [`paper/`](paper/) - manuscript source and PDF;
+- [`data/`](data/) - certificate records and diagnostic summaries;
+- [`figures/`](figures/) - the representative certificate figure;
+- [`scripts/`](scripts/) - certificate-generation and audit scripts.
 
-The repository is intended to make the finite graph computations, certificate records, and diagnostic summaries reproducible.
+Paper I is supported by machine-readable finite computations, but Paper I is
+**not** represented as an entirely Lean-formalised manuscript.
 
----
+## Paper II: subsequent work
 
-## Main claim
+The clearly separated
+[`subsequent-work/paper-2-opening-theory/`](subsequent-work/paper-2-opening-theory/)
+subtree contains Paper II, *Kernel-Checked Opening Theory and
+Coefficient-Sensitive Newton Geometry of a Six-State Dark Quantum Channel*.
 
-The paper’s central finite-dimensional statement is that exact zero transfer is equivalent to **spectral-projector channel closure**:
+Paper II uses Paper I's exact-zero equivalences and signed-certificate method,
+then studies a locked six-state diagonal perturbation family. Its Lean 4
+development is kernel-checked through stages M0-M8:
 
-[
-\langle \ell|P_\lambda|s\rangle = 0
-\qquad
-\text{for every spectral projector } P_\lambda.
-]
+- signed involutions and all-depth baseline darkness;
+- the exact selected numerator;
+- the pointwise dark-plane decomposition and persistent certificates;
+- locked endpoint-word support;
+- ray coefficients and complete first-order protection;
+- the fixed-ray trichotomy;
+- the fixed-fibre Newton theorem; and
+- the analytic bridge to the selected matrix exponential.
 
-Signed-involution certificates provide a constructive sufficient mechanism. If
+Paper II's later monomial-pullback, moving-arc, universal-atlas,
+Groebner/Rees, and fixed-weight Noetherian sections remain conventional exact
+proofs supported by scripts and finite artifacts. They are not described as
+kernel-checked.
 
-[
-R^2=I,
-\qquad
-[H,R]=0,
-\qquad
-R|s\rangle=|s\rangle,
-\qquad
-R|\ell\rangle=-|\ell\rangle,
-]
+## Reproduction
 
-then the source and target lie in orthogonal invariant sectors, and exact zero transfer follows for all time.
+Build the Paper II formalisation:
 
----
-
-## Repository contents
-
-```text
-paper/
-  signed_involution_exact_zero_transfer_pst_revised.pdf
-  signed_involution_exact_zero_transfer_pst_revised.tex
-
-figures/
-  m3a_representative_certificates.png
-
-data/
-  m3a_candidates.csv
-  m3a_graph_records.csv
-  m3a_phase_records.csv
-  m3a_flux_records.csv
-  l2_spectral_projector_audit_summary.md
-  test1_zero_baseline_summary.csv
-  test2_sector_breaking_scaling_summary.csv
-  test3_bound_summary.csv
-  test4_summary.csv
-  test5_projector_summary.csv
-  test6_target_resolved_summary.csv
-
-scripts/
-  magnetic_phase_search_M3A_symmetry_first_fast.py
-  test5_projector_dependence.py
-  test6_target_resolved_sector_breaking.py
+```powershell
+cd subsequent-work/paper-2-opening-theory/formalisation
+lake build
+lake env lean M3AFormalisation.lean
 ```
 
----
+Run the exact Paper II verifier and its discrepancy fixture:
 
-## File guide
-
-### `paper/`
-
-Contains the final manuscript PDF and LaTeX source.
-
-### `figures/`
-
-Contains the representative M3A certificate figure used in the manuscript.
-
-### `data/`
-
-Contains the machine-readable certificate records and diagnostic summaries.
-
-The M3A certificate data include:
-
-* `m3a_graph_records.csv` — graph support records;
-* `m3a_candidates.csv` — candidate identifiers, source-target pairs, involutions, sign functions, and audit norms;
-* `m3a_phase_records.csv` — edge-level phase/sign data defining the signed magnetic Hamiltonians;
-* `m3a_flux_records.csv` — cycle-basis flux records.
-
-The diagnostic summaries include:
-
-* `l2_spectral_projector_audit_summary.md` — compact Layer-2 spectral-projector audit summary;
-* `test1_zero_baseline_summary.csv` — sector-preserving perturbation baseline;
-* `test2_sector_breaking_scaling_summary.csv` — sector-breaking scaling audit;
-* `test3_bound_summary.csv` — finite-time bound audit;
-* `test4_summary.csv` — non-sufficiency of broken-sector diagnostics;
-* `test5_projector_summary.csv` — projector-dependence diagnostics;
-* `test6_target_resolved_summary.csv` — target-resolved sector-breaking diagnostics.
-
-### `scripts/`
-
-Contains the main certificate-generation and diagnostic audit scripts.
-
----
-
-## Reproducibility
-
-The certificate records in `data/` are sufficient to reconstruct the reported signed-involution certificates.
-
-For each certificate, the relevant data are:
-
-1. the graph support;
-2. the source-target pair ((s,\ell));
-3. the involution (r);
-4. the sign function (\sigma);
-5. the edge-level phase/sign assignment;
-6. the corresponding audit norms.
-
-The certificate condition is
-
-[
-R^2=I,
-\qquad
-[H,R]=0,
-\qquad
-R|s\rangle=|s\rangle,
-\qquad
-R|\ell\rangle=-|\ell\rangle.
-]
-
-The Layer-2 diagnostic checks spectral-projector channel closure:
-
-[
-\langle \ell|P_\lambda|s\rangle=0
-\qquad
-\forall \lambda.
-]
-
-The perturbation diagnostics test sector-preserving perturbations, sector-breaking scaling, finite-time bounds, projector dependence, and target-resolved first-order leakage.
-
----
-
-## Scope and limitations
-
-This repository contains finite graph and finite-dimensional linear-algebra computations.
-
-It does **not** claim to derive:
-
-* spacetime;
-* gravity;
-* quantum gravity;
-* continuum Lorentzian geometry;
-* physical dynamics;
-* intrinsic topological protection;
-* generic robustness;
-* or a new physical theory.
-
-The results concern exact zero-transfer structure in finite Hermitian graph Hamiltonians and the finite computations reported in the manuscript.
-
-Related finite-duality and FCC local-to-global obstruction results are being developed separately.
-
----
-
-## How to cite
-
-If you use this repository, please cite the associated Zenodo DOI:
-
-```text
-[Zenodo DOI to be added after release]
+```powershell
+cd subsequent-work/paper-2-opening-theory
+python CODE/verify_paper.py
+python CODE/verify_paper.py --fixture
 ```
 
-A `CITATION.cff` file may also be included for citation metadata.
+Compile the Paper II manuscript:
 
----
+```powershell
+cd subsequent-work/paper-2-opening-theory/paper/source
+latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+```
 
-## Licence
+The subtree README gives the theorem-stage map, artifact traceability, trust
+boundary, pinned toolchain, and complete directory guide.
 
-Code in this repository is released under the MIT License.
+## Repository version status
 
-The manuscript, figures, and data files are provided for scholarly citation and reproducibility. Unless otherwise stated, non-code materials may be reused with attribution and citation of the associated Zenodo DOI.
+Paper I's Zenodo record is version `v1.0.0`. At the time of this Paper II
+integration, the GitHub repository has no published GitHub Release or Git tag;
+the repository's `main` branch is therefore the version-control reference for
+Paper I. Paper II is being introduced through an isolated draft pull request,
+without merging or creating a release.
 
----
+## Scope
 
-## Author
+The repository concerns finite graph Hamiltonians and finite-dimensional
+linear algebra. It does not claim intrinsic topological protection, generic
+robustness, experimental implementation, continuum geometry, spacetime,
+gravity, or a new physical theory.
 
-Zach Medford
+## Licence and citation
 
----
-
-## Version
-
-`v1.0.0`
+Code is released under the MIT License. See [`CITATION.cff`](CITATION.cff) for
+machine-readable citation metadata and use DOI
+[`10.5281/zenodo.20556571`](https://doi.org/10.5281/zenodo.20556571) when citing
+Paper I.

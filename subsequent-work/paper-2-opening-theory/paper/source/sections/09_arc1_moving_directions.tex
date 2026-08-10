@@ -1,0 +1,111 @@
+\section{Analytic-arc valuation}\label{sec:arc1}
+
+Let \(v(\eta)=(a(\eta),b(\eta),c(\eta),d(\eta))\) be an analytic germ and set
+\[
+\alpha=\ord_\eta\ell(v(\eta)),\qquad
+\beta=\ord_\eta Q(v(\eta)),
+\]
+with order \(\infty\) for the zero germ.  The three-scale pullback is
+\(\e=c_\e s^b\), \(t=c_t s^a\), \(\eta=c_\eta s^c\), with
+positive exponents \(a,b,c\) and non-zero constants.
+
+\begin{theorem}[Analytic-arc lower hull]\label{thm:arc}
+The only candidate lower points are
+\[
+P_\ell=(1,3,\alpha),\qquad P_Q=(2,4,\beta),
+\]
+omitting a point whose order is \(\infty\).  Their pulled costs are
+\[
+\kappa_\ell=b+3a+c\alpha,\qquad
+\kappa_Q=2b+4a+c\beta.
+\]
+The lower hull is classified as follows:
+\begin{enumerate}[label=(\roman*)]
+\item if \(\alpha\le\beta<\infty\), \(P_\ell\) dominates;
+\item if \(\beta<\alpha<\infty\), both points are vertices, with a tie on
+      \(c(\alpha-\beta)=a+b\);
+\item if \(\alpha=\infty\) and \(\beta<\infty\), only \(P_Q\) remains;
+\item if \(\alpha=\beta=\infty\), the arc is exactly dark.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+The endpoint theorem gives \(q\ge p+2\) for every positive perturbation degree
+\(p\); the \(p=0\) layer is zero by baseline darkness.  Every positive-degree
+coefficient polynomial vanishes on the exact-dark locus.  Since
+\((L,Q)\) is radical by \cref{prop:darkideal}, each such coefficient belongs to
+\((L,Q)\).  More sharply, complete first-order protection shows that every
+\(p=1\) coefficient lies in \((L)\).  After restriction to the analytic arc,
+a \(p=1\) term therefore has order at least \(\alpha\) and cost at least
+\(b+3a+c\alpha=\kappa_\ell\).
+
+For \(p\ge2\), coefficient membership in \((L,Q)\) gives order at least
+\(\min(\alpha,\beta)\), while endpoint support gives cost at least
+\[
+pb+(p+2)a+c\min(\alpha,\beta).
+\]
+If \(\alpha\le\beta\), this exceeds \(\kappa_\ell\) by at least \(a+b\).
+If \(\beta<\alpha\), it is at least \(\kappa_Q\), with equality possible only
+at the displayed \((2,4,\beta)\) boundary candidate.  Thus no hidden
+higher-order coefficient can lie below the two stated candidates.  Comparing
+their costs gives
+\(\kappa_\ell-\kappa_Q=c(\alpha-\beta)-(a+b)\), which yields the four cases.
+If both germs vanish, every positive-degree coefficient vanishes by membership
+in \((L,Q)\), while the baseline layer is already dark; hence the whole arc is
+exactly dark.
+\end{proof}
+
+On a tie, write \(\ell=\ell_\alpha\eta^\alpha+\cdots\) and
+\(Q=Q_\beta\eta^\beta+\cdots\).  The candidate amplitude coefficient is
+\begin{equation}\label{eq:tiecoef}
+\frac{i\ell_\alpha c_\e c_\eta^\alpha c_t^3}{6}
++\frac{Q_\beta c_\e^2c_\eta^\beta c_t^4}{12}.
+\end{equation}
+
+\begin{proposition}[Field-corrected tie rule]\label{prop:tiefield}
+Over \(\C\), the tied coefficient can cancel at
+\begin{equation}\label{eq:ctcancel}
+c_t=-\frac{2i\ell_\alpha c_\eta^{\alpha-\beta}}{Q_\beta c_\e}.
+\end{equation}
+For a real-analytic Hermitian family with real
+\(\ell_\alpha,Q_\beta,c_\e,c_\eta,c_t\ne0\), the two terms in
+\cref{eq:tiecoef} have orthogonal real and imaginary parts and cannot cancel.
+No real non-cancellation statement is made for complex leading data.
+\end{proposition}
+\begin{proof}
+Factor the non-zero cubic term from \cref{eq:tiecoef}; the remaining affine
+factor in \(c_t\) gives \cref{eq:ctcancel}.  Under the stated real hypotheses,
+the first summand is purely imaginary and the second purely real.
+\end{proof}
+
+\begin{figure}[ht]
+\centering\input{../../FIGURES/SOURCE/fig06_arc_lower_hull.tikz}
+\caption{The two analytic-arc candidates.  A weight plane can expose one point
+or their joining edge; coefficient cancellation is a separate test on that
+edge.}
+\label{fig:arclower}
+\end{figure}
+
+\subsection{A tie and its next survivor}
+
+Take \(v(\eta)=(1+\eta^2,0,-1,0)\), so \(\alpha=2\), \(\beta=0\), and use
+equal scale exponents.  At total order six,
+\[
+[s^6]K=\frac{c_\e^2c_t^4}{12}+\frac{i c_\e c_t^3}{6}.
+\]
+With \(c_\e=1,c_t=-2i\), this cancels.  Exact expansion gives
+\[
+[s^7]K=\frac{c_\e c_t^4}{12}-\frac{i c_\e^2c_t^5}{60}=\frac45.
+\]
+The survivor \(4/5\) is \evidence{VERIFIED-EXACT}.  Its value cannot be inferred
+from \((\alpha,\beta)\) alone; it uses later coefficients of the pulled germ.
+
+Regular analytic reparametrisation preserves \(\alpha,\beta\) and leading
+scales.  A singular reparametrisation \(\eta=\xi^r\) multiplies both finite
+orders by \(r\).  Analyticity is essential: the smooth-flat germ
+\(e^{-1/\eta^2}\) has zero Taylor series at the origin without vanishing on a
+punctured neighbourhood.
+
+Finally, if an analytic arc is dark, the product factorisation on \(L=0\) and
+the integral-domain property of convergent power-series rings show that the
+whole germ lies in one of the two dark components.  It cannot switch components
+infinitely often near the origin while remaining analytic.
