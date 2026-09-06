@@ -1,27 +1,35 @@
 # From Zero Transfer to Structured Survival on Oriented-Circulant Baselines
 
-**Zach Medford and Joshua Barker**
+**Zach Medford and Joshua Barker**  
+Preprint package · 6 September 2026 · version 1.0.0  
+**Zenodo DOI:** pending reserved DOI insertion
 
-Prepublication manuscript supplied 6 September 2026.
+[Read the paper](manuscript/main.pdf) · [LaTeX source](manuscript/main.tex) · [Citation metadata](CITATION.cff) · [Validation](VALIDATION.md) · [Zenodo metadata](ZENODO_METADATA.md) · [Licensing](LICENSES.md)
 
-[Read the manuscript](manuscript/main.pdf) | [LaTeX source](manuscript/main.tex) | [Citation metadata](CITATION.cff)
+## What this package contains
 
-This package studies prescribed marked rank-one perturbations of known oriented-circulant zero-transfer baselines. It combines standard observability, invariant-kernel, polynomial-content and Fourier methods, and includes a bounded exact seven-block classification on the eight-site baseline. The manuscript makes no priority claim for the worked classification and does not claim a new general observability or cyclotomic theory.
+This package accompanies a bounded synthesis/application study of prescribed marked rank-one perturbations of known oriented-circulant zero-transfer baselines. It combines established finite-observability, invariant-kernel, polynomial-content and circulant Fourier methods and includes a bounded exact seven-block worked classification on the eight-site baseline.
 
-## Contents
+The manuscript makes **no priority claim** for the precise seven-block arithmetic pattern and does **not** claim a new general observability, invariant-subspace, cyclotomic or rank-one-update theory.
 
-- `manuscript/`: the supplied PDF, LaTeX, bibliography, figures, figure generator, compact paper tables and paper-facing exact checks. These files are preserved byte for byte from the supplied prepublication bundle.
-- `supplementary/T17_PRIME_POWER_ARITHMETIC_TAXONOMY/`: the complete frozen T17 machine-readable ledger, verification outputs and accompanying computation reports.
-- `supplementary/_T17_WORK/`: the original symbolic generator and independent standard-library verifier.
-- `supplementary/T15_FREEZE_REPAIRS_RESPONSE_PROFILE/` and `supplementary/T16_ARITHMETIC_BLOCK_DARKNESS/`: the exact upstream JSON inputs consumed by the T17 generator.
-- `SHA256SUMS` and `verify_archive.py`: integrity checks and direct checks that the manuscript summary agrees with the full ledger.
-- `VALIDATION.md`: checks performed for this repository addition.
+### Quick navigation
 
-The old T17 readiness and prior-art reports are retained as historical computation records. Their drafting instructions and provisional novelty assessments predate the final manuscript; the supplied September manuscript controls the current presentation and claims. References in those reports to `_MV1_WORK/deps` or a separate T16 verifier describe the original workspace. The standalone T17 commands below use the included inputs and do not require those historical directories.
+| Need | Go to |
+|---|---|
+| Read the manuscript | [`manuscript/main.pdf`](manuscript/main.pdf) |
+| Inspect the source | [`manuscript/main.tex`](manuscript/main.tex) |
+| Check references | [`manuscript/references.bib`](manuscript/references.bib) |
+| Reproduce paper-facing exact checks | [`manuscript/reproducibility/`](manuscript/reproducibility/) |
+| Inspect exact validation | [`VALIDATION.md`](VALIDATION.md) |
+| Verify archive integrity | [`verify_archive.py`](verify_archive.py) and [`SHA256SUMS`](SHA256SUMS) |
+| Inspect full frozen computation evidence | [`supplementary/`](supplementary/) |
+| Cite the work | [`CITATION.cff`](CITATION.cff) |
+| Prepare Zenodo deposit | [`ZENODO_METADATA.md`](ZENODO_METADATA.md) |
+| Check licensing | [`LICENSES.md`](LICENSES.md) |
 
 ## Reproduce the exact results
 
-Run these commands from this directory using Python 3.12 and SymPy 1.14.0:
+From this directory, using Python 3.12 and SymPy 1.14.0:
 
 ```sh
 python -m pip install -r requirements-exact.txt
@@ -30,22 +38,61 @@ python manuscript/reproducibility/exact_checks.py
 python supplementary/_T17_WORK/verify_t17.py
 ```
 
-The archive verifier needs only the Python standard library. It checks file hashes, both upstream input hashes, the compact census and all 16 directional classifications against the full T17 ledger. The paper-facing script checks the eight-site matrix identities, spectrum, darkness, diagonal Green function and affine rank-one expansion. The independent T17 verifier additionally checks 192 Gaussian-rational physical coefficients and exact Fourier pole signs.
+The archive verifier uses only the Python standard library. It checks integrity hashes, both upstream input hashes, the compact census and all 16 directional classifications against the full T17 ledger. The paper-facing script checks the eight-site matrix identities, spectrum, baseline darkness, diagonal Green function and affine rank-one expansion. The independent T17 verifier additionally checks 192 exact Gaussian-rational physical coefficients and exact Fourier pole signs.
 
-To regenerate the full symbolic ledger, work in a disposable copy of this directory:
+To regenerate the complete symbolic ledger, work in a disposable copy of this directory:
 
 ```sh
 python supplementary/_T17_WORK/t17_exact.py
 python supplementary/_T17_WORK/verify_t17.py
 ```
 
-The symbolic generator recomputes the locked regression, eight graph-realized families, formal controls and 888 prime-local nonvanishing cases. It overwrites the T17 JSON, and the independent verifier overwrites its verification JSON. The standard-library verifier alone reads the stored count of 888; it does not recompute those prime-local cases.
+The symbolic generator recomputes the locked regression, eight graph-realised families, formal controls and 888 prime-local nonvanishing cases. It overwrites the T17 JSON, and the independent verifier overwrites its verification JSON. Validate the frozen archive before regeneration so that original evidence and regenerated outputs remain distinguishable.
 
-Frozen files are included so a reader can distinguish reproduction from the original evidence. Python/SymPy version changes or platform newline conventions can change byte hashes even when parsed JSON values agree. Validate the original archive before regeneration and compare parsed results as well as bytes. Repository attributes preserve the uploaded bytes on checkout.
+## Package layout
 
-## Figures and manuscript
+```text
+structured-survival/
+  README.md
+  CITATION.cff
+  ZENODO_METADATA.md
+  LICENSES.md
+  VALIDATION.md
+  SHA256SUMS
+  verify_archive.py
+  requirements-exact.txt
+  requirements-figures.txt
 
-The supplied figures and PDF are ready to read. To redraw the figures:
+  manuscript/
+    main.pdf
+    main.tex
+    references.bib
+    data/
+    figures/
+    reproducibility/
+
+  supplementary/
+    T15_FREEZE_REPAIRS_RESPONSE_PROFILE/
+    T16_ARITHMETIC_BLOCK_DARKNESS/
+    T17_PRIME_POWER_ARITHMETIC_TAXONOMY/
+    _T17_WORK/
+```
+
+Historical T17 readiness and prior-art reports are retained as provenance records. Their provisional drafting instructions and novelty assessments predate the final manuscript; the September manuscript controls the present claims and scope.
+
+## Exact ledger and reported census
+
+The full T17 ledger SHA-256 recorded by the package is:
+
+```text
+ed4e31ea0d45b7104d7b03ecd1d5df63295bc0b7a8e54c78462edf23e055fc33
+```
+
+The frozen census contains 16 marked components, 112 block generators and 204 arrow generators. Raw block counts are 48 unit, 56 proportional to \(t\) and 8 zero; after localisation to \(D(t)\), there are 104 unit and 8 zero. Raw arrow counts are 140 unit and 64 proportional to \(t\); all 204 become units on \(D(t)\). Eight of the 16 marked directions have dark block 4. These are bounded exact results for the prescribed families, not claims of a universal classification.
+
+## Figures and manuscript build
+
+To redraw the figures:
 
 ```sh
 python -m pip install -r requirements-figures.txt
@@ -61,24 +108,26 @@ latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
 
 Floating-point values are used only for illustrations; no plot is used as proof.
 
-## Exact ledger and reported census
-
-The manuscript's compact table names `T17_MACHINE_READABLE.json` and records its SHA-256:
-
-```text
-ed4e31ea0d45b7104d7b03ecd1d5df63295bc0b7a8e54c78462edf23e055fc33
-```
-
-The frozen census contains 16 marked components, 112 block generators and 204 arrow generators. Raw block counts are 48 unit, 56 proportional to t and 8 zero; after localization to D(t), there are 104 unit and 8 zero. Raw arrow counts are 140 unit and 64 proportional to t; all 204 become units on D(t). Eight of the 16 marked directions have dark block 4. These are bounded exact results, not claims of a complete classification beyond the prescribed families.
-
 ## Citation and archive status
 
-Cite Zach Medford and Joshua Barker, *From Zero Transfer to Structured Survival on Oriented-Circulant Baselines*, prepublication version dated 6 September 2026, with this repository's specific commit URL. Machine-readable metadata is in `CITATION.cff`.
+Until the Zenodo DOI is inserted, cite:
 
-No DOI has yet been assigned to this new manuscript/T17 package. A GitHub commit records the exact version but does not complete the checklist's DOI-deposit requirement. The earlier signed-involution paper's DOI is a different record and must not be used as the DOI of this package. Target-journal formatting and a journal-specific data statement remain author submission tasks.
+**Zach Medford and Joshua Barker, _From Zero Transfer to Structured Survival on Oriented-Circulant Baselines_, version 1.0.0, 6 September 2026**, together with the exact GitHub revision used.
+
+Machine-readable citation metadata is in [`CITATION.cff`](CITATION.cff). Deposit-ready metadata and the final DOI insertion checklist are in [`ZENODO_METADATA.md`](ZENODO_METADATA.md).
+
+The DOI of the earlier signed-involution paper is a different scholarly record and must not be used for this manuscript.
 
 ## Authorship and assistance
 
-The supplied manuscript contains the authors' disclosure naming ChatGPT and Gemini and assigning responsibility for the mathematics, computations, citations, generated code/data and dissemination to the human authors. Affiliations, ORCIDs and contact details have not been invented.
+The manuscript contains a transparency statement recording assistance from ChatGPT and Gemini. These tools are not authors. Responsibility for checking the mathematics, validating computations, verifying citations, auditing generated code/data and deciding on dissemination or submission remains with the named human authors.
 
-Code follows the repository's [MIT License](../../LICENSE). The repository README states the terms for manuscript, figure and data reuse; this addition introduces no separate license.
+Affiliations, ORCIDs and contact details have not been invented and may be added by the authors when appropriate.
+
+## Licensing
+
+Code is MIT-licensed. Unless otherwise stated, manuscript text, scholarly figures, tables and research data in this package are available under CC BY 4.0. See [`LICENSES.md`](LICENSES.md) for the scope and third-party-material note.
+
+## Publication workflow
+
+The remaining archive step is to insert the reserved Zenodo DOI consistently before the record is published. After DOI insertion, update affected hashes and validation records, then use the Zenodo DOI as the canonical outreach link and this GitHub directory as the reproducibility source.
