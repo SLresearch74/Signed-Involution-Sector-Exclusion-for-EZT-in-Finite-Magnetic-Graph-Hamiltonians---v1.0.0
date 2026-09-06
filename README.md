@@ -6,7 +6,7 @@ Research repository for finite-dimensional exact zero-transfer problems in Hermi
 
 | Work | Authors | Status | Read | Reproduce |
 |---|---|---|---|---|
-| **From Zero Transfer to Structured Survival on Oriented-Circulant Baselines** | Zach Medford, Joshua Barker | Preprint package, 6 Sep 2026; Zenodo DOI pending | [PDF](subsequent-work/structured-survival/manuscript/main.pdf) · [LaTeX](subsequent-work/structured-survival/manuscript/main.tex) | [Package](subsequent-work/structured-survival/) · [Validation](subsequent-work/structured-survival/VALIDATION.md) |
+| **From Zero Transfer to Structured Survival on Oriented-Circulant Baselines** | Zach Medford, Joshua Barker | Preprint package, 6 Sep 2026; Zenodo DOI pending | [PDF](subsequent-work/structured-survival/manuscript/main.pdf) · [2-minute overview](subsequent-work/structured-survival/AT_A_GLANCE.md) · [LaTeX](subsequent-work/structured-survival/manuscript/main.tex) | [Package](subsequent-work/structured-survival/) · [Validation](subsequent-work/structured-survival/VALIDATION.md) |
 | **Signed-Involution Sector Exclusion for Exact Zero Transfer in Finite Magnetic Graph Hamiltonians** | Zach Medford | Earlier manuscript in this repository | [PDF](paper/signed_involution_exact_zero_transfer_pst_revised.pdf) · [LaTeX](paper/signed_involution_exact_zero_transfer_pst_revised.tex) | [Data](data/) · [Scripts](scripts/) |
 
 > **Current publication focus:** the structured-survival manuscript above. Its Zenodo record is being prepared separately so that the preprint and reproducibility archive have a paper-specific DOI rather than inheriting the identity of this older repository.
@@ -16,6 +16,7 @@ Research repository for finite-dimensional exact zero-transfer problems in Hermi
 For the current manuscript:
 
 - [Read the paper](subsequent-work/structured-survival/manuscript/main.pdf)
+- [Read the 2-minute overview](subsequent-work/structured-survival/AT_A_GLANCE.md)
 - [Open the reproducibility package](subsequent-work/structured-survival/)
 - [See exact validation results](subsequent-work/structured-survival/VALIDATION.md)
 - [Use citation metadata](subsequent-work/structured-survival/CITATION.cff)
@@ -87,6 +88,7 @@ subsequent-work/
   README.md                         index of newer research outputs
   structured-survival/
     README.md                       paper-specific landing page
+    AT_A_GLANCE.md                  concise non-specialist/technical overview
     CITATION.cff                    machine-readable citation metadata
     ZENODO_METADATA.md              deposit-ready metadata and DOI checklist
     LICENSES.md                     package licensing
