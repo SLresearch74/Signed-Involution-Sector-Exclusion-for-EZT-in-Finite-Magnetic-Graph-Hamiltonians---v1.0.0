@@ -1,0 +1,5 @@
+All exact paper checks passed.
+n=8 eigenvalue multiplicities: {'-2*sqrt(2)': 2, '2*sqrt(2)': 2, '0': 4}
+d(z) = (z - 2)*(z + 2)/(z*(z**2 - 8))
+affine g(t)=t-1, h(t)=t+1 verified from the rank-one expansion
+locked dark block-4 directions = 8/16

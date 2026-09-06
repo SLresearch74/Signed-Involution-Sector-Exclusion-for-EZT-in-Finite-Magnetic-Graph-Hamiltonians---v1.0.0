@@ -1,0 +1,124 @@
+{
+  "source_ledger": "T17_MACHINE_READABLE.json",
+  "source_sha256": "ed4e31ea0d45b7104d7b03ecd1d5df63295bc0b7a8e54c78462edf23e055fc33",
+  "locked_n8": {
+    "components": 16,
+    "block_raw_counts": {
+      "1": 48,
+      "t": 56,
+      "0": 8
+    },
+    "block_normalized_counts": {
+      "1": 104,
+      "0": 8
+    },
+    "edge_raw_counts": {
+      "1": 140,
+      "t": 64
+    },
+    "edge_normalized_counts": {
+      "1": 204
+    },
+    "earliest_unit_histogram": {
+      "1": 32,
+      "0": 60,
+      "3": 4,
+      "2": 8
+    },
+    "all_locked_K0_Kmax_match_T15": true,
+    "mixed_factors_absent": true,
+    "classification": [
+      {
+        "event": "(1,4)",
+        "type": "variable ket",
+        "chi4": 1,
+        "forward_dark": false,
+        "reverse_dark": false
+      },
+      {
+        "event": "(3,4)",
+        "type": "variable ket",
+        "chi4": -1,
+        "forward_dark": true,
+        "reverse_dark": true
+      },
+      {
+        "event": "(5,4)",
+        "type": "variable ket",
+        "chi4": 1,
+        "forward_dark": false,
+        "reverse_dark": false
+      },
+      {
+        "event": "(7,4)",
+        "type": "variable ket",
+        "chi4": -1,
+        "forward_dark": true,
+        "reverse_dark": true
+      },
+      {
+        "event": "(6,1)",
+        "type": "variable bra",
+        "chi4": 1,
+        "forward_dark": false,
+        "reverse_dark": true
+      },
+      {
+        "event": "(6,3)",
+        "type": "variable bra",
+        "chi4": -1,
+        "forward_dark": false,
+        "reverse_dark": true
+      },
+      {
+        "event": "(6,5)",
+        "type": "variable bra",
+        "chi4": 1,
+        "forward_dark": false,
+        "reverse_dark": true
+      },
+      {
+        "event": "(6,7)",
+        "type": "variable bra",
+        "chi4": -1,
+        "forward_dark": false,
+        "reverse_dark": true
+      }
+    ]
+  },
+  "affine_n8": {
+    "n": 8,
+    "connection_set": [
+      1,
+      3
+    ],
+    "source": 0,
+    "target": 2,
+    "fibres": {
+      "0": [
+        0,
+        2,
+        4,
+        6
+      ],
+      "-2sqrt2": [
+        1,
+        3
+      ],
+      "+2sqrt2": [
+        5,
+        7
+      ]
+    },
+    "weights": [
+      "1/2",
+      "1/4",
+      "1/4"
+    ],
+    "a": "1-t",
+    "b": "1+t",
+    "g": "t-1",
+    "h": "t+1",
+    "diagonal_green": "(z^2-4)/(z*(z^2-8))"
+  }
+}

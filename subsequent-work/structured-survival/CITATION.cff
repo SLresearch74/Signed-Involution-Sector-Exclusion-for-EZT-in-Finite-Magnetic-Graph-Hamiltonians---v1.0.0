@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: >-
+  Please cite the prepublication manuscript and include the Git commit
+  used for this reproducibility package. A DOI has not yet been assigned.
+title: From Zero Transfer to Structured Survival on Oriented-Circulant Baselines
+type: dataset
+authors:
+  - family-names: Medford
+    given-names: Zach
+  - family-names: Barker
+    given-names: Joshua
+version: 2026-09-06-prepublication
+date-released: 2026-09-06
+repository-code: https://github.com/SLresearch74/Signed-Involution-Sector-Exclusion-for-EZT-in-Finite-Magnetic-Graph-Hamiltonians---v1.0.0
+url: https://github.com/SLresearch74/Signed-Involution-Sector-Exclusion-for-EZT-in-Finite-Magnetic-Graph-Hamiltonians---v1.0.0/tree/main/subsequent-work/structured-survival
+preferred-citation:
+  type: unpublished
+  authors:
+    - family-names: Medford
+      given-names: Zach
+    - family-names: Barker
+      given-names: Joshua
+  title: From Zero Transfer to Structured Survival on Oriented-Circulant Baselines
+  year: 2026
+  date-published: 2026-09-06
+  status: preprint
+  version: 2026-09-06-prepublication
+  url: https://github.com/SLresearch74/Signed-Involution-Sector-Exclusion-for-EZT-in-Finite-Magnetic-Graph-Hamiltonians---v1.0.0/tree/main/subsequent-work/structured-survival

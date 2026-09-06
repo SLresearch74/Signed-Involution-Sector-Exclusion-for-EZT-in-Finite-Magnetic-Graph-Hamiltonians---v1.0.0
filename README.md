@@ -1,5 +1,13 @@
 # Signed-Involution Sector Exclusion for Exact Zero Transfer
 
+## New manuscript: structured survival (6 September 2026)
+
+**Zach Medford and Joshua Barker, _From Zero Transfer to Structured Survival on Oriented-Circulant Baselines_.** The [manuscript and reproducibility package](subsequent-work/structured-survival/) contains the supplied prepublication PDF and LaTeX, figures, compact paper tables, full T17 machine-readable ledger, verification outputs, exact scripts, and the T15/T16 input ledgers needed to rerun them.
+
+Read the [paper](subsequent-work/structured-survival/manuscript/main.pdf), follow the [reproduction instructions](subsequent-work/structured-survival/README.md), or use its [citation metadata](subsequent-work/structured-survival/CITATION.cff). This is a bounded synthesis/application study with an exact seven-block worked classification. A DOI for this new package has not yet been assigned; cite its specific Git commit until the archival deposit is completed.
+
+---
+
 Research repository for the manuscript:
 
 **Signed-Involution Sector Exclusion for Exact Zero Transfer in Finite Magnetic Graph Hamiltonians**

@@ -1,0 +1,2 @@
+# Preserve byte-for-byte checksums for the structured-survival archive.
+subsequent-work/structured-survival/** -text

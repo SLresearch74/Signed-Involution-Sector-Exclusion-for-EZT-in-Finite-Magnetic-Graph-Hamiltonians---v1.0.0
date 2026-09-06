@@ -1,0 +1,17 @@
+{
+  "status": "VERIFIED-EXACT",
+  "required_files": 18,
+  "locked_components": 16,
+  "locked_blocks": 112,
+  "locked_edges": 204,
+  "new_graph_baselines": 2,
+  "new_marked_families": 8,
+  "new_blocks": 24,
+  "new_edges": 72,
+  "independent_Gaussian_rational_physical_coefficients_checked": 192,
+  "prime_local_nonvanishing_cases": 888,
+  "mandatory_controls": 14,
+  "exact_Fourier_pole_sign_checks": true,
+  "PP_constructed": false,
+  "machine_sha256": "ed4e31ea0d45b7104d7b03ecd1d5df63295bc0b7a8e54c78462edf23e055fc33"
+}
