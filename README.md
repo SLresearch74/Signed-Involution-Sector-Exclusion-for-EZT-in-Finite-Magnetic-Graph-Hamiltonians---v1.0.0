@@ -1,227 +1,139 @@
-# Signed-Involution Sector Exclusion for Exact Zero Transfer
+# Exact Zero-Transfer Research Archive
 
-## New manuscript: structured survival (6 September 2026)
+Research repository for finite-dimensional exact zero-transfer problems in Hermitian and oriented-circulant graph Hamiltonians.
 
-**Zach Medford and Joshua Barker, _From Zero Transfer to Structured Survival on Oriented-Circulant Baselines_.** The [manuscript and reproducibility package](subsequent-work/structured-survival/) contains the supplied prepublication PDF and LaTeX, figures, compact paper tables, full T17 machine-readable ledger, verification outputs, exact scripts, and the T15/T16 input ledgers needed to rerun them.
+## Research outputs
 
-Read the [paper](subsequent-work/structured-survival/manuscript/main.pdf), follow the [reproduction instructions](subsequent-work/structured-survival/README.md), or use its [citation metadata](subsequent-work/structured-survival/CITATION.cff). This is a bounded synthesis/application study with an exact seven-block worked classification. A DOI for this new package has not yet been assigned; cite its specific Git commit until the archival deposit is completed.
+| Work | Authors | Status | Read | Reproduce |
+|---|---|---|---|---|
+| **From Zero Transfer to Structured Survival on Oriented-Circulant Baselines** | Zach Medford, Joshua Barker | Preprint package, 6 Sep 2026; Zenodo DOI pending | [PDF](subsequent-work/structured-survival/manuscript/main.pdf) · [LaTeX](subsequent-work/structured-survival/manuscript/main.tex) | [Package](subsequent-work/structured-survival/) · [Validation](subsequent-work/structured-survival/VALIDATION.md) |
+| **Signed-Involution Sector Exclusion for Exact Zero Transfer in Finite Magnetic Graph Hamiltonians** | Zach Medford | Earlier manuscript in this repository | [PDF](paper/signed_involution_exact_zero_transfer_pst_revised.pdf) · [LaTeX](paper/signed_involution_exact_zero_transfer_pst_revised.tex) | [Data](data/) · [Scripts](scripts/) |
 
----
+> **Current publication focus:** the structured-survival manuscript above. Its Zenodo record is being prepared separately so that the preprint and reproducibility archive have a paper-specific DOI rather than inheriting the identity of this older repository.
 
-Research repository for the manuscript:
+## Start here
 
-**Signed-Involution Sector Exclusion for Exact Zero Transfer in Finite Magnetic Graph Hamiltonians**
-Zach Medford, 2026
+For the current manuscript:
 
-This repository contains the manuscript source, certificate data, diagnostic summaries, figures, and audit scripts supporting the finite graph computations reported in the paper.
+- [Read the paper](subsequent-work/structured-survival/manuscript/main.pdf)
+- [Open the reproducibility package](subsequent-work/structured-survival/)
+- [See exact validation results](subsequent-work/structured-survival/VALIDATION.md)
+- [Use citation metadata](subsequent-work/structured-survival/CITATION.cff)
+- [See Zenodo deposit metadata](subsequent-work/structured-survival/ZENODO_METADATA.md)
+- [See licensing](subsequent-work/structured-survival/LICENSES.md)
 
----
-
-## Overview
-
-This project studies **exact zero-transfer pairs** in finite-dimensional Hermitian graph dynamics.
-
-Given a finite graph Hamiltonian (H), a source vertex (s), and a target vertex (\ell), the central condition is
-
-[
-\langle \ell|e^{-itH}|s\rangle = 0
-\qquad
-\forall t \in \mathbb{R}.
-]
-
-The manuscript develops a finite algebraic framework for this condition using:
-
-* moment, Krylov, and spectral-projector characterisations;
-* invariant-sector and symmetry-sector exclusion;
-* signed-involution certificates;
-* magnetic ({0,\pi})-phase graph Hamiltonians;
-* M3A certificate-generation data;
-* Layer-2 spectral-projector diagnostics;
-* perturbative sector-breaking diagnostics;
-* Lindblad block-preservation criteria.
-
-The repository is intended to make the finite graph computations, certificate records, and diagnostic summaries reproducible.
+For a map of newer work, see [`subsequent-work/README.md`](subsequent-work/README.md).
 
 ---
 
-## Main claim
+## Current manuscript: structured survival
 
-The paper’s central finite-dimensional statement is that exact zero transfer is equivalent to **spectral-projector channel closure**:
+**Zach Medford and Joshua Barker, _From Zero Transfer to Structured Survival on Oriented-Circulant Baselines_.**
 
-[
-\langle \ell|P_\lambda|s\rangle = 0
-\qquad
-\text{for every spectral projector } P_\lambda.
-]
+The paper studies prescribed marked rank-one perturbations of known oriented-circulant zero-transfer baselines. It combines established finite-observability, invariant-kernel, polynomial-content and circulant Fourier methods and includes a bounded exact seven-block worked classification on the eight-site baseline.
 
-Signed-involution certificates provide a constructive sufficient mechanism. If
+The manuscript deliberately makes **no priority claim** for the precise seven-block arithmetic pattern and does **not** claim a new general observability or cyclotomic theory.
 
-[
+The accompanying package contains:
+
+- manuscript PDF, LaTeX and bibliography;
+- figure sources and generation script;
+- compact paper-facing data;
+- the full frozen T17 machine-readable ledger;
+- T15/T16 upstream input ledgers;
+- exact symbolic generators and independent verification scripts;
+- SHA-256 integrity checks and a validation report.
+
+---
+
+## Earlier manuscript: signed-involution sector exclusion
+
+The original repository work studies **exact zero-transfer pairs** in finite-dimensional Hermitian graph dynamics. For a Hamiltonian \(H\), source \(s\), and target \(\ell\), the channel is dark when
+
+$$
+\langle \ell|e^{-itH}|s\rangle=0
+\qquad \forall t\in\mathbb R.
+$$
+
+The finite-dimensional spectral criterion is
+
+$$
+\langle \ell|P_\lambda|s\rangle=0
+\qquad\text{for every spectral projector }P_\lambda.
+$$
+
+A signed involution supplies a sufficient sector-exclusion certificate when
+
+$$
 R^2=I,
-\qquad
-[H,R]=0,
-\qquad
-R|s\rangle=|s\rangle,
-\qquad
-R|\ell\rangle=-|\ell\rangle,
-]
+\qquad [H,R]=0,
+\qquad R|s\rangle=|s\rangle,
+\qquad R|\ell\rangle=-|\ell\rangle.
+$$
 
-then the source and target lie in orthogonal invariant sectors, and exact zero transfer follows for all time.
+The corresponding `paper/`, `data/`, `figures/` and `scripts/` directories are retained for reproducibility and provenance.
 
 ---
 
-## Repository contents
+## Repository map
 
 ```text
-paper/
-  signed_involution_exact_zero_transfer_pst_revised.pdf
-  signed_involution_exact_zero_transfer_pst_revised.tex
+paper/                              earlier signed-involution manuscript
+figures/                            earlier-paper figures
+data/                               earlier-paper certificate and diagnostic data
+scripts/                            earlier-paper analysis scripts
 
-figures/
-  m3a_representative_certificates.png
-
-data/
-  m3a_candidates.csv
-  m3a_graph_records.csv
-  m3a_phase_records.csv
-  m3a_flux_records.csv
-  l2_spectral_projector_audit_summary.md
-  test1_zero_baseline_summary.csv
-  test2_sector_breaking_scaling_summary.csv
-  test3_bound_summary.csv
-  test4_summary.csv
-  test5_projector_summary.csv
-  test6_target_resolved_summary.csv
-
-scripts/
-  magnetic_phase_search_M3A_symmetry_first_fast.py
-  test5_projector_dependence.py
-  test6_target_resolved_sector_breaking.py
+subsequent-work/
+  README.md                         index of newer research outputs
+  structured-survival/
+    README.md                       paper-specific landing page
+    CITATION.cff                    machine-readable citation metadata
+    ZENODO_METADATA.md              deposit-ready metadata and DOI checklist
+    LICENSES.md                     package licensing
+    VALIDATION.md                   exact validation record
+    SHA256SUMS                      integrity manifest
+    verify_archive.py               archive verifier
+    manuscript/                     PDF, LaTeX, bibliography, figures, exact checks
+    supplementary/                  frozen T15/T16/T17 evidence and generators
 ```
-
----
-
-## File guide
-
-### `paper/`
-
-Contains the final manuscript PDF and LaTeX source.
-
-### `figures/`
-
-Contains the representative M3A certificate figure used in the manuscript.
-
-### `data/`
-
-Contains the machine-readable certificate records and diagnostic summaries.
-
-The M3A certificate data include:
-
-* `m3a_graph_records.csv` — graph support records;
-* `m3a_candidates.csv` — candidate identifiers, source-target pairs, involutions, sign functions, and audit norms;
-* `m3a_phase_records.csv` — edge-level phase/sign data defining the signed magnetic Hamiltonians;
-* `m3a_flux_records.csv` — cycle-basis flux records.
-
-The diagnostic summaries include:
-
-* `l2_spectral_projector_audit_summary.md` — compact Layer-2 spectral-projector audit summary;
-* `test1_zero_baseline_summary.csv` — sector-preserving perturbation baseline;
-* `test2_sector_breaking_scaling_summary.csv` — sector-breaking scaling audit;
-* `test3_bound_summary.csv` — finite-time bound audit;
-* `test4_summary.csv` — non-sufficiency of broken-sector diagnostics;
-* `test5_projector_summary.csv` — projector-dependence diagnostics;
-* `test6_target_resolved_summary.csv` — target-resolved sector-breaking diagnostics.
-
-### `scripts/`
-
-Contains the main certificate-generation and diagnostic audit scripts.
 
 ---
 
 ## Reproducibility
 
-The certificate records in `data/` are sufficient to reconstruct the reported signed-involution certificates.
+The structured-survival archive is designed so that a reader can distinguish the frozen evidence from regenerated outputs. Its validation record reports successful paper-facing exact checks, full T17 regeneration, independent coefficient verification, archive-integrity checks and CFF schema validation.
 
-For each certificate, the relevant data are:
-
-1. the graph support;
-2. the source-target pair ((s,\ell));
-3. the involution (r);
-4. the sign function (\sigma);
-5. the edge-level phase/sign assignment;
-6. the corresponding audit norms.
-
-The certificate condition is
-
-[
-R^2=I,
-\qquad
-[H,R]=0,
-\qquad
-R|s\rangle=|s\rangle,
-\qquad
-R|\ell\rangle=-|\ell\rangle.
-]
-
-The Layer-2 diagnostic checks spectral-projector channel closure:
-
-[
-\langle \ell|P_\lambda|s\rangle=0
-\qquad
-\forall \lambda.
-]
-
-The perturbation diagnostics test sector-preserving perturbations, sector-breaking scaling, finite-time bounds, projector dependence, and target-resolved first-order leakage.
+Use the package-specific instructions in [`subsequent-work/structured-survival/README.md`](subsequent-work/structured-survival/README.md).
 
 ---
 
-## Scope and limitations
+## Citation
 
-This repository contains finite graph and finite-dimensional linear-algebra computations.
+The two manuscripts in this repository are separate scholarly objects and should be cited separately.
 
-It does **not** claim to derive:
+For the structured-survival preprint, use its [`CITATION.cff`](subsequent-work/structured-survival/CITATION.cff). Until the Zenodo DOI is inserted, cite the manuscript title, authors, version date and the exact GitHub revision used.
 
-* spacetime;
-* gravity;
-* quantum gravity;
-* continuum Lorentzian geometry;
-* physical dynamics;
-* intrinsic topological protection;
-* generic robustness;
-* or a new physical theory.
-
-The results concern exact zero-transfer structure in finite Hermitian graph Hamiltonians and the finite computations reported in the manuscript.
-
-Related finite-duality and FCC local-to-global obstruction results are being developed separately.
+For the earlier signed-involution manuscript, use its own bibliographic record rather than the structured-survival record.
 
 ---
 
-## How to cite
+## Licensing
 
-If you use this repository, please cite the associated Zenodo DOI:
-
-```text
-[Zenodo DOI to be added after release]
-```
-
-A `CITATION.cff` file may also be included for citation metadata.
+- Repository software is released under the [MIT License](LICENSE).
+- The structured-survival manuscript, figures and data use the package-specific terms in [`subsequent-work/structured-survival/LICENSES.md`](subsequent-work/structured-survival/LICENSES.md).
+- Separate scholarly works in this repository retain their own citation identity even when they share infrastructure.
 
 ---
 
-## Licence
+## Scope
 
-Code in this repository is released under the MIT License.
+These projects concern finite graph and finite-dimensional linear-algebra computations. They do not claim to derive spacetime, gravity, quantum gravity, continuum Lorentzian geometry, generic physical dynamics, intrinsic topological protection or a universal theory of robustness.
 
-The manuscript, figures, and data files are provided for scholarly citation and reproducibility. Unless otherwise stated, non-code materials may be reused with attribution and citation of the associated Zenodo DOI.
+## Authors
 
----
+- Zach Medford
+- Joshua Barker — co-author of the structured-survival manuscript
 
-## Author
+## Repository version
 
-Zach Medford
-
----
-
-## Version
-
-`v1.0.0`
+The repository name retains the historical `v1.0.0` identifier of the original signed-involution project. Paper-specific versioning for the structured-survival manuscript is maintained inside its own package and archival record.
